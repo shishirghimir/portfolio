@@ -401,10 +401,43 @@
       70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
       100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
     }
+    
+    /* Background Terminal Simulation */
+    #backgroundTerminal {
+      font-family: 'Courier New', Courier, monospace;
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    }
+    
+    #backgroundTerminal .bg-terminal-darker {
+      background-color: #001100;
+    }
+    
+    #terminalContent {
+      line-height: 1.4;
+    }
+    
+    #terminalContent .command {
+      color: #33ff33;
+    }
+    
+    #terminalContent .output {
+      color: #00cc00;
+    }
+    
+    #terminalContent .error {
+      color: #ff5555;
+    }
+    
+    /* Matrix Code Rain */
+    #matrixCanvas {
+      z-index: -1;
+    }
   </style>
 </head>
 <body class="bg-terminal-darker text-terminal-green">
   <div class="matrix-bg"></div>
+  <!-- Matrix Code Rain -->
+  <div id="matrixCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-20"></div>
   
   <div class="terminal-container animate-fade-in">
     <div class="terminal-header">
@@ -415,8 +448,11 @@
       </div>
       <div class="terminal-title">NETANIX@portfolio:~$</div>
     </div>
-    
     <div class="scan-line"></div>
+    
+    <!-- Scanning Elements -->
+    <div id="scanner" class="fixed top-0 left-0 w-full h-1 bg-terminal-green opacity-30 pointer-events-none z-20 hidden sm:block"></div>
+    
     
     <!-- Nav -->
     <nav class="mb-8">
@@ -432,6 +468,34 @@
         <button id="modeToggle" class="tag ml-auto">Toggle Mode</button>
       </div>
     </nav>
+    
+    <!-- Terminal Command Preview -->
+    <div class="mb-6">
+      <div class="terminal-container p-4">
+        <div class="flex justify-between items-center mb-2">
+          <div class="terminal-title text-terminal-green">root@kali:~</div>
+          <div class="flex space-x-1">
+            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+          </div>
+        </div>
+        <div class="font-mono text-sm">
+          <div class="flex items-center">
+            <span class="text-terminal-green mr-2">root@kali:~#</span>
+            <span class="text-terminal-light">nmap -sS -p- 192.168.1.100</span>
+          </div>
+          <div class="mt-2 text-terminal-light">
+            Starting Nmap 7.92<br>
+            PORT     STATE SERVICE<br>
+            22/tcp   open  ssh<br>
+            80/tcp   open  http<br>
+            443/tcp  open  https<br>
+            <span class="blink">_</span>
+          </div>
+        </div>
+      </div>
+    </div>
     
     <!-- Hero -->
     <section id="home" class="section">
@@ -794,8 +858,285 @@ END:VCARD`;
         modeToggle.textContent = 'Normal Mode';
       }
     });
+    
+    // Project Card Highlighting
+    document.addEventListener('DOMContentLoaded', function() {
+      // Start highlighting after a delay
+      setTimeout(() => {
+        setInterval(highlightRandomCard, 3000);
+      }, 8000);
+      
+      function highlightRandomCard() {
+        // Get all project cards
+        const cards = document.querySelectorAll('.card');
+        if (cards.length === 0) return;
+        
+        // Remove highlight from all cards
+        cards.forEach(card => {
+          card.classList.remove('border-terminal-green', 'shadow-lg');
+        });
+        
+        // Select a random card to highlight
+        const randomIndex = Math.floor(Math.random() * cards.length);
+        const randomCard = cards[randomIndex];
+        
+        // Add highlight classes
+        randomCard.classList.add('border-terminal-green', 'shadow-lg');
+        
+        // Remove highlight after a delay
+        setTimeout(() => {
+          randomCard.classList.remove('border-terminal-green', 'shadow-lg');
+        }, 2000);
+      }
+      
+      // Handle highlighting on mobile
+      function handleMobileHighlighting() {
+        if (window.innerWidth < 768) {
+          // On mobile, highlight cards more frequently
+          setInterval(highlightRandomCard, 1500);
+        }
+      }
+      
+      // Initialize mobile highlighting
+      handleMobileHighlighting();
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      // Start highlighting after a delay
+      setTimeout(() => {
+        setInterval(highlightRandomCard, 3000);
+      }, 8000);
+      
+      function highlightRandomCard() {
+        // Get all project cards
+        const cards = document.querySelectorAll('.card');
+        if (cards.length === 0) return;
+        
+        // Remove highlight from all cards
+        cards.forEach(card => {
+          card.classList.remove('border-terminal-green', 'shadow-lg');
+        });
+        
+        // Select a random card to highlight
+        const randomIndex = Math.floor(Math.random() * cards.length);
+        const randomCard = cards[randomIndex];
+        
+        // Add highlight classes
+        randomCard.classList.add('border-terminal-green', 'shadow-lg');
+        
+        // Remove highlight after a delay
+        setTimeout(() => {
+          randomCard.classList.remove('border-terminal-green', 'shadow-lg');
+        }, 2000);
+      }
+    });
+    
+    // Scanning Effect
+    document.addEventListener('DOMContentLoaded', function() {
+      const scanner = document.getElementById('scanner');
+      
+      // Only show scanner on screens larger than mobile
+      if (window.innerWidth >= 640) {
+        // Show scanner after a delay
+        setTimeout(() => {
+          scanner.classList.remove('hidden');
+          animateScanner();
+        }, 5000);
+      }
+      
+      function animateScanner() {
+        // Only run scanner on screens larger than mobile
+        if (window.innerWidth < 640) return;
+        
+        let position = -10;
+        const scanHeight = window.innerHeight + 10;
+        
+        function moveScanner() {
+          // Check screen size again in case of resize
+          if (window.innerWidth < 640) return;
+          
+          position += 2;
+          scanner.style.top = position + 'px';
+          
+          if (position < scanHeight) {
+            requestAnimationFrame(moveScanner);
+          } else {
+            // Reset and start again after a delay
+            setTimeout(() => {
+              scanner.style.top = '-10px';
+              animateScanner();
+            }, 3000);
+          }
+        }
+        
+        moveScanner();
+      }
+      
+      // Handle window resize
+      window.addEventListener('resize', function() {
+        if (window.innerWidth >= 640) {
+          scanner.classList.remove('hidden');
+        } else {
+          scanner.classList.add('hidden');
+        }
+      });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      const scanner = document.getElementById('scanner');
+      
+      // Show scanner after a delay
+      setTimeout(() => {
+        scanner.classList.remove('hidden');
+        animateScanner();
+      }, 5000);
+      
+      function animateScanner() {
+        let position = -10;
+        const scanHeight = window.innerHeight + 10;
+        
+        function moveScanner() {
+          position += 2;
+          scanner.style.top = position + 'px';
+          
+          if (position < scanHeight) {
+            requestAnimationFrame(moveScanner);
+          } else {
+            // Reset and start again after a delay
+            setTimeout(() => {
+              scanner.style.top = '-10px';
+              animateScanner();
+            }, 3000);
+          }
+        }
+        
+        moveScanner();
+      }
+    });
+    
+    // Matrix Code Rain Effect
+    document.addEventListener('DOMContentLoaded', function() {
+      const canvas = document.getElementById('matrixCanvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Set canvas dimensions to match window
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      // Handle window resize
+      window.addEventListener('resize', function() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initMatrix(); // Reinitialize on resize
+      });
+      
+      // Characters for the rain
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*";
+      const charArray = chars.split("");
+      
+      // Variables for matrix effect
+      let fontSize, columns, drops;
+      
+      // Initialize matrix effect
+      function initMatrix() {
+        // Adjust font size based on screen width
+        fontSize = window.innerWidth < 768 ? 10 : 14;
+        columns = canvas.width / fontSize;
+        
+        // Array to store the y position of each column
+        drops = [];
+        for (let i = 0; i < columns; i++) {
+          drops[i] = Math.floor(Math.random() * canvas.height / fontSize);
+        }
+      }
+      
+      // Draw function
+      function draw() {
+        // Semi-transparent black to create fading effect
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#00FF00'; // Green color
+        ctx.font = `${fontSize}px monospace`;
+        
+        // Draw characters
+        for (let i = 0; i < drops.length; i++) {
+          const text = charArray[Math.floor(Math.random() * charArray.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          
+          // Reset drop if it reaches the bottom or randomly
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          
+          // Move drop down
+          drops[i]++;
+        }
+      }
+      
+      // Initialize and run the animation
+      initMatrix();
+      
+      // Run the animation at different frame rates based on screen size
+      const frameRate = window.innerWidth < 768 ? 66 : 33; // ~15fps on mobile, ~30fps on desktop
+      setInterval(draw, frameRate);
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      const canvas = document.getElementById('matrixCanvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Set canvas dimensions to match window
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      // Handle window resize
+      window.addEventListener('resize', function() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initMatrix(); // Reinitialize on resize
+      });
+      
+      // Characters for the rain
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*";
+      const charArray = chars.split("");
+      
+      // Font size and columns
+      const fontSize = 14;
+      const columns = canvas.width / fontSize;
+      
+      // Array to store the y position of each column
+      const drops = [];
+      for (let i = 0; i < columns; i++) {
+        drops[i] = Math.floor(Math.random() * canvas.height / fontSize);
+      }
+      
+      // Draw function
+      function draw() {
+        // Semi-transparent black to create fading effect
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#00FF00'; // Green color
+        ctx.font = `${fontSize}px monospace`;
+        
+        // Draw characters
+        for (let i = 0; i < drops.length; i++) {
+          const text = charArray[Math.floor(Math.random() * charArray.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          
+          // Reset drop if it reaches the bottom or randomly
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          
+          // Move drop down
+          drops[i]++;
+        }
+      }
+      
+      // Run the animation
+      setInterval(draw, 33); // ~30fps
+    });
+    
   </script>
-  
   <!-- JSON-LD Schema -->
   <script type="application/ld+json">
   {
