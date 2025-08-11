@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shishir Ghimire • NETANIX | Cybersecurity Portfolio</title>
+  <meta name="description" content="Cybersecurity portfolio of NETANIX (Shishir Ghimire): penetration testing, DFIR, network security, firewall systems, CTF, and secure full‑stack apps." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://shishirghimir.github.io/" />
+  <link rel="icon" type="image/png" href="netanix.png" />
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="NETANIX • Cybersecurity Portfolio" />
+  <meta property="og:description" content="Pentesting, DFIR, networks, firewall systems, CTF & secure apps." />
+  <meta property="og:image" content="netanix.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script src="https://cdn.tailwindcss.com" defer></script>
+  <script>
+    tailwind.config = { 
+      theme: { 
+        extend: { 
+          fontFamily: { 
+            mono: ["'Courier New'", "Courier", "monospace"] 
+          },
+          colors: {
+            terminal: {
+              green: '#00ff00',
+              dark: '#0a0a0a',
+              darker: '#000000',
+              light: '#33ff33',
+              gray: '#333333'
+            }
+          }
+        } 
+      },
+      darkMode: 'class'
+    }
+  </script>
+  <style>
+    body {
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      overflow-x: hidden;
+    }
+    
+    .terminal-container {
+      border: 2px solid #00ff00;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+      margin: 10px;
+      padding: 15px;
+      position: relative;
+      background-color: rgba(0, 10, 0, 0.8);
+    }
+    
+    @media (max-width: 768px) {
+      .terminal-container {
+        margin: 5px;
+        padding: 10px;
+      }
+      
+      .section {
+        padding: 10px;
+        margin-bottom: 20px;
+      }
+      
+      .card {
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      
+      .terminal-header {
+        height: 25px;
+        margin: -10px -10px 10px -10px;
+      }
+      
+      .terminal-title {
+        font-size: 12px;
+        padding-top: 5px;
+      }
+    }
+    
+    .terminal-header {
+      position: relative;
+      height: 30px;
+      background-color: #001100;
+      border-bottom: 1px solid #00ff00;
+      margin: -20px -20px 20px -20px;
+      border-radius: 4px 4px 0 0;
+    }
+    
+    .terminal-buttons {
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      display: flex;
+      gap: 8px;
+    }
+    
+    .terminal-button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    
+    .close { background-color: #ff5f56; }
+    .minimize { background-color: #ffbd2e; }
+    .maximize { background-color: #27c93f; }
+    
+    .terminal-title {
+      text-align: center;
+      color: #00ff00;
+      font-size: 14px;
+      padding-top: 6px;
+      letter-spacing: 1px;
+    }
+    
+    .prompt {
+      color: #00ff00;
+      margin-right: 10px;
+    }
+    
+    .command {
+      color: #33ff33;
+      font-weight: bold;
+    }
+    
+    .section {
+      margin-bottom: 30px;
+      padding: 15px;
+      border: 1px solid #003300;
+      border-radius: 4px;
+      background-color: rgba(0, 20, 0, 0.3);
+    }
+    
+    .section-title {
+      color: #33ff33;
+      border-bottom: 1px solid #003300;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    a {
+      color: #33ff33;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      color: #66ff66;
+      text-decoration: underline;
+    }
+    
+    .card {
+      background-color: rgba(0, 15, 0, 0.5);
+      border: 1px solid #003300;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    
+    .tag {
+      background-color: #002200;
+      color: #33ff33;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 12px;
+      border: 1px solid #004400;
+    }
+    
+    .terminal-input {
+      background-color: #001100;
+      border: 1px solid #003300;
+      color: #33ff33;
+      padding: 10px;
+      border-radius: 4px;
+      width: 100%;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    
+    .terminal-button-primary {
+      background-color: #002200;
+      color: #33ff33;
+      border: 1px solid #004400;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+    }
+    
+    .terminal-button-primary:hover {
+      background-color: #003300;
+      color: #66ff66;
+    }
+    
+    .blink {
+      animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    
+    .scan-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: rgba(0, 255, 0, 0.1);
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+      animation: scan 4s linear infinite;
+    }
+    
+    @keyframes scan {
+      0% { top: 0; }
+      100% { top: 100%; }
+    }
+    
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+      background: 
+        radial-gradient(1200px 800px at 10% -10%, rgba(0,255,0,.1), transparent 60%),
+        radial-gradient(1200px 800px at 110% 10%, rgba(0,255,0,.1), transparent 60%),
+        #000000;
+    }
+    
+    .glitch {
+      position: relative;
+    }
+    
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #ff00c1;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+    
+    .glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim2 5s infinite linear alternate-reverse;
+    }
+    
+    @keyframes glitch-anim {
+      0% { clip: rect(42px, 9999px, 44px, 0); }
+      5% { clip: rect(12px, 9999px, 59px, 0); }
+      10% { clip: rect(48px, 9999px, 29px, 0); }
+      15% { clip: rect(42px, 9999px, 73px, 0); }
+      20% { clip: rect(63px, 9999px, 27px, 0); }
+      25% { clip: rect(34px, 9999px, 55px, 0); }
+      30% { clip: rect(86px, 9999px, 73px, 0); }
+      35% { clip: rect(20px, 9999px, 20px, 0); }
+      40% { clip: rect(26px, 9999px, 60px, 0); }
+      45% { clip: rect(25px, 9999px, 66px, 0); }
+      50% { clip: rect(57px, 9999px, 98px, 0); }
+      55% { clip: rect(5px, 9999px, 46px, 0); }
+      60% { clip: rect(82px, 9999px, 31px, 0); }
+      65% { clip: rect(54px, 9999px, 27px, 0); }
+      70% { clip: rect(28px, 9999px, 99px, 0); }
+      75% { clip: rect(45px, 9999px, 69px, 0); }
+      80% { clip: rect(23px, 9999px, 85px, 0); }
+      85% { clip: rect(1px, 9999px, 83px, 0); }
+      90% { clip: rect(71px, 9999px, 14px, 0); }
+      95% { clip: rect(60px, 9999px, 89px, 0); }
+      100% { clip: rect(52px, 9999px, 74px, 0); }
+    }
+    
+    @keyframes glitch-anim2 {
+      0% { clip: rect(65px, 9999px, 100px, 0); }
+      5% { clip: rect(52px, 9999px, 74px, 0); }
+      10% { clip: rect(79px, 9999px, 85px, 0); }
+      15% { clip: rect(75px, 9999px, 5px, 0); }
+      20% { clip: rect(67px, 9999px, 61px, 0); }
+      25% { clip: rect(14px, 9999px, 79px, 0); }
+      30% { clip: rect(1px, 9999px, 66px, 0); }
+      35% { clip: rect(86px, 9999px, 30px, 0); }
+      40% { clip: rect(23px, 9999px, 98px, 0); }
+      45% { clip: rect(85px, 9999px, 72px, 0); }
+      50% { clip: rect(71px, 9999px, 75px, 0); }
+      55% { clip: rect(2px, 9999px, 48px, 0); }
+      60% { clip: rect(30px, 9999px, 16px, 0); }
+      65% { clip: rect(59px, 9999px, 50px, 0); }
+      70% { clip: rect(41px, 9999px, 62px, 0); }
+      75% { clip: rect(2px, 9999px, 82px, 0); }
+      80% { clip: rect(47px, 9999px, 73px, 0); }
+      85% { clip: rect(3px, 9999px, 27px, 0); }
+      90% { clip: rect(26px, 9999px, 55px, 0); }
+      95% { clip: rect(42px, 9999px, 97px, 0); }
+      100% { clip: rect(38px, 9999px, 49px, 0); }
+    }
+    
+    @keyframes fade-in {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-fade-in {
+      animation: fade-in 0.5s ease-out forwards;
+    }
+    
+    /* Normal mode styles */
+    .normal-mode {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+    
+    .normal-mode .terminal-container {
+      border: 1px solid #ddd;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+    
+    .normal-mode .terminal-header {
+      background-color: #f5f5f5;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .normal-mode .terminal-title {
+      color: #333;
+    }
+    
+    .normal-mode .section {
+      background-color: #f9f9f9;
+      border: 1px solid #eee;
+    }
+    
+    .normal-mode .card {
+      background-color: #fff;
+      border: 1px solid #eee;
+    }
+    
+    .normal-mode a {
+      color: #007bff;
+    }
+    
+    .normal-mode a:hover {
+      color: #0056b3;
+    }
+    
+    .normal-mode .tag {
+      background-color: #e9ecef;
+      color: #495057;
+      border: 1px solid #dee2e6;
+    }
+    
+    .normal-mode .terminal-button-primary {
+      background-color: #007bff;
+      color: #fff;
+      border: 1px solid #007bff;
+    }
+    
+    .normal-mode .terminal-button-primary:hover {
+      background-color: #0056b3;
+      color: #fff;
+    }
+    
+    /* Additional design improvements */
+    .hover-card {
+      transition: all 0.3s ease;
+    }
+    
+    .hover-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .glow {
+      text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+    }
+  </style>
+</head>
+<body class="bg-terminal-darker text-terminal-green">
+  <div class="matrix-bg"></div>
+  
+  <div class="terminal-container animate-fade-in">
+    <div class="terminal-header">
+      <div class="terminal-buttons">
+        <div class="terminal-button close"></div>
+        <div class="terminal-button minimize"></div>
+        <div class="terminal-button maximize"></div>
+      </div>
+      <div class="terminal-title">NETANIX@portfolio:~$</div>
+    </div>
+    
+    <div class="scan-line"></div>
+    
+    <!-- Nav -->
+    <nav class="mb-8">
+      <div class="flex flex-wrap gap-4 text-sm items-center">
+        <a href="#home" class="tag">./home</a>
+        <a href="#projects" class="tag">./projects</a>
+        <a href="#skills" class="tag">./skills</a>
+        <a href="#experience" class="tag">./experience</a>
+        <a href="#ctf" class="tag">./ctf</a>
+        <a href="#contact" class="tag">./contact</a>
+        <a href="https://github.com/shishirghimir" target="_blank" class="tag">github</a>
+        <a href="https://www.linkedin.com/in/shishir-ghimire-2b7934292/" target="_blank" class="tag">linkedin</a>
+        <button id="modeToggle" class="tag ml-auto">Toggle Mode</button>
+      </div>
+    </nav>
+    
+    <!-- Hero -->
+    <section id="home" class="section">
+      <div class="mb-4">
+        <span class="prompt">netanix@portfolio:~$</span>
+        <span class="command">cat profile.txt</span>
+      </div>
+      
+      <div class="mb-6 flex flex-col md:flex-row items-center gap-6">
+        <img src="netanix.png" alt="NETANIX Logo" class="w-24 h-24 rounded-full border-2 border-terminal-green pulse">
+        <div>
+          <h1 class="text-3xl font-bold mb-2 glitch glow" data-text="Shishir Ghimire (NETANIX)">
+            Shishir Ghimire (NETANIX)
+          </h1>
+          <p class="mb-4">Cybersecurity student specializing in penetration testing, DFIR, and secure full‑stack engineering.</p>
+          <p class="mb-4">Builds robust networks (EIGRP, VLANs, EtherChannel, WLC) and production‑ready apps with React, Node.js, and MySQL.</p>
+        </div>
+      </div>
+        
+      <div class="flex flex-wrap gap-3 mb-4">
+        <a href="projects.html" class="terminal-button-primary hover:bg-terminal-green hover:text-terminal-darker transition-colors duration-300">View Projects</a>
+        <a href="https://github.com/shishirghimir" target="_blank" class="terminal-button-primary hover:bg-terminal-green hover:text-terminal-darker transition-colors duration-300">GitHub</a>
+        <a href="https://www.linkedin.com/in/shishir-ghimire-2b7934292/" target="_blank" class="terminal-button-primary hover:bg-terminal-green hover:text-terminal-darker transition-colors duration-300">LinkedIn</a>
+        <a href="./Shishir_Ghimire_CV.pdf" class="terminal-button-primary hover:bg-terminal-green hover:text-terminal-darker transition-colors duration-300">Download CV</a>
+      </div>
+      
+      <div class="flex flex-wrap gap-2 text-xs animate-pulse">
+        <span class="tag">OWASP</span>
+        <span class="tag">MITRE ATT&CK</span>
+        <span class="tag">Volatility</span>
+        <span class="tag">Wireshark</span>
+        <span class="tag">Burp Suite</span>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+        <div class="card hover-card">
+          <p class="text-terminal-light mb-2">// Flagship Project</p>
+          <h3 class="font-bold mb-1">Smart Pharmacy</h3>
+          <p class="text-sm">Full‑stack e‑commerce with JWT auth, Khalti payments, admin dashboards.</p>
+        </div>
+        <div class="card hover-card">
+          <p class="text-terminal-light mb-2">// DFIR Case</p>
+          <h3 class="font-bold mb-1">Keed Loan Forensics</h3>
+          <p class="text-sm">Memory + USB forensics; ATT&CK‑mapped incident timeline.</p>
+        </div>
+        <div class="card hover-card">
+          <p class="text-terminal-light mb-2">// Networking</p>
+          <h3 class="font-bold mb-1">3‑Tier Enterprise</h3>
+          <p class="text-sm">EIGRP, VLANs, EtherChannel, WLC, DHCP/DNS, ROAS.</p>
+        </div>
+        <div class="card hover-card">
+          <p class="text-terminal-light mb-2">// CTF</p>
+          <h3 class="font-bold mb-1">NETANIX CTF</h3>
+          <p class="text-sm">Custom CTF challenges and platform launching soon.</p>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="card">
+          <p class="text-terminal-light mb-2">// Flagship Project</p>
+          <h3 class="font-bold mb-1">Smart Pharmacy</h3>
+          <p class="text-sm">Full‑stack e‑commerce with JWT auth, Khalti payments, admin dashboards.</p>
+        </div>
+        <div class="card">
+          <p class="text-terminal-light mb-2">// DFIR Case</p>
+          <h3 class="font-bold mb-1">Keed Loan Forensics</h3>
+          <p class="text-sm">Memory + USB forensics; ATT&CK‑mapped incident timeline.</p>
+        </div>
+        <div class="card">
+          <p class="text-terminal-light mb-2">// Networking</p>
+          <h3 class="font-bold mb-1">3‑Tier Enterprise</h3>
+          <p class="text-sm">EIGRP, VLANs, EtherChannel, WLC, DHCP/DNS, ROAS.</p>
+        </div>
+        <div class="card">
+          <p class="text-terminal-light mb-2">// CTF</p>
+          <h3 class="font-bold mb-1">NETANIX CTF</h3>
+          <p class="text-sm">Custom CTF challenges and platform launching soon.</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="mb-4">
+        <span class="prompt">netanix@portfolio:~$</span>
+        <span class="command">ls -la projects/</span>
+      </div>
+      
+      <h2 class="section-title">Highlighted Projects</h2>
+      <p class="mb-4">Production‑ready builds with security‑first design.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Firewall Project -->
+        <div class="card">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-bold">Network Firewall & Segmentation Platform</h3>
+            <span class="tag">Security</span>
+          </div>
+          <p class="text-sm mb-3">Linux iptables-based stateful firewall with DNAT/SNAT, service allowlists, SSH hardening, and log streaming to MySQL.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>Policy sets for LAN/DMZ/Guest VLANs; reusable rule bundles</li>
+            <li>Fail-safe defaults (deny-all), rate limits, IDS-style logging</li>
+            <li><a href="#" target="_blank">Repo</a> · <a href="#" target="_blank">Docs</a></li>
+          </ul>
+        </div>
+        
+        <!-- NPT Project -->
+        <div class="card">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-bold">NPT – Network Pentesting Toolkit</h3>
+            <span class="tag">Tooling</span>
+          </div>
+          <p class="text-sm mb-3">Python toolkit for recon & enumeration with modules for fast port scanning, service fingerprinting, HTTP dir discovery, and report export.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>Wrappers for nmap & whatweb; JSON/HTML report output</li>
+            <li>Wordlist-based discovery with rate limiting; resumable scans</li>
+            <li><a href="#" target="_blank">Repo</a> · <a href="#" target="_blank">Docs</a></li>
+          </ul>
+        </div>
+        
+        <!-- Project 1 -->
+        <div class="card">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-bold">Smart Pharmacy (ClickNPick)</h3>
+            <span class="tag">Full‑Stack</span>
+          </div>
+          <p class="text-sm mb-3">React (Vite), Tailwind, Node.js/Express, MySQL/Sequelize, JWT + bcrypt, Khalti/eSewa, role‑based access, admin & member dashboards.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>Secure auth (OTP expiry, CAPTCHA), DDA‑verified pharmacy onboarding</li>
+            <li>Inventory, orders, payments; charts & admin stats</li>
+            <li><a href="#" target="_blank">Repo</a> · <a href="#" target="_blank">Live</a></li>
+          </ul>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="card">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-bold">Keed Loan Financial – DFIR Case</h3>
+            <span class="tag">Forensics</span>
+          </div>
+          <p class="text-sm mb-3">Volatility3, Wireshark, FTK Imager, Autopsy, MITRE ATT&CK mapping, chain of custody, timeline reconstruction.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>Windows 10 x64 memory dump triage; malware process pivoting</li>
+            <li>USB & email forensics; incident response plan (NIST CSF)</li>
+            <li><a href="#" target="_blank">Report</a> · <a href="#" target="_blank">Slides</a></li>
+          </ul>
+        </div>
+        
+        <!-- Project 3 -->
+        <div class="card">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-bold">Enterprise Network – 3‑Tier Design</h3>
+            <span class="tag">Networking</span>
+          </div>
+          <p class="text-sm mb-3">Core/Distribution/Access with VLANs, ROAS, EIGRP, EtherChannel, RSTP, DHCP/DNS, WLC + APs.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>Packet Tracer implementation, redundancy, security hardening</li>
+            <li>Documentation with configs, tests, and diagrams</li>
+            <li><a href="#" target="_blank">Repo</a> · <a href="#" target="_blank">Diagram</a></li>
+          </ul>
+        </div>
+        
+        <!-- CTF Portal -->
+        <div class="card">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-bold">NETANIX CTF Portal</h3>
+            <span class="tag">CTF</span>
+          </div>
+          <p class="text-sm mb-3">Private beta · Challenge categories: Web, Forensics, OSINT, Crypto, Binary; live scoreboard and admin analytics.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>Hint system, write‑up links, and challenge tagging</li>
+            <li>Member dashboards and admin moderation</li>
+            <li><a href="#" target="_blank">Preview</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <div class="mb-4">
+        <span class="prompt">netanix@portfolio:~$</span>
+        <span class="command">cat skills.txt</span>
+      </div>
+      
+      <h2 class="section-title">Skills</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="card">
+          <h3 class="font-bold mb-2">Programming Languages</h3>
+          <p class="text-sm">Python, JavaScript, C, C++</p>
+        </div>
+        <div class="card">
+          <h3 class="font-bold mb-2">Frameworks & Tools</h3>
+          <p class="text-sm">React, Node.js, Express.js, MySQL, MongoDB, Sequelize, Vite, Tailwind</p>
+        </div>
+        <div class="card">
+          <h3 class="font-bold mb-2">Security & DFIR</h3>
+          <p class="text-sm">Burp Suite, OWASP, MITRE ATT&CK, Wireshark, Volatility, FTK Imager, Autopsy</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Experience & Education -->
+    <section id="experience" class="section">
+      <div class="mb-4">
+        <span class="prompt">netanix@portfolio:~$</span>
+        <span class="command">history --education</span>
+      </div>
+      
+      <h2 class="section-title">Experience & Education</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="card">
+          <h3 class="font-bold mb-3">Experience</h3>
+          <ul class="text-sm space-y-2">
+            <li class="flex gap-3">
+              <span class="text-terminal-light">2025 —</span>
+              <div><b>Cybersecurity Projects</b>: Smart Pharmacy (full‑stack), DFIR casework, enterprise network builds.</div>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-terminal-light">2024 —</span>
+              <div><b>CTF & Offensive Security</b>: IDOR exploitation, recon automation, privilege escalation research.</div>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 class="font-bold mb-3">Education & Certs</h3>
+          <ul class="text-sm space-y-2">
+            <li><b>BSc Ethical Hacking & Cybersecurity</b> — Coursework in DFIR, networks, and secure dev.</li>
+            <li>Training: CCNA, Security+, CEH prep, TryHackMe/HTB labs.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTF / Badges -->
+    <section id="ctf" class="section">
+      <div class="mb-4">
+        <span class="prompt">netanix@portfolio:~$</span>
+        <span class="command">ls -la achievements/</span>
+      </div>
+      
+      <h2 class="section-title">CTF, Labs & Badges</h2>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="card">
+          <h3 class="font-bold mb-2">TryHackMe</h3>
+          <p class="text-sm mb-2">Corridor (IDOR), Pre‑Security, Web Fundamentals.</p>
+          <a href="#" target="_blank">Profile</a>
+        </div>
+        <div class="card">
+          <h3 class="font-bold mb-2">Hack The Box</h3>
+          <p class="text-sm mb-2">Linux privesc, web exploitation labs.</p>
+          <a href="#" target="_blank">Profile</a>
+        </div>
+        <div class="card">
+          <h3 class="font-bold mb-2">Research & Write‑ups</h3>
+          <p class="text-sm mb-2">Broken Access Control, DFIR timelines, network hardening.</p>
+          <a href="#" target="_blank">Blog</a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="mb-4">
+        <span class="prompt">netanix@portfolio:~$</span>
+        <span class="command">ping -contact</span>
+      </div>
+      
+      <h2 class="section-title">Contact</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form class="card" onsubmit="event.preventDefault(); alert('Message sent!');">
+          <label class="text-sm mb-1">Name</label>
+          <input class="terminal-input mb-3" required>
+          
+          <label class="text-sm mb-1">Email</label>
+          <input type="email" class="terminal-input mb-3" required>
+          
+          <label class="text-sm mb-1">Message</label>
+          <textarea rows="4" class="terminal-input mb-3" required></textarea>
+          
+          <button class="terminal-button-primary" type="submit">Send Message</button>
+        </form>
+        
+        <div class="card">
+          <h3 class="font-bold mb-3">Links</h3>
+          <ul class="space-y-2 text-sm mb-4">
+            <li><b>Email:</b> <a href="mailto:netanix96@gmail.com">netanix96@gmail.com</a></li>
+            <li><b>GitHub:</b> <a href="https://github.com/shishirghimir" target="_blank">github.com/shishirghimir</a></li>
+            <li><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/shishir-ghimire-2b7934292/" target="_blank">linkedin.com/in/shishir-ghimire-2b7934292</a></li>
+          </ul>
+          
+          <div class="flex flex-wrap gap-3">
+            <button id="copyEmail" class="terminal-button-primary">📋 Copy Email</button>
+            <a id="downloadVcf" class="terminal-button-primary" download="Netanix.vcf">💾 Download vCard</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <footer class="mt-8 pt-4 border-t border-terminal-gray text-center text-sm text-terminal-light">
+      <p>© <span id="year"></span> NETANIX • Built with a security‑first mindset.</p>
+      <p class="mt-1">netanix@portfolio:~$ <span class="blink">_</span></p>
+    </footer>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Copy email & vCard
+    const emailAddr = 'netanix96@gmail.com';
+    const copyBtn = document.getElementById('copyEmail');
+    const vcfBtn = document.getElementById('downloadVcf');
+    
+    if(copyBtn){
+      copyBtn.addEventListener('click', async ()=>{
+        try{ 
+          await navigator.clipboard.writeText(emailAddr); 
+          alert('Email copied to clipboard'); 
+        }catch(e){ 
+          alert('Copy failed'); 
+        }
+      });
+    }
+    
+    if(vcfBtn){
+      const vcf = `BEGIN:VCARD
+VERSION:3.0
+FN:Shishir Ghimire (NETANIX)
+EMAIL:${emailAddr}
+URL:https://github.com/shishirghimir
+END:VCARD`;
+      const blob = new Blob([vcf], {type:'text/vcard'});
+      vcfBtn.href = URL.createObjectURL(blob);
+    }
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Mode toggle functionality
+    const modeToggle = document.getElementById('modeToggle');
+    const body = document.body;
+    
+    modeToggle.addEventListener('click', () => {
+      body.classList.toggle('normal-mode');
+      if (body.classList.contains('normal-mode')) {
+        modeToggle.textContent = 'Hacker Mode';
+      } else {
+        modeToggle.textContent = 'Normal Mode';
+      }
+    });
+  </script>
+  
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Shishir Ghimire",
+    "alternateName": "NETANIX",
+    "url": "https://shishirghimir.github.io/",
+    "sameAs": ["https://github.com/shishirghimir","https://www.linkedin.com/in/shishir-ghimire-2b7934292/"]
+  }
+  </script>
+</body>
+</html>
