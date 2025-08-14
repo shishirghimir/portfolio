@@ -1,0 +1,479 @@
+body {
+  background-color: #000;
+  color: #00ff00;
+  font-family: 'Courier New', Courier, monospace;
+  overflow-x: hidden;
+}
+
+.terminal-container {
+  border: 2px solid #00ff00;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  margin: 10px;
+  padding: 15px;
+  position: relative;
+  background-color: rgba(0, 10, 0, 0.8);
+}
+
+@media (max-width: 768px) {
+  .terminal-container {
+    margin: 5px;
+    padding: 10px;
+  }
+  
+  .section {
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .terminal-header {
+    height: 25px;
+    margin: -10px -10px 10px -10px;
+  }
+  
+  .terminal-title {
+    font-size: 12px;
+    padding-top: 5px;
+  }
+}
+
+.terminal-header {
+  position: relative;
+  height: 30px;
+  background-color: #001100;
+  border-bottom: 1px solid #00ff00;
+  margin: -20px -20px 20px -20px;
+  border-radius: 4px 4px 0 0;
+}
+
+.terminal-buttons {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.close { background-color: #ff5f56; }
+.minimize { background-color: #ffbd2e; }
+.maximize { background-color: #27c93f; }
+
+.terminal-title {
+  text-align: center;
+  color: #00ff00;
+  font-size: 14px;
+  padding-top: 6px;
+  letter-spacing: 1px;
+}
+
+.prompt {
+  color: #00ff00;
+  margin-right: 10px;
+}
+
+.command {
+  color: #33ff33;
+  font-weight: bold;
+}
+
+.section {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #003300;
+  border-radius: 4px;
+  background-color: rgba(0, 20, 0, 0.3);
+}
+
+.section-title {
+  color: #33ff33;
+  border-bottom: 1px solid #003300;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+a {
+  color: #33ff33;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #66ff66;
+  text-decoration: underline;
+}
+
+.card {
+  background-color: rgba(0, 15, 0, 0.5);
+  border: 1px solid #003300;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.tag {
+  background-color: #002200;
+  color: #33ff33;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  border: 1px solid #004400;
+}
+
+.terminal-input {
+  background-color: #001100;
+  border: 1px solid #003300;
+  color: #33ff33;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.terminal-button-primary {
+  background-color: #002200;
+  color: #33ff33;
+  border: 1px solid #004400;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.terminal-button-primary:hover {
+  background-color: #003300;
+  color: #66ff66;
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(0, 255, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  animation: scan 4s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+.mini-neta{
+  position: fixed; right: 18px; bottom: 22px; width: 54px; height: 54px;
+  border-radius: 50%; border: 1px solid rgba(55,255,107,.4);
+  background: radial-gradient(circle at 35% 35%, rgba(55,255,107,.25), rgba(7,32,16,.9));
+  box-shadow: 0 0 12px rgba(55,255,107,.35), inset 0 0 18px rgba(55,255,107,.15);
+  cursor: pointer; z-index: 9999; display:flex; align-items:center; justify-content:center;
+}
+
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.1;
+  background: 
+    radial-gradient(1200px 800px at 10% -10%, rgba(0,255,0,.1), transparent 60%),
+    radial-gradient(1200px 800px at 110% 10%, rgba(0,255,0,.1), transparent 60%),
+    #000000;
+}
+
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #ff00c1;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(42px, 9999px, 44px, 0); }
+  5% { clip: rect(12px, 9999px, 59px, 0); }
+  10% { clip: rect(48px, 9999px, 29px, 0); }
+  15% { clip: rect(42px, 9999px, 73px, 0); }
+  20% { clip: rect(63px, 9999px, 27px, 0); }
+  25% { clip: rect(34px, 9999px, 55px, 0); }
+  30% { clip: rect(86px, 9999px, 73px, 0); }
+  35% { clip: rect(20px, 9999px, 20px, 0); }
+  40% { clip: rect(26px, 9999px, 60px, 0); }
+  45% { clip: rect(25px, 9999px, 66px, 0); }
+  50% { clip: rect(57px, 9999px, 98px, 0); }
+  55% { clip: rect(5px, 9999px, 46px, 0); }
+  60% { clip: rect(82px, 9999px, 31px, 0); }
+  65% { clip: rect(54px, 9999px, 27px, 0); }
+  70% { clip: rect(28px, 9999px, 99px, 0); }
+  75% { clip: rect(45px, 9999px, 69px, 0); }
+  80% { clip: rect(23px, 9999px, 85px, 0); }
+  85% { clip: rect(1px, 9999px, 83px, 0); }
+  90% { clip: rect(71px, 9999px, 14px, 0); }
+  95% { clip: rect(60px, 9999px, 89px, 0); }
+  100% { clip: rect(52px, 9999px, 74px, 0); }
+}
+
+@keyframes glitch-anim2 {
+  0% { clip: rect(65px, 9999px, 100px, 0); }
+  5% { clip: rect(52px, 9999px, 74px, 0); }
+  10% { clip: rect(79px, 9999px, 85px, 0); }
+  15% { clip: rect(75px, 9999px, 5px, 0); }
+  20% { clip: rect(67px, 9999px, 61px, 0); }
+  25% { clip: rect(14px, 9999px, 79px, 0); }
+  30% { clip: rect(1px, 9999px, 66px, 0); }
+  35% { clip: rect(86px, 9999px, 30px, 0); }
+  40% { clip: rect(23px, 9999px, 98px, 0); }
+  45% { clip: rect(85px, 9999px, 72px, 0); }
+  50% { clip: rect(71px, 9999px, 75px, 0); }
+  55% { clip: rect(2px, 9999px, 48px, 0); }
+  60% { clip: rect(30px, 9999px, 16px, 0); }
+  65% { clip: rect(59px, 9999px, 50px, 0); }
+  70% { clip: rect(41px, 9999px, 62px, 0); }
+  75% { clip: rect(2px, 9999px, 82px, 0); }
+  80% { clip: rect(47px, 9999px, 73px, 0); }
+  85% { clip: rect(3px, 9999px, 27px, 0); }
+  90% { clip: rect(26px, 9999px, 55px, 0); }
+  95% { clip: rect(42px, 9999px, 97px, 0); }
+  100% { clip: rect(38px, 9999px, 49px, 0); }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+/* Normal mode styles */
+.normal-mode {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.normal-mode .terminal-container {
+  border: 1px solid #ddd;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.normal-mode .terminal-header {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.normal-mode .terminal-title {
+  color: #333;
+}
+
+.normal-mode .section {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+}
+
+.normal-mode .card {
+  background-color: #fff;
+  border: 1px solid #eee;
+}
+
+.normal-mode a {
+  color: #007bff;
+}
+
+.normal-mode a:hover {
+  color: #0056b3;
+}
+
+.normal-mode .tag {
+  background-color: #e9ecef;
+  color: #495057;
+  border: 1px solid #dee2e6;
+}
+
+.normal-mode .terminal-button-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: 1px solid #007bff;
+}
+
+.normal-mode .terminal-button-primary:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+/* Additional design improvements */
+.hover-card {
+  transition: all 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.glow {
+  text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+}
+
+/* Background Terminal Simulation */
+#backgroundTerminal {
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+#backgroundTerminal .bg-terminal-darker {
+  background-color: #001100;
+}
+
+#terminalContent {
+  line-height: 1.4;
+}
+
+#terminalContent .command {
+  color: #33ff33;
+}
+
+#terminalContent .output {
+  color: #00cc00;
+}
+
+#terminalContent .error {
+  color: #ff5555;
+}
+
+/* Matrix Code Rain */
+#matrixCanvas {
+  z-index: -1;
+}
+
+/* --- Mini Neta assistant panel & prank modal (appended) --- */
+.mini-neta span{ color:#37ff6b; font-weight:700; font-family: monospace; font-size: 12px; }
+.neta-panel{
+  position: fixed; right: 18px; bottom: 86px; width: 300px; max-height: 52vh; overflow:hidden;
+  border:1px solid rgba(55,255,107,.35); border-radius: 10px; z-index: 9998;
+  background: rgba(6,18,11,.92); backdrop-filter: blur(2px);
+  box-shadow: 0 6px 22px rgba(0,0,0,.5), 0 0 18px rgba(55,255,107,.25);
+  display:none; flex-direction:column;
+}
+.neta-panel.open{ display:flex }
+.neta-head{ display:flex; align-items:center; justify-content:space-between; padding:8px 10px; border-bottom:1px solid rgba(55,255,107,.25); color:#37ff6b; font-weight:600; font-family: monospace; }
+.neta-close{ background:transparent; border:1px solid rgba(55,255,107,.3); color:#37ff6b; border-radius:6px; padding:2px 6px; cursor:pointer }
+.neta-body{ padding:10px; overflow:auto; gap:8px; display:flex; flex-direction:column; }
+.neta-msg{ font-family: monospace; font-size: 13px; line-height:1.4; color:#b7ffcc }
+.neta-actions{ display:flex; gap:6px; flex-wrap:wrap; margin-top:6px; padding: 0 10px 8px }
+.neta-actions button{ background:#082515; color:#37ff6b; border:1px solid rgba(55,255,107,.35); border-radius:8px; padding:6px 8px; cursor:pointer; font-family:monospace; font-size:12px }
+.neta-actions button:hover{ background:#0b3620 }
+.neta-input{ display:flex; gap:6px; border-top:1px solid rgba(55,255,107,.25); padding:8px }
+.neta-input input{ flex:1; background:#041a0e; color:#caffd8; border:1px solid rgba(55,255,107,.25); border-radius:8px; padding:6px 8px; font-family:monospace; font-size:12px }
+.neta-input button{ background:#0b3720; color:#37ff6b; border:1px solid rgba(55,255,107,.35); border-radius:8px; padding:6px 10px; font-family:monospace; cursor:pointer }
+
+.neta-modal{ position:fixed; inset:0; background:rgba(0,0,0,.7); backdrop-filter: blur(2px); z-index:9999; display:none; align-items:center; justify-content:center }
+.neta-modal.open{ display:flex }
+.neta-modal .box{ width: min(680px, 94vw); border:1px solid rgba(55,255,107,.35); border-radius:12px; background: rgba(6,18,11,.96); box-shadow: 0 0 24px rgba(55,255,107,.25); padding:16px }
+.neta-modal .box .title{ color:#37ff6b; font-family:monospace; font-weight:700; margin-bottom:8px }
+.neta-modal .box pre{ color:#b7ffcc; font-family:monospace; font-size:13px; line-height:1.45; max-height:50vh; overflow:auto; background:#041a0e; padding:12px; border:1px solid rgba(55,255,107,.25); border-radius:8px }
+.neta-modal .box .row{ display:flex; justify-content:flex-end; gap:8px; margin-top:10px }
+.neta-modal .box .row button{ background:#0b3720; color:#37ff6b; border:1px solid rgba(55,255,107,.35); border-radius:8px; padding:8px 12px; font-family:monospace; cursor:pointer }
+
+/* Professional mode overrides */
+.pro .mini-neta{ border-color: rgba(0,0,0,.15); background: radial-gradient(circle at 35% 35%, rgba(0,0,0,.05), #0f172a); box-shadow: 0 0 10px rgba(0,0,0,.25) }
+.pro .neta-panel{ background:#0b1220; border-color: rgba(255,255,255,.08) }
+.pro .neta-head{ color:#9bd3ff; border-color: rgba(255,255,255,.08) }
+.pro .neta-body{ color:#dbeafe }
+.pro .neta-actions button{ background:#0d1b2a; color:#9bd3ff; border-color: rgba(255,255,255,.12) }
+.pro .neta-input input{ background:#0a1222; color:#e6f1ff; border-color: rgba(255,255,255,.12) }
+.pro .neta-input button{ background:#0d1b2a; color:#9bd3ff; border-color: rgba(255,255,255,.12) }
+.pro .neta-modal .box{ background:#0b1220; border-color: rgba(255,255,255,.12) }
+.pro .neta-modal .box pre{ background:#0a1222; border-color: rgba(255,255,255,.12) }
+
+/* Hacker mode contrast improvements */
+.hacker a{ color:#37ff6b; text-decoration-color: rgba(55,255,107,.7); text-underline-offset: 2px }
+.hacker a:hover, .hacker a:focus-visible{ text-decoration: underline }
+
+.hacker .mini-neta{ border-color: rgba(55,255,107,.35); background: radial-gradient(circle at 35% 35%, rgba(55,255,107,.06), #0a1a11) }
+.hacker .neta-panel{ background:#08140d; border-color: rgba(55,255,107,.35) }
+.hacker .neta-head{ color:#89ffb0; border-color: rgba(55,255,107,.35) }
+.hacker .neta-body{ color:#eafff1 }
+.hacker .neta-actions button{ background:#0b1f13; color:#89ffb0; border-color: rgba(55,255,107,.45) }
+.hacker .neta-input input{ background:#07150d; color:#eafff1; border-color: rgba(55,255,107,.45) }
+.hacker .neta-input button{ background:#0b1f13; color:#89ffb0; border-color: rgba(55,255,107,.45) }
+
+/* Terminal overlay readability */
+#terminalOverlay pre{ color:#c9fdd7 }
+#terminalOverlay input{ background:#001400; border:1px solid #00aa44; color:#37ff6b }
+
+/* Mini Neta polish: messages and typing */
+.mini-neta{ transition: transform .15s ease, box-shadow .2s ease }
+.mini-neta:hover{ transform: translateY(-2px) scale(1.03); box-shadow: 0 8px 26px rgba(0,0,0,.55), 0 0 22px rgba(55,255,107,.35) }
+
+/* Accessibility focus styles */
+.mode-toggle:focus-visible,
+.mini-neta:focus-visible,
+.neta-input input:focus-visible,
+.neta-input button:focus-visible{
+  outline: 2px solid #37ff6b;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(55,255,107,.25);
+}
+.neta-body{ scrollbar-width: thin }
+.neta-msg{ background: rgba(55,255,107,.06); border:1px solid rgba(55,255,107,.18); padding:6px 8px; border-radius:8px; width:fit-content; max-width: 92%; }
+.neta-msg.user{ align-self:flex-end; background: rgba(55,255,107,.12); border-color: rgba(55,255,107,.28); color:#eafff1 }
+.neta-msg.bot{ align-self:flex-start }
+.neta-typing{ opacity:.8; font-style: italic; animation: typingPulse 1s ease-in-out infinite }
+@keyframes typingPulse{ 0%{opacity:.5} 50%{opacity:1} 100%{opacity:.5} }

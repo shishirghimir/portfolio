@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skills • NETANIX | Cybersecurity Portfolio</title>
+  <meta name="description" content="Skills and tooling of NETANIX (Shishir Ghimire): programming, frameworks, security & DFIR toolchain." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://shishirghimir.github.io/skills" />
+  <link rel="icon" type="image/png" href="netanix.png" />
+  <meta property="og:title" content="NETANIX • Skills" />
+  <meta property="og:description" content="Programming, frameworks, security & DFIR tools." />
+  <meta property="og:image" content="netanix.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script src="https://cdn.tailwindcss.com" defer></script>
+  <script src="assets/header.js" defer></script>
+  <script>
+    tailwind.config = { 
+      theme: { 
+        extend: { 
+          fontFamily: { mono: ["'Courier New'", "Courier", "monospace"] },
+          colors: { terminal: { green: '#00ff00', dark: '#0a0a0a', darker: '#000000', light: '#33ff33', gray: '#333333' } }
+        } 
+      },
+      darkMode: 'class'
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/index.css" />
+</head>
+<body class="bg-terminal-darker text-terminal-green hybrid">
+  <div class="matrix-bg"></div>
+  <canvas id="gridBg"></canvas>
+  <div class="noise"></div>
+  <div class="scanline"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="brand"><img src="netanix.png" alt="NETANIX" /><span>NETANIX</span></a>
+      <button id="menuBtn" class="menu-btn" aria-label="Toggle menu">Menu</button>
+      <nav id="siteNav" class="nav">
+        <a href="index.html#home">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="writeups.html">Writeups</a>
+        <a href="skills.html" class="active">Skills</a>
+        <a href="experiences.html">Experience</a>
+        <a href="index.html#ctf">CTF</a>
+        <a href="projects.html">All Projects</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="terminal-container">
+      <div class="terminal-header">
+        <div class="terminal-buttons">
+          <div class="terminal-button close"></div>
+          <div class="terminal-button minimize"></div>
+          <div class="terminal-button maximize"></div>
+        </div>
+        <div class="terminal-title">NETANIX@portfolio:~/skills$</div>
+      </div>
+      <div class="scan-line"></div>
+
+      <section id="skills" class="section">
+        <div class="mb-4">
+          <span class="prompt">netanix@portfolio:~$</span>
+          <span class="command">cat skills.txt</span>
+        </div>
+
+        <h1 class="section-title">Skills</h1>
+        <p class="mb-4">Core capabilities across software, security, and DFIR.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="card tilt">
+            <h3 class="font-bold mb-2">Programming Languages</h3>
+            <p class="text-sm">Python, JavaScript, C, C++</p>
+          </div>
+          <div class="card tilt">
+            <h3 class="font-bold mb-2">Frameworks & Tools</h3>
+            <p class="text-sm">React, Node.js, Express.js, MySQL, MongoDB, Sequelize, Vite, Tailwind</p>
+          </div>
+          <div class="card tilt">
+            <h3 class="font-bold mb-2">Security & DFIR</h3>
+            <p class="text-sm">Burp Suite, OWASP, MITRE ATT&CK, Wireshark, Volatility, FTK Imager, Autopsy</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="mt-8 pt-4 border-t border-terminal-gray text-center text-sm text-terminal-light">
+        <p>© <span id="year"></span> NETANIX • Built with a security‑first mindset.</p>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.41/bundled/lenis.min.js"></script>
+  <script src="assets/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Writeups • NETANIX | Cybersecurity Portfolio</title>
+  <meta name="description" content="Security writeups and research by NETANIX (Shishir Ghimire): web exploitation, DFIR timelines, network hardening, OSINT and crypto." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://shishirghimir.github.io/writeups" />
+  <link rel="icon" type="image/png" href="netanix.png" />
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="NETANIX • Security Writeups" />
+  <meta property="og:description" content="Web, DFIR, networks, OSINT, crypto, and CTF writeups." />
+  <meta property="og:image" content="netanix.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script src="https://cdn.tailwindcss.com" defer></script>
+  <script src="assets/header.js" defer></script>
+  <script>
+    tailwind.config = { 
+      theme: { 
+        extend: { 
+          fontFamily: { 
+            mono: ["'Courier New'", "Courier", "monospace"] 
+          },
+          colors: {
+            terminal: {
+              green: '#00ff00',
+              dark: '#0a0a0a',
+              darker: '#000000',
+              light: '#33ff33',
+              gray: '#333333'
+            }
+          }
+        } 
+      },
+      darkMode: 'class'
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/index.css" />
+  <style>
+    .section { margin-bottom: 30px; }
+  </style>
+</head>
+<body class="bg-terminal-darker text-terminal-green hybrid">
+  <div class="matrix-bg"></div>
+  <canvas id="gridBg"></canvas>
+  <div class="noise"></div>
+  <div class="scanline"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="brand"><img src="netanix.png" alt="NETANIX" /><span>NETANIX</span></a>
+      <button id="menuBtn" class="menu-btn" aria-label="Toggle menu">Menu</button>
+      <nav id="siteNav" class="nav">
+        <a href="index.html#home">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="writeups.html" class="active">Writeups</a>
+        <a href="skills.html">Skills</a>
+        <a href="experiences.html">Experience</a>
+        <a href="index.html#ctf">CTF</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="projects.html">All Projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="terminal-container">
+      <div class="terminal-header">
+        <div class="terminal-buttons">
+          <div class="terminal-button close"></div>
+          <div class="terminal-button minimize"></div>
+          <div class="terminal-button maximize"></div>
+        </div>
+        <div class="terminal-title">NETANIX@portfolio:~/writeups$</div>
+      </div>
+      <div class="scan-line"></div>
+
+      
+
+      <!-- Writeups -->
+      <section id="writeups" class="section">
+        <div class="mb-4">
+          <span class="prompt">netanix@portfolio:~$</span>
+          <span class="command">ls -la writeups/</span>
+        </div>
+
+        <h1 class="section-title">Security Writeups</h1>
+        <p class="mb-4">Research notes, incident timelines, exploit walkthroughs, and methodology.</p>
+
+        <!-- Featured -->
+        <div class="card hover-card mb-6">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+            <div>
+              <p class="text-terminal-light text-xs">// Featured</p>
+              <h2 class="font-bold text-xl mt-1">IDOR in Corridor (THM) — Deep Dive</h2>
+              <p class="text-sm mt-2 opacity-90">Practical IDOR discovery → exploitation → mitigation with clear methodology and reproducible steps.</p>
+              <div class="flex flex-wrap gap-2 mt-3">
+                <span class="tag">Web</span>
+                <span class="tag">Access Control</span>
+                <span class="tag">Bug Classes</span>
+              </div>
+              <p class="text-xs mt-2 text-terminal-light">~6 min read · Updated 2025</p>
+            </div>
+            <a href="#" class="terminal-button-primary">Read Featured</a>
+          </div>
+        </div>
+
+        <!-- Tools: search + filters -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-4">
+          <input id="writeupSearch" type="search" placeholder="Search writeups..." class="terminal-input flex-1" />
+          
+          <div id="projectFilters" class="flex flex-wrap gap-2">
+            <button class="tag active" data-filter="all">All</button>
+            <button class="tag" data-filter="web">Web</button>
+            <button class="tag" data-filter="dfir">DFIR</button>
+            <button class="tag" data-filter="network">Network</button>
+            <button class="tag" data-filter="osint">OSINT</button>
+            <button class="tag" data-filter="crypto">Crypto</button>
+            <button class="tag" data-filter="ctf">CTF</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Web -->
+          <article class="card tilt" data-tags="web idor broken access control tryhackme corridor">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold">IDOR in Corridor (THM) — Deep Dive</h3>
+              <span class="tag">Web</span>
+            </div>
+            <p class="text-sm mb-3">Finding and weaponizing an IDOR to access unauthorized resources. Coverage: recon, mapping, exploitation, and mitigations.</p>
+            <p class="text-xs text-terminal-light mb-2">~6 min read · Updated 2025</p>
+            <ul class="text-sm list-disc pl-5 space-y-1 mb-2">
+              <li>Auth contexts, predictable IDs, insecure object handling</li>
+              <li>Fixes: enforce authorization at object level, random IDs</li>
+            </ul>
+            <a href="#" target="_blank" class="terminal-button-primary">Read Writeup</a>
+          </article>
+
+          <!-- DFIR -->
+          <article class="card tilt" data-tags="dfir windows volatility evtx timeline forensics">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold">Windows DFIR Timeline — Volatility3 + EVTX</h3>
+              <span class="tag">DFIR</span>
+            </div>
+            <p class="text-sm mb-3">Building a reliable timeline from memory + event logs, correlating process injections, persistence, and lateral movement.</p>
+            <p class="text-xs text-terminal-light mb-2">~7 min read · Tools: vol3, EVTX, shimcache</p>
+            <ul class="text-sm list-disc pl-5 space-y-1 mb-2">
+              <li>vol3 plugins, shimcache, prefetch, SRUM, EVTX</li>
+              <li>Artifacts correlation and triage workflow</li>
+            </ul>
+            <a href="#" target="_blank" class="terminal-button-primary">Read Writeup</a>
+          </article>
+
+          <!-- Network -->
+          <article class="card tilt" data-tags="network hardening enterprise eigrp vlan stp dhcp dns">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold">Hardening Enterprise Networks — Practical Guide</h3>
+              <span class="tag">Network</span>
+            </div>
+            <p class="text-sm mb-3">Layered defenses: VLANs, ACLs, EIGRP, EtherChannel, RSTP, DHCP/DNS security; sample configs and validation steps.</p>
+            <p class="text-xs text-terminal-light mb-2">~5 min read · Config templates included</p>
+            <ul class="text-sm list-disc pl-5 space-y-1 mb-2">
+              <li>Templates for ROAS, port-security, mgmt plane</li>
+              <li>Change control and verification checklist</li>
+            </ul>
+            <a href="#" target="_blank" class="terminal-button-primary">Read Writeup</a>
+          </article>
+
+          <!-- OSINT -->
+          <article class="card tilt" data-tags="osint footprinting metadata social subdomains reporting">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold">OSINT Playbook — From Footprinting to Reporting</h3>
+              <span class="tag">OSINT</span>
+            </div>
+            <p class="text-sm mb-3">Workflow for passive/active collection, validation, and ethical reporting. Includes simple automation scripts.</p>
+            <p class="text-xs text-terminal-light mb-2">~4 min read · Templates + scripts</p>
+            <ul class="text-sm list-disc pl-5 space-y-1 mb-2">
+              <li>Subdomain discovery, metadata, social graphing</li>
+              <li>Reporting structure and risk rating</li>
+            </ul>
+            <a href="#" target="_blank" class="terminal-button-primary">Read Writeup</a>
+          </article>
+
+          <!-- Crypto/CTF -->
+          <article class="card tilt" data-tags="crypto ctf classical ciphers prng notes">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold">CTF Notes — Simple Crypto Pitfalls</h3>
+              <span class="tag">Crypto</span>
+            </div>
+            <p class="text-sm mb-3">Common mistakes and quick wins in classical ciphers and weak PRNG tasks; how to spot and automate solutions.</p>
+            <p class="text-xs text-terminal-light mb-2">~3 min read · Quick reference</p>
+            <ul class="text-sm list-disc pl-5 space-y-1 mb-2">
+              <li>Known-plaintext tricks, crib-drag, frequency analysis</li>
+              <li>PRNG bias and seed space reduction</li>
+            </ul>
+            <a href="#" target="_blank" class="terminal-button-primary">Read Writeup</a>
+          </article>
+        </div>
+      </section>
+
+      <footer class="mt-8 pt-4 border-t border-terminal-gray text-center text-sm text-terminal-light">
+        <p>© <span id="year"></span> NETANIX • Built with a security‑first mindset.</p>
+        <p class="mt-1">netanix@portfolio:~/writeups$ <span class="blink">_</span></p>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  
+  <!-- Animation libs and interactions -->
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.41/bundled/lenis.min.js"></script>
+  <script src="assets/main.js" defer></script>
+  <script>
+    // Search filter that prefers data-tags, falls back to text
+    document.addEventListener('DOMContentLoaded', function() {
+      const input = document.getElementById('writeupSearch');
+      if (!input) return;
+      const grid = document.querySelector('#writeups .grid');
+      if (!grid) return;
+      const cards = Array.from(grid.querySelectorAll('.card'));
+      input.addEventListener('input', function() {
+        const q = this.value.trim().toLowerCase();
+        cards.forEach(card => {
+          if(!q){ card.style.display = ''; return; }
+          const tags = (card.getAttribute('data-tags') || '').toLowerCase();
+          const text = card.textContent.toLowerCase();
+          const hay = tags || text;
+          card.style.display = hay.includes(q) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Shishir Ghimire",
+    "alternateName": "NETANIX",
+    "url": "https://shishirghimir.github.io/",
+    "sameAs": ["https://github.com/shishirghimir","https://www.linkedin.com/in/shishir-ghimire-2b7934292/"]
+  }
+  </script>
+</body>
+</html>

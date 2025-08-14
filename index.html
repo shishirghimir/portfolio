@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8">
+  <meta name="description" content="Shishir Ghimire (NETANIX) — Cybersecurity portfolio with pentesting, DFIR, network security, CTFs, and secure full‑stack projects.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="NETANIX — Cybersecurity Portfolio">
+  <meta property="og:description" content="Explore projects, writeups, and skills in pentesting, DFIR, network security, and more.">
+  <meta property="og:url" content="https://shishirghimir.github.io/">
+  <meta property="og:image" content="assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NETANIX — Cybersecurity Portfolio">
+  <meta name="twitter:description" content="Projects, writeups, and skills in cybersecurity.">
+  <meta name="twitter:image" content="assets/og-image.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shishir Ghimire • NETANIX | Cybersecurity Portfolio</title>
   <meta name="description" content="Cybersecurity portfolio of NETANIX (Shishir Ghimire): penetration testing, DFIR, network security, firewall systems, CTF, and secure full‑stack apps." />
@@ -14,8 +25,9 @@
   <meta property="og:image" content="netanix.png" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script src="https://cdn.tailwindcss.com" defer></script>
   <script>
+    // Tailwind config must be defined before loading the CDN script
+    window.tailwind = window.tailwind || {};
     tailwind.config = { 
       theme: { 
         extend: { 
@@ -36,408 +48,41 @@
       darkMode: 'class'
     }
   </script>
-  <style>
-    body {
-      background-color: #000;
-      color: #00ff00;
-      font-family: 'Courier New', Courier, monospace;
-      overflow-x: hidden;
-    }
-    
-    .terminal-container {
-      border: 2px solid #00ff00;
-      border-radius: 4px;
-      box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-      margin: 10px;
-      padding: 15px;
-      position: relative;
-      background-color: rgba(0, 10, 0, 0.8);
-    }
-    
-    @media (max-width: 768px) {
-      .terminal-container {
-        margin: 5px;
-        padding: 10px;
-      }
-      
-      .section {
-        padding: 10px;
-        margin-bottom: 20px;
-      }
-      
-      .card {
-        padding: 10px;
-        margin-bottom: 10px;
-      }
-      
-      .terminal-header {
-        height: 25px;
-        margin: -10px -10px 10px -10px;
-      }
-      
-      .terminal-title {
-        font-size: 12px;
-        padding-top: 5px;
-      }
-    }
-    
-    .terminal-header {
-      position: relative;
-      height: 30px;
-      background-color: #001100;
-      border-bottom: 1px solid #00ff00;
-      margin: -20px -20px 20px -20px;
-      border-radius: 4px 4px 0 0;
-    }
-    
-    .terminal-buttons {
-      position: absolute;
-      top: 8px;
-      left: 10px;
-      display: flex;
-      gap: 8px;
-    }
-    
-    .terminal-button {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-    
-    .close { background-color: #ff5f56; }
-    .minimize { background-color: #ffbd2e; }
-    .maximize { background-color: #27c93f; }
-    
-    .terminal-title {
-      text-align: center;
-      color: #00ff00;
-      font-size: 14px;
-      padding-top: 6px;
-      letter-spacing: 1px;
-    }
-    
-    .prompt {
-      color: #00ff00;
-      margin-right: 10px;
-    }
-    
-    .command {
-      color: #33ff33;
-      font-weight: bold;
-    }
-    
-    .section {
-      margin-bottom: 30px;
-      padding: 15px;
-      border: 1px solid #003300;
-      border-radius: 4px;
-      background-color: rgba(0, 20, 0, 0.3);
-    }
-    
-    .section-title {
-      color: #33ff33;
-      border-bottom: 1px solid #003300;
-      padding-bottom: 10px;
-      margin-bottom: 15px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    a {
-      color: #33ff33;
-      text-decoration: none;
-    }
-    
-    a:hover {
-      color: #66ff66;
-      text-decoration: underline;
-    }
-    
-    .card {
-      background-color: rgba(0, 15, 0, 0.5);
-      border: 1px solid #003300;
-      border-radius: 4px;
-      padding: 15px;
-      margin-bottom: 15px;
-    }
-    
-    .tag {
-      background-color: #002200;
-      color: #33ff33;
-      padding: 2px 8px;
-      border-radius: 3px;
-      font-size: 12px;
-      border: 1px solid #004400;
-    }
-    
-    .terminal-input {
-      background-color: #001100;
-      border: 1px solid #003300;
-      color: #33ff33;
-      padding: 10px;
-      border-radius: 4px;
-      width: 100%;
-      font-family: 'Courier New', Courier, monospace;
-    }
-    
-    .terminal-button-primary {
-      background-color: #002200;
-      color: #33ff33;
-      border: 1px solid #004400;
-      padding: 10px 15px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-family: 'Courier New', Courier, monospace;
-      font-weight: bold;
-    }
-    
-    .terminal-button-primary:hover {
-      background-color: #003300;
-      color: #66ff66;
-    }
-    
-    .blink {
-      animation: blink 1s infinite;
-    }
-    
-    @keyframes blink {
-      0% { opacity: 1; }
-      50% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-    
-    .scan-line {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: rgba(0, 255, 0, 0.1);
-      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-      animation: scan 4s linear infinite;
-    }
-    
-    @keyframes scan {
-      0% { top: 0; }
-      100% { top: 100%; }
-    }
-    
-    .matrix-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0.1;
-      background: 
-        radial-gradient(1200px 800px at 10% -10%, rgba(0,255,0,.1), transparent 60%),
-        radial-gradient(1200px 800px at 110% 10%, rgba(0,255,0,.1), transparent 60%),
-        #000000;
-    }
-    
-    .glitch {
-      position: relative;
-    }
-    
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-    
-    .glitch::before {
-      left: 2px;
-      text-shadow: -2px 0 #ff00c1;
-      clip: rect(44px, 450px, 56px, 0);
-      animation: glitch-anim 5s infinite linear alternate-reverse;
-    }
-    
-    .glitch::after {
-      left: -2px;
-      text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
-      clip: rect(44px, 450px, 56px, 0);
-      animation: glitch-anim2 5s infinite linear alternate-reverse;
-    }
-    
-    @keyframes glitch-anim {
-      0% { clip: rect(42px, 9999px, 44px, 0); }
-      5% { clip: rect(12px, 9999px, 59px, 0); }
-      10% { clip: rect(48px, 9999px, 29px, 0); }
-      15% { clip: rect(42px, 9999px, 73px, 0); }
-      20% { clip: rect(63px, 9999px, 27px, 0); }
-      25% { clip: rect(34px, 9999px, 55px, 0); }
-      30% { clip: rect(86px, 9999px, 73px, 0); }
-      35% { clip: rect(20px, 9999px, 20px, 0); }
-      40% { clip: rect(26px, 9999px, 60px, 0); }
-      45% { clip: rect(25px, 9999px, 66px, 0); }
-      50% { clip: rect(57px, 9999px, 98px, 0); }
-      55% { clip: rect(5px, 9999px, 46px, 0); }
-      60% { clip: rect(82px, 9999px, 31px, 0); }
-      65% { clip: rect(54px, 9999px, 27px, 0); }
-      70% { clip: rect(28px, 9999px, 99px, 0); }
-      75% { clip: rect(45px, 9999px, 69px, 0); }
-      80% { clip: rect(23px, 9999px, 85px, 0); }
-      85% { clip: rect(1px, 9999px, 83px, 0); }
-      90% { clip: rect(71px, 9999px, 14px, 0); }
-      95% { clip: rect(60px, 9999px, 89px, 0); }
-      100% { clip: rect(52px, 9999px, 74px, 0); }
-    }
-    
-    @keyframes glitch-anim2 {
-      0% { clip: rect(65px, 9999px, 100px, 0); }
-      5% { clip: rect(52px, 9999px, 74px, 0); }
-      10% { clip: rect(79px, 9999px, 85px, 0); }
-      15% { clip: rect(75px, 9999px, 5px, 0); }
-      20% { clip: rect(67px, 9999px, 61px, 0); }
-      25% { clip: rect(14px, 9999px, 79px, 0); }
-      30% { clip: rect(1px, 9999px, 66px, 0); }
-      35% { clip: rect(86px, 9999px, 30px, 0); }
-      40% { clip: rect(23px, 9999px, 98px, 0); }
-      45% { clip: rect(85px, 9999px, 72px, 0); }
-      50% { clip: rect(71px, 9999px, 75px, 0); }
-      55% { clip: rect(2px, 9999px, 48px, 0); }
-      60% { clip: rect(30px, 9999px, 16px, 0); }
-      65% { clip: rect(59px, 9999px, 50px, 0); }
-      70% { clip: rect(41px, 9999px, 62px, 0); }
-      75% { clip: rect(2px, 9999px, 82px, 0); }
-      80% { clip: rect(47px, 9999px, 73px, 0); }
-      85% { clip: rect(3px, 9999px, 27px, 0); }
-      90% { clip: rect(26px, 9999px, 55px, 0); }
-      95% { clip: rect(42px, 9999px, 97px, 0); }
-      100% { clip: rect(38px, 9999px, 49px, 0); }
-    }
-    
-    @keyframes fade-in {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-    
-    .animate-fade-in {
-      animation: fade-in 0.5s ease-out forwards;
-    }
-    
-    /* Normal mode styles */
-    .normal-mode {
-      background-color: #f0f0f0;
-      color: #333;
-    }
-    
-    .normal-mode .terminal-container {
-      border: 1px solid #ddd;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-      background-color: #fff;
-    }
-    
-    .normal-mode .terminal-header {
-      background-color: #f5f5f5;
-      border-bottom: 1px solid #ddd;
-    }
-    
-    .normal-mode .terminal-title {
-      color: #333;
-    }
-    
-    .normal-mode .section {
-      background-color: #f9f9f9;
-      border: 1px solid #eee;
-    }
-    
-    .normal-mode .card {
-      background-color: #fff;
-      border: 1px solid #eee;
-    }
-    
-    .normal-mode a {
-      color: #007bff;
-    }
-    
-    .normal-mode a:hover {
-      color: #0056b3;
-    }
-    
-    .normal-mode .tag {
-      background-color: #e9ecef;
-      color: #495057;
-      border: 1px solid #dee2e6;
-    }
-    
-    .normal-mode .terminal-button-primary {
-      background-color: #007bff;
-      color: #fff;
-      border: 1px solid #007bff;
-    }
-    
-    .normal-mode .terminal-button-primary:hover {
-      background-color: #0056b3;
-      color: #fff;
-    }
-    
-    /* Additional design improvements */
-    .hover-card {
-      transition: all 0.3s ease;
-    }
-    
-    .hover-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-    
-    .glow {
-      text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
-    }
-    
-    .pulse {
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4); }
-      70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
-    }
-    
-    /* Background Terminal Simulation */
-    #backgroundTerminal {
-      font-family: 'Courier New', Courier, monospace;
-      box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-    }
-    
-    #backgroundTerminal .bg-terminal-darker {
-      background-color: #001100;
-    }
-    
-    #terminalContent {
-      line-height: 1.4;
-    }
-    
-    #terminalContent .command {
-      color: #33ff33;
-    }
-    
-    #terminalContent .output {
-      color: #00cc00;
-    }
-    
-    #terminalContent .error {
-      color: #ff5555;
-    }
-    
-    /* Matrix Code Rain */
-    #matrixCanvas {
-      z-index: -1;
-    }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/header.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/index.css" />
 </head>
-<body class="bg-terminal-darker text-terminal-green">
+<body class="bg-terminal-darker text-terminal-green hybrid">
   <div class="matrix-bg"></div>
   <!-- Matrix Code Rain -->
   <div id="matrixCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-20"></div>
+  <canvas id="gridBg"></canvas>
+  <div class="noise"></div>
+  <div class="scanline"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="brand"><img src="netanix.png" alt="NETANIX" /><span>NETANIX</span></a>
+      <button id="menuBtn" class="menu-btn" aria-label="Toggle menu">Menu</button>
+      <nav id="siteNav" class="nav">
+        <a href="#home">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="writeups.html">Writeups</a>
+        <a href="skills.html">Skills</a>
+        <a href="experiences.html">Experience</a>
+        <a href="#ctf">CTF</a>
+        <a href="#contact">Contact</a>
+        <a href="projects.html">All Projects</a>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="container">
   
   <div class="terminal-container animate-fade-in">
     <div class="terminal-header">
@@ -454,24 +99,9 @@
     <div id="scanner" class="fixed top-0 left-0 w-full h-1 bg-terminal-green opacity-30 pointer-events-none z-20 hidden sm:block"></div>
     
     
-    <!-- Nav -->
-    <nav class="mb-8">
-      <div class="flex flex-wrap gap-4 text-sm items-center">
-        <a href="#home" class="tag">./home</a>
-        <a href="#projects" class="tag">./projects</a>
-        <a href="#skills" class="tag">./skills</a>
-        <a href="#experience" class="tag">./experience</a>
-        <a href="#ctf" class="tag">./ctf</a>
-        <a href="#contact" class="tag">./contact</a>
-        <a href="https://github.com/shishirghimir" target="_blank" class="tag">github</a>
-        <a href="https://www.linkedin.com/in/shishir-ghimire-2b7934292/" target="_blank" class="tag">linkedin</a>
-        <button id="modeToggle" class="tag ml-auto">Toggle Mode</button>
-      </div>
-    </nav>
-    
     <!-- Terminal Command Preview -->
     <div class="mb-6">
-      <div class="terminal-container p-4">
+      <div class="terminal-container p-4" id="nmapPreview">
         <div class="flex justify-between items-center mb-2">
           <div class="terminal-title text-terminal-green">root@kali:~</div>
           <div class="flex space-x-1">
@@ -512,6 +142,7 @@
           </h1>
           <p class="mb-4">Cybersecurity student specializing in penetration testing, DFIR, and secure full‑stack engineering.</p>
           <p class="mb-4">Builds robust networks (EIGRP, VLANs, EtherChannel, WLC) and production‑ready apps with React, Node.js, and MySQL.</p>
+          <p class="text-sm opacity-80">Focus: <span id="typed" data-words="Pentesting|DFIR|Networks|Firewall Systems|Secure Apps"></span><span class="blink">_</span></p>
         </div>
       </div>
         
@@ -586,10 +217,19 @@
       
       <h2 class="section-title">Highlighted Projects</h2>
       <p class="mb-4">Production‑ready builds with security‑first design.</p>
+      <div id="projectFilters" class="flex flex-wrap gap-2 mb-4">
+        <button class="tag active" data-filter="all">All</button>
+        <button class="tag" data-filter="security">Security</button>
+        <button class="tag" data-filter="network">Network</button>
+        <button class="tag" data-filter="forensics">Forensics</button>
+        <button class="tag" data-filter="full‑stack">Full‑Stack</button>
+        <button class="tag" data-filter="tooling">Tooling</button>
+        <button class="tag" data-filter="ctf">CTF</button>
+      </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <!-- Firewall Project -->
-        <div class="card">
+        <div class="card" data-tags="security network firewall linux">
           <div class="flex justify-between items-start mb-2">
             <h3 class="font-bold">Network Firewall & Segmentation Platform</h3>
             <span class="tag">Security</span>
@@ -603,7 +243,7 @@
         </div>
         
         <!-- NPT Project -->
-        <div class="card">
+        <div class="card" data-tags="tooling security recon enumeration python nmap whatweb">
           <div class="flex justify-between items-start mb-2">
             <h3 class="font-bold">NPT – Network Pentesting Toolkit</h3>
             <span class="tag">Tooling</span>
@@ -617,7 +257,7 @@
         </div>
         
         <!-- Project 1 -->
-        <div class="card">
+        <div class="card" data-tags="full‑stack react node express mysql jwt payments pharmacy">
           <div class="flex justify-between items-start mb-2">
             <h3 class="font-bold">Smart Pharmacy (ClickNPick)</h3>
             <span class="tag">Full‑Stack</span>
@@ -631,7 +271,7 @@
         </div>
         
         <!-- Project 2 -->
-        <div class="card">
+        <div class="card" data-tags="forensics dfir volatility wireshark autopsy ftk report timeline">
           <div class="flex justify-between items-start mb-2">
             <h3 class="font-bold">Keed Loan Financial – DFIR Case</h3>
             <span class="tag">Forensics</span>
@@ -645,7 +285,7 @@
         </div>
         
         <!-- Project 3 -->
-        <div class="card">
+        <div class="card" data-tags="network networking design enterprise eigrp vlan dhcp dns wlc">
           <div class="flex justify-between items-start mb-2">
             <h3 class="font-bold">Enterprise Network – 3‑Tier Design</h3>
             <span class="tag">Networking</span>
@@ -659,7 +299,7 @@
         </div>
         
         <!-- CTF Portal -->
-        <div class="card">
+        <div class="card" data-tags="ctf portal challenges web forensics osint crypto binary">
           <div class="flex justify-between items-start mb-2">
             <h3 class="font-bold">NETANIX CTF Portal</h3>
             <span class="tag">CTF</span>
@@ -805,338 +445,6 @@
     </footer>
   </div>
 
-  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-    
-    // Copy email & vCard
-    const emailAddr = 'netanix96@gmail.com';
-    const copyBtn = document.getElementById('copyEmail');
-    const vcfBtn = document.getElementById('downloadVcf');
-    
-    if(copyBtn){
-      copyBtn.addEventListener('click', async ()=>{
-        try{ 
-          await navigator.clipboard.writeText(emailAddr); 
-          alert('Email copied to clipboard'); 
-        }catch(e){ 
-          alert('Copy failed'); 
-        }
-      });
-    }
-    
-    if(vcfBtn){
-      const vcf = `BEGIN:VCARD
-VERSION:3.0
-FN:Shishir Ghimire (NETANIX)
-EMAIL:${emailAddr}
-URL:https://github.com/shishirghimir
-END:VCARD`;
-      const blob = new Blob([vcf], {type:'text/vcard'});
-      vcfBtn.href = URL.createObjectURL(blob);
-    }
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-    
-    // Mode toggle functionality
-    const modeToggle = document.getElementById('modeToggle');
-    const body = document.body;
-    
-    modeToggle.addEventListener('click', () => {
-      body.classList.toggle('normal-mode');
-      if (body.classList.contains('normal-mode')) {
-        modeToggle.textContent = 'Hacker Mode';
-      } else {
-        modeToggle.textContent = 'Normal Mode';
-      }
-    });
-    
-    // Project Card Highlighting
-    document.addEventListener('DOMContentLoaded', function() {
-      // Start highlighting after a delay
-      setTimeout(() => {
-        setInterval(highlightRandomCard, 3000);
-      }, 8000);
-      
-      function highlightRandomCard() {
-        // Get all project cards
-        const cards = document.querySelectorAll('.card');
-        if (cards.length === 0) return;
-        
-        // Remove highlight from all cards
-        cards.forEach(card => {
-          card.classList.remove('border-terminal-green', 'shadow-lg');
-        });
-        
-        // Select a random card to highlight
-        const randomIndex = Math.floor(Math.random() * cards.length);
-        const randomCard = cards[randomIndex];
-        
-        // Add highlight classes
-        randomCard.classList.add('border-terminal-green', 'shadow-lg');
-        
-        // Remove highlight after a delay
-        setTimeout(() => {
-          randomCard.classList.remove('border-terminal-green', 'shadow-lg');
-        }, 2000);
-      }
-      
-      // Handle highlighting on mobile
-      function handleMobileHighlighting() {
-        if (window.innerWidth < 768) {
-          // On mobile, highlight cards more frequently
-          setInterval(highlightRandomCard, 1500);
-        }
-      }
-      
-      // Initialize mobile highlighting
-      handleMobileHighlighting();
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-      // Start highlighting after a delay
-      setTimeout(() => {
-        setInterval(highlightRandomCard, 3000);
-      }, 8000);
-      
-      function highlightRandomCard() {
-        // Get all project cards
-        const cards = document.querySelectorAll('.card');
-        if (cards.length === 0) return;
-        
-        // Remove highlight from all cards
-        cards.forEach(card => {
-          card.classList.remove('border-terminal-green', 'shadow-lg');
-        });
-        
-        // Select a random card to highlight
-        const randomIndex = Math.floor(Math.random() * cards.length);
-        const randomCard = cards[randomIndex];
-        
-        // Add highlight classes
-        randomCard.classList.add('border-terminal-green', 'shadow-lg');
-        
-        // Remove highlight after a delay
-        setTimeout(() => {
-          randomCard.classList.remove('border-terminal-green', 'shadow-lg');
-        }, 2000);
-      }
-    });
-    
-    // Scanning Effect
-    document.addEventListener('DOMContentLoaded', function() {
-      const scanner = document.getElementById('scanner');
-      
-      // Only show scanner on screens larger than mobile
-      if (window.innerWidth >= 640) {
-        // Show scanner after a delay
-        setTimeout(() => {
-          scanner.classList.remove('hidden');
-          animateScanner();
-        }, 5000);
-      }
-      
-      function animateScanner() {
-        // Only run scanner on screens larger than mobile
-        if (window.innerWidth < 640) return;
-        
-        let position = -10;
-        const scanHeight = window.innerHeight + 10;
-        
-        function moveScanner() {
-          // Check screen size again in case of resize
-          if (window.innerWidth < 640) return;
-          
-          position += 2;
-          scanner.style.top = position + 'px';
-          
-          if (position < scanHeight) {
-            requestAnimationFrame(moveScanner);
-          } else {
-            // Reset and start again after a delay
-            setTimeout(() => {
-              scanner.style.top = '-10px';
-              animateScanner();
-            }, 3000);
-          }
-        }
-        
-        moveScanner();
-      }
-      
-      // Handle window resize
-      window.addEventListener('resize', function() {
-        if (window.innerWidth >= 640) {
-          scanner.classList.remove('hidden');
-        } else {
-          scanner.classList.add('hidden');
-        }
-      });
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-      const scanner = document.getElementById('scanner');
-      
-      // Show scanner after a delay
-      setTimeout(() => {
-        scanner.classList.remove('hidden');
-        animateScanner();
-      }, 5000);
-      
-      function animateScanner() {
-        let position = -10;
-        const scanHeight = window.innerHeight + 10;
-        
-        function moveScanner() {
-          position += 2;
-          scanner.style.top = position + 'px';
-          
-          if (position < scanHeight) {
-            requestAnimationFrame(moveScanner);
-          } else {
-            // Reset and start again after a delay
-            setTimeout(() => {
-              scanner.style.top = '-10px';
-              animateScanner();
-            }, 3000);
-          }
-        }
-        
-        moveScanner();
-      }
-    });
-    
-    // Matrix Code Rain Effect
-    document.addEventListener('DOMContentLoaded', function() {
-      const canvas = document.getElementById('matrixCanvas');
-      const ctx = canvas.getContext('2d');
-      
-      // Set canvas dimensions to match window
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      
-      // Handle window resize
-      window.addEventListener('resize', function() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        initMatrix(); // Reinitialize on resize
-      });
-      
-      // Characters for the rain
-      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*";
-      const charArray = chars.split("");
-      
-      // Variables for matrix effect
-      let fontSize, columns, drops;
-      
-      // Initialize matrix effect
-      function initMatrix() {
-        // Adjust font size based on screen width
-        fontSize = window.innerWidth < 768 ? 10 : 14;
-        columns = canvas.width / fontSize;
-        
-        // Array to store the y position of each column
-        drops = [];
-        for (let i = 0; i < columns; i++) {
-          drops[i] = Math.floor(Math.random() * canvas.height / fontSize);
-        }
-      }
-      
-      // Draw function
-      function draw() {
-        // Semi-transparent black to create fading effect
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#00FF00'; // Green color
-        ctx.font = `${fontSize}px monospace`;
-        
-        // Draw characters
-        for (let i = 0; i < drops.length; i++) {
-          const text = charArray[Math.floor(Math.random() * charArray.length)];
-          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-          
-          // Reset drop if it reaches the bottom or randomly
-          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-          }
-          
-          // Move drop down
-          drops[i]++;
-        }
-      }
-      
-      // Initialize and run the animation
-      initMatrix();
-      
-      // Run the animation at different frame rates based on screen size
-      const frameRate = window.innerWidth < 768 ? 66 : 33; // ~15fps on mobile, ~30fps on desktop
-      setInterval(draw, frameRate);
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-      const canvas = document.getElementById('matrixCanvas');
-      const ctx = canvas.getContext('2d');
-      
-      // Set canvas dimensions to match window
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      
-      // Handle window resize
-      window.addEventListener('resize', function() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        initMatrix(); // Reinitialize on resize
-      });
-      
-      // Characters for the rain
-      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*";
-      const charArray = chars.split("");
-      
-      // Font size and columns
-      const fontSize = 14;
-      const columns = canvas.width / fontSize;
-      
-      // Array to store the y position of each column
-      const drops = [];
-      for (let i = 0; i < columns; i++) {
-        drops[i] = Math.floor(Math.random() * canvas.height / fontSize);
-      }
-      
-      // Draw function
-      function draw() {
-        // Semi-transparent black to create fading effect
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#00FF00'; // Green color
-        ctx.font = `${fontSize}px monospace`;
-        
-        // Draw characters
-        for (let i = 0; i < drops.length; i++) {
-          const text = charArray[Math.floor(Math.random() * charArray.length)];
-          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-          
-          // Reset drop if it reaches the bottom or randomly
-          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-          }
-          
-          // Move drop down
-          drops[i]++;
-        }
-      }
-      
-      // Run the animation
-      setInterval(draw, 33); // ~30fps
-    });
-    
-  </script>
   <!-- JSON-LD Schema -->
   <script type="application/ld+json">
   {
@@ -1148,5 +456,11 @@ END:VCARD`;
     "sameAs": ["https://github.com/shishirghimir","https://www.linkedin.com/in/shishir-ghimire-2b7934292/"]
   }
   </script>
+  <!-- Animation libs and interactions -->
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.41/bundled/lenis.min.js"></script>
+  <script src="assets/main.js" defer></script>
+  <script src="assets/index-page.js" defer></script>
 </body>
 </html>
