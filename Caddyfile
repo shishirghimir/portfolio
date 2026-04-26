@@ -1,0 +1,47 @@
+# Caddy config for Railway — Shishir Ghimire portfolio
+# Listens on the port Railway injects (defaults to 8080 locally).
+:{$PORT:8080} {
+    root * /srv
+    encode zstd gzip
+
+    # ── Service Worker: must control / scope, no caching ──
+    @sw path /sw.js
+    header @sw {
+        Cache-Control "public, max-age=0, must-revalidate"
+        Service-Worker-Allowed "/"
+    }
+
+    # ── PWA manifest: correct MIME ──
+    @manifest path /manifest.webmanifest
+    header @manifest Content-Type "application/manifest+json; charset=utf-8"
+
+    # ── Sitemap + robots ──
+    @sitemap path /sitemap.xml
+    header @sitemap Content-Type "application/xml; charset=utf-8"
+
+    @robots path /robots.txt
+    header @robots Content-Type "text/plain; charset=utf-8"
+
+    # ── Static assets: 1 year immutable ──
+    @assets path /img/* /css/* /js/*
+    header @assets Cache-Control "public, max-age=31536000, immutable"
+
+    # ── HTML: short cache so updates ship instantly ──
+    @html path *.html /
+    header @html Cache-Control "public, max-age=0, must-revalidate"
+
+    # ── Security headers (apply to all responses) ──
+    header {
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        Permissions-Policy "camera=(), microphone=(), geolocation=()"
+        # remove the auto Server header for a tiny info-disclosure win
+        -Server
+    }
+
+    # serve files; fall back to index.html (so /about resolves to /about.html
+    # if the user types it without extension)
+    try_files {path} {path}.html /index.html
+    file_server
+}

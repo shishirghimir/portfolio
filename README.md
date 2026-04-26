@@ -43,26 +43,41 @@ Live: **https://shishirghimire.info.np**
 - Per-page canonical URLs, OG + Twitter card metadata
 - Google Fonts preconnected, hero image preloaded with `fetchpriority`
 
-## Deploy
+## Deploy on Railway
 
-Drop the folder on any static host:
+Hosted via **Railway** using a tiny Caddy + Alpine Dockerfile (~45 MB image).
 
-- **Netlify** / **Vercel** / **Cloudflare Pages** — connect this repo, no build command
-- **GitHub Pages** — Settings → Pages → Branch `main`, root `/`
-- **Self-hosted** — serve the folder over HTTPS with a static file server
+1. Push this repo to GitHub (already done — `https://github.com/shishirghimir/portfolio`).
+2. On https://railway.app → **New Project → Deploy from GitHub Repo → shishirghimir/portfolio**.
+3. Railway auto-detects [`Dockerfile`](Dockerfile) and [`railway.toml`](railway.toml) and builds. No env vars required.
+4. Once deployed, go to **Settings → Networking → Public Networking → Generate Domain** to get a `*.up.railway.app` URL.
+5. To use `shishirghimire.info.np`: **Settings → Networking → Custom Domain** → enter `shishirghimire.info.np` → Railway shows the CNAME record to set at your DNS registrar. SSL provisions automatically (~1 minute).
 
-After deploy, submit `https://your-domain/sitemap.xml` to Google Search Console + Bing Webmaster Tools.
+Future updates: just `git push origin main` — Railway rebuilds and redeploys in ~60 s.
 
-## Local development
+### How the deploy works
+
+- [`Dockerfile`](Dockerfile) — pulls `caddy:2-alpine`, copies the [`Caddyfile`](Caddyfile) and validates it at build time.
+- [`Caddyfile`](Caddyfile) — listens on `$PORT` (Railway-injected), serves `/srv` with gzip+zstd compression, sets aggressive 1-year cache on `/img`, `/css`, `/js`, no-cache on HTML, correct MIME types for `sw.js` / `manifest.webmanifest` / `sitemap.xml`, and security headers on every response.
+- [`railway.toml`](railway.toml) — tells Railway to use the Dockerfile builder, restart on failure, and healthcheck `/`.
+
+After deploy, submit `https://shishirghimire.info.np/sitemap.xml` to Google Search Console + Bing Webmaster Tools.
+
+### Run locally
 
 ```bash
-# any static server works
+docker build -t portfolio .
+docker run --rm -p 8080:8080 -e PORT=8080 portfolio
+# open http://localhost:8080
+```
+
+Or without Docker:
+
+```bash
 python -m http.server 8000
 # or
 npx serve .
 ```
-
-Open `http://localhost:8000`.
 
 ## Image regeneration
 
