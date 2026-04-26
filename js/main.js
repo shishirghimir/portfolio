@@ -439,5 +439,4 @@ document.addEventListener('DOMContentLoaded',()=>{
   initProgress();initToTop();initMarquee();
   initBrackets();initKonami();
   initCmdK();initPWA();
-  hidePreload();
 });
