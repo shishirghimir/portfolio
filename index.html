@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Shishir Ghimire (NetaNix) — Cybersecurity student exploring penetration testing, digital forensics, red team operations, and security tool creation. Founder of NetaNix CTF. Kathmandu, Nepal."/>
+  <meta name="keywords" content="Shishir Ghimire, NetaNix, cybersecurity student, penetration testing, digital forensics, red team, security tools, CTF, Kathmandu, Nepal, ethical hacking, OSINT"/>
+  <meta name="author" content="Shishir Ghimire"/>
+  <meta name="theme-color" content="#0c0e14"/>
+  <meta property="og:title" content="Shishir Ghimire | NetaNix — Cybersecurity Student"/>
+  <meta property="og:description" content="Cybersecurity student exploring pentesting, digital forensics, red team, and security tool creation. Founder of NetaNix CTF."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="img/shishir.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Shishir Ghimire | NetaNix"/>
+  <meta name="twitter:description" content="Cybersecurity professional, CTF founder, software developer."/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230c0e14'/%3E%3Cpath d='M14 18 L32 10 L50 18 L50 36 C50 46 32 54 32 54 C32 54 14 46 14 36 Z' fill='none' stroke='%23ef4444' stroke-width='3' stroke-linejoin='round'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='monospace' font-size='20' font-weight='bold' fill='%23f59e0b'%3EN%3C/text%3E%3C/svg%3E"/>
+  <link rel="canonical" href="https://shishirghimire.info.np/"/>
+  <link rel="manifest" href="manifest.webmanifest"/>
+  <meta name="application-name" content="NetaNix"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="NetaNix"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="dns-prefetch" href="https://api.rss2json.com"/>
+  <link rel="dns-prefetch" href="https://medium.com"/>
+  <link rel="preload" as="image" href="img/shishir.jpg" fetchpriority="high"/>
+  <link rel="preload" as="style" href="css/style.css"/>
+  <title>Shishir Ghimire | NetaNix — Cybersecurity & Software Developer in Nepal</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Shishir Ghimire",
+    "alternateName":"NetaNix",
+    "url":"https://shishirghimire.info.np/",
+    "image":"https://shishirghimire.info.np/img/shishir.jpg",
+    "email":"ssishir39@gmail.com",
+    "jobTitle":"Cybersecurity Student",
+    "affiliation":[
+      {"@type":"CollegeOrUniversity","name":"Softwarica College of IT & E-Commerce","url":"https://softwarica.edu.np/"},
+      {"@type":"CollegeOrUniversity","name":"Coventry University","url":"https://www.coventry.ac.uk/"}
+    ],
+    "alumniOf":{"@type":"EducationalOrganization","name":"NIST — National School of Sciences"},
+    "address":{"@type":"PostalAddress","addressLocality":"Kathmandu","addressRegion":"Bagmati","addressCountry":"Nepal"},
+    "sameAs":[
+      "https://github.com/shishirghimir",
+      "https://medium.com/@netanix96",
+      "https://linkedin.com/in/shishir-ghimire-2b7934292",
+      "https://tryhackme.com/p/N3TANIX",
+      "https://netanixctf.xyz"
+    ],
+    "knowsAbout":["Penetration Testing","Digital Forensics","Red Team Operations","Security Tool Creation","CTF Design","OSINT","Web Exploitation","Cybersecurity","Python","Ethical Hacking"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Shishir Ghimire — NetaNix",
+    "url":"https://shishirghimire.info.np/",
+    "potentialAction":{"@type":"SearchAction","target":"https://medium.com/@netanix96?q={search_term_string}","query-input":"required name=search_term_string"}
+  }
+  </script>
+</head>
+<body>
+
+<div id="preload" class="preload" aria-hidden="true">
+  <div class="preload-inner">
+    <div class="preload-logo">NETA<em>NIX</em></div>
+    <div class="preload-bar"><i></i></div>
+    <p class="preload-txt">Loading</p>
+  </div>
+</div>
+
+<div class="aurora" aria-hidden="true"><i></i></div>
+<div class="bg-grid" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo">NETA<em>NIX</em><sup>labs</sup></a>
+  <ul class="nav-links" id="nl" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="writeups.html">Writeups</a></li>
+    <li><a href="certs.html">Certs</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-btn" id="nb" aria-label="Toggle menu" aria-expanded="false" aria-controls="nl">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hname">
+  <div class="hero-l">
+    <div class="h-status"><span class="sdot"></span>Available for opportunities</div>
+    <a class="thm-pill" href="https://tryhackme.com/p/N3TANIX" target="_blank" rel="noopener" aria-label="Top 1% on TryHackMe — view profile">
+      <span class="star">★</span> Top 1% on TryHackMe
+    </a>
+    <h1 class="h-name" id="hname">
+      <span class="ln1" id="gname">SHISHIR</span>
+      <span class="ln2">GHIMIRE</span>
+    </h1>
+    <p class="h-aka">// Cybersecurity Student &middot; Always Learning</p>
+    <div class="h-typer" aria-live="polite"><span id="typer"></span></div>
+    <p class="h-desc">Cybersecurity student exploring penetration testing, digital forensics, red team operations, and security tool creation. Founder of NetaNix CTF, building from Kathmandu.</p>
+    <div class="h-acts">
+      <a href="projects.html" class="btn btn-red"><span class="ico" id="bi1"></span>View Projects</a>
+      <a href="writeups.html" class="btn btn-out"><span class="ico" id="bi2"></span>Read Writeups</a>
+      <a href="contact.html" class="btn btn-ghost">Get in Touch</a>
+    </div>
+    <div class="h-socials" aria-label="Social links">
+      <a class="h-soc" href="https://github.com/shishirghimir" target="_blank" rel="noopener" aria-label="GitHub" id="hs1"></a>
+      <a class="h-soc" href="https://medium.com/@netanix96" target="_blank" rel="noopener" aria-label="Medium" id="hs2"></a>
+      <a class="h-soc" href="https://tryhackme.com/p/N3TANIX" target="_blank" rel="noopener" aria-label="TryHackMe" id="hs3"></a>
+      <a class="h-soc" href="https://linkedin.com/in/shishir-ghimire-2b7934292" target="_blank" rel="noopener" aria-label="LinkedIn" id="hs4"></a>
+      <a class="h-soc" href="mailto:ssishir39@gmail.com" aria-label="Email" id="hs5"></a>
+    </div>
+  </div>
+
+  <div class="hero-r" aria-hidden="true">
+    <div class="pframe">
+      <div class="pframe-ring"></div>
+      <div class="pframe-bg"></div>
+      <div class="br br-tl"></div><div class="br br-tr"></div>
+      <div class="br br-bl"></div><div class="br br-br"></div>
+      <div class="pinner">
+        <picture>
+          <source srcset="img/shishir.avif" type="image/avif"/>
+          <source srcset="img/shishir.webp" type="image/webp"/>
+          <img src="img/shishir.jpg" alt="Shishir Ghimire" width="340" height="425" fetchpriority="high" decoding="async"/>
+        </picture>
+      </div>
+      <div class="chip chip-1"><span class="chip-ico gold" id="chip-shield"></span>Top 1% TryHackMe</div>
+      <div class="chip chip-2"><span class="chip-ico gold" id="chip-flag"></span>CTF Founder</div>
+      <div class="chip chip-3"><span class="chip-ico" id="chip-loc"></span>Kathmandu, NP</div>
+    </div>
+  </div>
+  <div class="scue" aria-hidden="true">Scroll<span class="scue-line"></span></div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip" aria-label="Quick statistics">
+  <div class="wrap">
+    <div class="stats-g" data-stagger>
+      <div class="sbox">
+        <div class="sico" id="si1"></div>
+        <span class="sn" data-count="13">0</span>
+        <span class="sl">Certifications</span>
+      </div>
+      <div class="sbox">
+        <div class="sico" id="si2"></div>
+        <span class="sn" data-count="7" data-suf="+">0</span>
+        <span class="sl">Projects Shipped</span>
+      </div>
+      <a class="sbox sbox-feat" href="https://tryhackme.com/p/N3TANIX" target="_blank" rel="noopener" style="text-decoration:none">
+        <div class="sico" id="si3"></div>
+        <span class="sn">TOP 1%</span>
+        <span class="sl">TryHackMe Global</span>
+      </a>
+      <div class="sbox">
+        <div class="sico" id="si4"></div>
+        <span class="sn" data-count="1">0</span>
+        <span class="sl">CTF Platform Founded</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="sec" aria-labelledby="ab-h">
+  <div class="wrap">
+    <div class="about-g">
+      <div class="about-txt" data-f>
+        <p class="lbl">About Me</p>
+        <h2 class="stitle" id="ab-h">Learning &amp; <span>Breaking.</span></h2>
+        <p>Cybersecurity student at Coventry University, deep into penetration testing, digital forensics, red team operations, and building my own security tooling. Always learning, always shipping.</p>
+        <p>I founded <strong style="color:var(--gold)">NetaNix CTF</strong> to give the community a space to learn through competition — and I write up everything I break on Medium.</p>
+        <div class="ptags">
+          <span class="tag">Penetration Testing</span>
+          <span class="tag">Digital Forensics</span>
+          <span class="tag">Red Team</span>
+          <span class="tag tag-g">Tool Creation</span>
+          <span class="tag tag-b">CTF Design</span>
+          <span class="tag">OSINT</span>
+        </div>
+        <a href="about.html" class="btn btn-out">Full Profile</a>
+      </div>
+      <div data-f data-d="2">
+        <div class="irows">
+          <div class="irow"><span class="ik">Alias</span><span class="iv">NetaNix</span></div>
+          <div class="irow"><span class="ik">Degree</span><span class="iv">BSc (Hons) Cybersecurity &amp; Ethical Hacking</span></div>
+          <div class="irow"><span class="ik">College</span><span class="iv">Softwarica &mdash; Coventry University</span></div>
+          <div class="irow"><span class="ik">Location</span><span class="iv">Kathmandu, Nepal</span></div>
+          <div class="irow"><span class="ik">GitHub</span><span class="iv"><a href="https://github.com/shishirghimir" target="_blank" rel="noopener">shishirghimir</a></span></div>
+          <div class="irow"><span class="ik">Medium</span><span class="iv"><a href="https://medium.com/@netanix96" target="_blank" rel="noopener">@netanix96</a></span></div>
+          <div class="irow"><span class="ik">CTF</span><span class="iv"><a href="https://netanixctf.xyz" target="_blank" rel="noopener">netanixctf.xyz</a></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="sec sec-alt" aria-labelledby="exp-h">
+  <div class="wrap">
+    <p class="lbl" data-f>Experience</p>
+    <h2 class="stitle" data-f data-d="1" id="exp-h">Where I&rsquo;ve <span>Worked</span></h2>
+    <p class="sintro" data-f data-d="2">Roles spanning software development, security research, and community building.</p>
+    <div class="exp-g" data-stagger>
+      <div class="exp">
+        <div class="exp-ico" id="ex-ico1"></div>
+        <div class="exp-body">
+          <h4>Software Developer</h4>
+          <p class="erole">IOS Nepal &mdash; Kathmandu</p>
+          <p>Designing and shipping billing and inventory management software for retail clients. Built and deployed EPAL — a complete billing platform with PDF invoicing, barcode generation, and dashboard analytics.</p>
+        </div>
+        <p class="exp-date">2025 &mdash; Present</p>
+      </div>
+      <div class="exp">
+        <div class="exp-ico" id="ex-ico2"></div>
+        <div class="exp-body">
+          <h4>Founder &amp; Tournament Director</h4>
+          <p class="erole">NetaNix CTF &mdash; netanixctf.xyz</p>
+          <p>Founded and operate the NetaNix CTF platform hosting competitive Capture The Flag tournaments. Designing challenges across web exploitation, forensics, OSINT, and cryptography for the security community.</p>
+        </div>
+        <p class="exp-date">2025 &mdash; Present</p>
+      </div>
+      <div class="exp">
+        <div class="exp-ico" id="ex-ico3"></div>
+        <div class="exp-body">
+          <h4>Security Researcher &amp; Writer</h4>
+          <p class="erole">Independent &mdash; Medium / TryHackMe</p>
+          <p>Publishing writeups on Medium covering HackTheBox and TryHackMe rooms. Active CTF player on TryHackMe as N3TANIX, focused on web exploitation, container escapes, and post-exploitation.</p>
+        </div>
+        <p class="exp-date">2023 &mdash; Present</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec" aria-labelledby="pj-h">
+  <div class="wrap">
+    <p class="lbl" data-f>Selected Work</p>
+    <h2 class="stitle" data-f data-d="1" id="pj-h">Projects &amp; <span>Tools</span></h2>
+    <p class="sintro" data-f data-d="2">Security tools, business software, and platforms I&rsquo;ve designed and shipped.</p>
+    <div class="proj-g" data-stagger>
+
+      <div class="pcard gold">
+        <div class="pcard-ico" id="ico-crackvault"></div>
+        <h3>CrackVault</h3>
+        <p class="plng">Python &mdash; Security Tool</p>
+        <p>Multi-purpose password recovery GUI supporting common hash formats, shadow files, and encrypted archives like ZIP, RAR, PDF and KeePass.</p>
+        <div class="ptags2"><span class="tag tag-g">NetaNix Labs</span><span class="tag">Python</span></div>
+        <a href="projects.html" class="plink"><span class="plink-ico" id="pli-cv"></span>View Details</a>
+      </div>
+
+      <div class="pcard gold">
+        <div class="pcard-ico" id="ico-netanix"></div>
+        <h3>NetaNix CTF</h3>
+        <p class="plng">Platform &mdash; netanixctf.xyz</p>
+        <p>Founded the platform hosting competitive security tournaments across web exploitation, forensics, OSINT, and cryptography.</p>
+        <div class="ptags2"><span class="tag tag-g">Founded</span><span class="tag">CTF</span></div>
+        <a href="https://netanixctf.xyz" target="_blank" rel="noopener" class="plink"><span class="plink-ico" id="pli-nx"></span>Visit Platform</a>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-ico" id="ico-epal"></div>
+        <h3>EPAL Billing</h3>
+        <p class="plng">Python &mdash; Deployed Production</p>
+        <p>Billing and inventory management system deployed for IOS Nepal. Features PDF invoicing, barcode generation, and dashboard charts.</p>
+        <div class="ptags2"><span class="tag tag-g">Deployed</span><span class="tag">Python</span></div>
+        <a href="projects.html" class="plink"><span class="plink-ico" id="pli-ep"></span>View Details</a>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-ico" id="ico-clicknpick"></div>
+        <h3>ClickNPick</h3>
+        <p class="plng">React &amp; Node.js &mdash; Full-Stack</p>
+        <p>Full-stack pharmacy platform with Khalti payments, JWT auth in HTTP-only cookies, and a role-based admin dashboard.</p>
+        <div class="ptags2"><span class="tag tag-b">Full-Stack</span><span class="tag">React</span></div>
+        <a href="projects.html" class="plink"><span class="plink-ico" id="pli-cnp"></span>View Details</a>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-ico" id="ico-cve"></div>
+        <h3>CVE-2024-53677</h3>
+        <p class="plng">Python &mdash; PoC Exploit</p>
+        <p>Published proof-of-concept exploit demonstrating the vulnerability research and exploitation workflow for ethical security research.</p>
+        <div class="ptags2"><span class="tag">CVE Research</span><span class="tag">Python</span></div>
+        <a href="https://github.com/shishirghimir/CVE-2024-53677-Exploit" target="_blank" rel="noopener" class="plink"><span class="plink-ico" id="pli-cve"></span>GitHub</a>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-ico" id="ico-fw"></div>
+        <h3>Custom Firewall</h3>
+        <p class="plng">C &mdash; Network Security</p>
+        <p>Packet-filtering firewall written in C across two iterations, alongside a Python network penetration testing utility.</p>
+        <div class="ptags2"><span class="tag">C</span><span class="tag">Networking</span></div>
+        <a href="https://github.com/shishirghimir" target="_blank" rel="noopener" class="plink"><span class="plink-ico" id="pli-fw"></span>GitHub</a>
+      </div>
+
+    </div>
+    <div style="margin-top:2.25rem" data-f>
+      <a href="projects.html" class="btn btn-out">All Projects</a>
+    </div>
+  </div>
+</section>
+
+<!-- WRITEUPS -->
+<section class="sec sec-alt" aria-labelledby="wr-h">
+  <div class="wrap">
+    <p class="lbl" data-f>Latest Writeups</p>
+    <h2 class="stitle" data-f data-d="1" id="wr-h">Research &amp; <span>Writeups</span></h2>
+    <p class="sintro" data-f data-d="2">Walkthroughs of CTF rooms, HackTheBox machines, and security research on Medium.</p>
+    <div class="wr-g" id="wr-home" data-stagger aria-live="polite">
+      <article class="wcard">
+        <div class="wcard-meta"><span class="wcat">HackTheBox</span><span class="wdate">2025</span></div>
+        <h3>MonitorsFour HTB &mdash; Web Enumeration to Docker Escape</h3>
+        <p>Walkthrough covering web enumeration, exploitation, and a Docker escape to gain root on the host.</p>
+        <a class="wlink" href="https://medium.com/@netanix96/monitorsfour-htb-from-web-enumeration-to-docker-escape-9c280ed5f511" target="_blank" rel="noopener">Read on Medium <span id="wl1"></span></a>
+      </article>
+      <article class="wcard">
+        <div class="wcard-meta"><span class="wcat">TryHackMe</span><span class="wdate">2025</span></div>
+        <h3>Corridor &mdash; TryHackMe Room Writeup</h3>
+        <p>IDOR walkthrough — break out of the corridor and grab the flag.</p>
+        <a class="wlink" href="https://medium.com/@netanix96/corridor-tryhackme-room-writeup-easy-56015c978033" target="_blank" rel="noopener">Read on Medium <span id="wl2"></span></a>
+      </article>
+    </div>
+    <div style="margin-top:2.25rem" data-f>
+      <a href="writeups.html" class="btn btn-out">All Writeups</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRYHACKME ACHIEVEMENT -->
+<section class="sec" aria-labelledby="thm-h">
+  <div class="wrap">
+    <p class="lbl" data-f>Achievement</p>
+    <h2 class="stitle" data-f data-d="1" id="thm-h">TryHackMe &mdash; <span>Top 1%</span></h2>
+    <p class="sintro" data-f data-d="2">Live profile badge showing my current rank, streak, and progress on TryHackMe.</p>
+    <div data-f data-d="3" style="max-width:680px;margin:0 auto">
+      <div class="thm-card">
+        <div class="thm-card-head">
+          <h4>N3TANIX &mdash; TryHackMe</h4>
+          <span class="thm-rank-tag">Top 1% Global</span>
+        </div>
+        <div class="thm-stats">
+          <div class="thm-stat"><div class="thm-stat-ico" id="ts1"></div><span class="thm-stat-n">6,756</span><span class="thm-stat-l">Points</span></div>
+          <div class="thm-stat"><div class="thm-stat-ico" id="ts2"></div><span class="thm-stat-n">236</span><span class="thm-stat-l">Rooms</span></div>
+          <div class="thm-stat"><div class="thm-stat-ico" id="ts3"></div><span class="thm-stat-n">32</span><span class="thm-stat-l">Badges</span></div>
+          <div class="thm-stat"><div class="thm-stat-ico" id="ts4"></div><span class="thm-stat-n">0xE</span><span class="thm-stat-l">Level</span></div>
+        </div>
+        <div class="thm-card-foot">
+          <span>Profile: tryhackme.com/p/N3TANIX</span>
+          <a href="https://tryhackme.com/p/N3TANIX" target="_blank" rel="noopener">View Full Profile &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS PREVIEW -->
+<section class="sec sec-alt" aria-labelledby="cr-h">
+  <div class="wrap">
+    <p class="lbl" data-f>Credentials</p>
+    <h2 class="stitle" data-f data-d="1" id="cr-h">Certifications &amp; <span>Training</span></h2>
+    <p class="sintro" data-f data-d="2">13 credentials across TryHackMe, Red Team Leaders, and ICM Security.</p>
+    <div class="cert-g" data-stagger>
+      <div class="ccard"><div class="ccard-ico" id="cci1"></div><div><h4>Jr Penetration Tester</h4><p>TryHackMe</p></div></div>
+      <div class="ccard"><div class="ccard-ico" id="cci2"></div><div><h4>CompTIA Pentest Path</h4><p>TryHackMe</p></div></div>
+      <div class="ccard"><div class="ccard-ico" id="cci3"></div><div><h4>Physical PenTest Fundamentals</h4><p>Red Team Leaders</p></div></div>
+      <div class="ccard"><div class="ccard-ico" id="cci4"></div><div><h4>CCEP</h4><p>Red Team Leaders</p></div></div>
+      <div class="ccard"><div class="ccard-ico" id="cci5"></div><div><h4>Foundations of Log Analysis</h4><p>Red Team Leaders</p></div></div>
+      <div class="ccard"><div class="ccard-ico" id="cci6"></div><div><h4>AI 101 Fundamentals</h4><p>ICM Security</p></div></div>
+    </div>
+    <div style="margin-top:2.25rem" data-f>
+      <a href="certs.html" class="btn btn-out">All Certifications</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec" aria-labelledby="cta-h">
+  <div class="wrap">
+    <div class="cta" data-f>
+      <h2 id="cta-h">Let&rsquo;s Build Something<span style="color:var(--red)">.</span></h2>
+      <p>Open to security research, freelance development, CTF collaborations, and full-time opportunities.</p>
+      <div class="cta-acts">
+        <a href="contact.html" class="btn btn-red">Get in Touch</a>
+        <a href="https://github.com/shishirghimir" target="_blank" rel="noopener" class="btn btn-out">GitHub</a>
+        <a href="https://netanixctf.xyz" target="_blank" rel="noopener" class="btn btn-gold">NetaNix CTF</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <span class="foot-logo">NETA<em>NIX</em></span>
+    <nav class="foot-nav" aria-label="Footer navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="writeups.html">Writeups</a>
+      <a href="certs.html">Certs</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <p class="foot-copy">&copy; <span id="yr"></span> Shishir Ghimire</p>
+  </div>
+</footer>
+
+<script src="js/icons.js"></script>
+<script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const map=[
+    ['bi1',ICONS.code],['bi2',ICONS.fileText],
+    ['chip-shield',ICONS.shield],['chip-flag',ICONS.flag],['chip-loc',ICONS.location],
+    ['hs1',ICONS.github],['hs2',ICONS.fileText],['hs3',ICONS.terminal],['hs4',ICONS.linkedin],['hs5',ICONS.mail],
+    ['si1',ICONS.award],['si2',ICONS.code],['si3',ICONS.terminal],['si4',ICONS.flag],
+    ['ex-ico1',ICONS.briefcase],['ex-ico2',ICONS.trophy],['ex-ico3',ICONS.eye],
+    ['ico-crackvault',ICONS.key],['ico-netanix',ICONS.trophy],['ico-clicknpick',ICONS.database],['ico-epal',ICONS.fileText],['ico-cve',ICONS.zap],['ico-fw',ICONS.server],
+    ['pli-cv',ICONS.arrowRight],['pli-nx',ICONS.external],['pli-cnp',ICONS.arrowRight],['pli-ep',ICONS.arrowRight],['pli-cve',ICONS.external],['pli-fw',ICONS.external],
+    ['wl1',ICONS.external],['wl2',ICONS.external],
+    ['cci1',ICONS.terminal],['cci2',ICONS.lock],['cci3',ICONS.shield],['cci4',ICONS.zap],['cci5',ICONS.eye],['cci6',ICONS.cpu],
+    ['ts1',ICONS.trophy],['ts2',ICONS.layers],['ts3',ICONS.award],['ts4',ICONS.zap]
+  ];
+  map.forEach(([id,svg])=>{const el=document.getElementById(id);if(el)el.innerHTML=svg});
+  /* live-load latest 3 writeups from Medium */
+  loadMedium({target:'#wr-home',limit:3,fallbackKeep:true});
+});
+</script>
+</body>
+</html>

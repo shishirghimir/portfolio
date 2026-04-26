@@ -1,0 +1,27 @@
+{
+  "name": "Shishir Ghimire — NetaNix",
+  "short_name": "NetaNix",
+  "description": "Cybersecurity student exploring penetration testing, digital forensics, red team operations, and security tool creation.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0c0e14",
+  "theme_color": "#0c0e14",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "categories": ["education", "productivity", "developer"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='36' fill='%230c0e14'/%3E%3Cpath d='M42 54 L96 30 L150 54 L150 108 C150 138 96 162 96 162 C96 162 42 138 42 108 Z' fill='none' stroke='%23ef4444' stroke-width='9' stroke-linejoin='round'/%3E%3Ctext x='96' y='120' text-anchor='middle' font-family='monospace' font-size='60' font-weight='bold' fill='%23f59e0b'%3EN%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%230c0e14'/%3E%3Cpath d='M112 144 L256 80 L400 144 L400 288 C400 368 256 432 256 432 C256 432 112 368 112 288 Z' fill='none' stroke='%23ef4444' stroke-width='24' stroke-linejoin='round'/%3E%3Ctext x='256' y='320' text-anchor='middle' font-family='monospace' font-size='160' font-weight='bold' fill='%23f59e0b'%3EN%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
