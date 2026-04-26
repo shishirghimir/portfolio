@@ -321,30 +321,8 @@ function initBrackets(){
   });
 }
 
-/* ── Lenis-style smooth scroll ── lightweight inline implementation (no dep) */
-function initSmoothScroll(){
-  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  if(window.matchMedia('(pointer:coarse)').matches)return; /* skip on touch */
-  let target=window.scrollY,current=target,raf;
-  const ease=.12,maxStep=120;
-  const tick=()=>{
-    const diff=target-current;
-    if(Math.abs(diff)<.5){current=target;window.scrollTo(0,current);raf=null;return}
-    current+=diff*ease;
-    window.scrollTo(0,current);
-    raf=requestAnimationFrame(tick);
-  };
-  window.addEventListener('wheel',e=>{
-    if(e.ctrlKey||e.metaKey)return; /* allow zoom */
-    if(e.target.closest('.cmdk-list,.nav-links.open'))return;
-    e.preventDefault();
-    const delta=Math.max(-maxStep,Math.min(maxStep,e.deltaY));
-    target=Math.max(0,Math.min(document.documentElement.scrollHeight-window.innerHeight,target+delta));
-    if(!raf)raf=requestAnimationFrame(tick);
-  },{passive:false});
-  /* sync target when user scrolls via keyboard, anchor, or scrollTo */
-  window.addEventListener('scroll',()=>{if(!raf)target=current=window.scrollY},{passive:true});
-}
+/* smooth scroll handled natively via CSS `html{scroll-behavior:smooth}` —
+   no JS hijack (was causing jitter on precision trackpads / 120Hz displays) */
 
 /* ── Command palette (Cmd+K / Ctrl+K) ── */
 function initCmdK(){
@@ -460,6 +438,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   initMagnetic();initTilt();initParallax();
   initProgress();initToTop();initMarquee();
   initBrackets();initKonami();
-  initSmoothScroll();initCmdK();initPWA();
+  initCmdK();initPWA();
   hidePreload();
 });
