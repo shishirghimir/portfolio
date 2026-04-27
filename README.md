@@ -43,41 +43,38 @@ Live: **https://shishirghimire.info.np**
 - Per-page canonical URLs, OG + Twitter card metadata
 - Google Fonts preconnected, hero image preloaded with `fetchpriority`
 
-## Deploy on Railway
+## Deploy on Vercel
 
-Hosted via **Railway** using a tiny Caddy + Alpine Dockerfile (~45 MB image).
+Hosted via **Vercel** as a static site — no build step, no framework. Configuration lives in [`vercel.json`](vercel.json).
 
 1. Push this repo to GitHub (already done — `https://github.com/shishirghimir/portfolio`).
-2. On https://railway.app → **New Project → Deploy from GitHub Repo → shishirghimir/portfolio**.
-3. Railway auto-detects [`Dockerfile`](Dockerfile) and [`railway.toml`](railway.toml) and builds. No env vars required.
-4. Once deployed, go to **Settings → Networking → Public Networking → Generate Domain** to get a `*.up.railway.app` URL.
-5. To use `shishirghimire.info.np`: **Settings → Networking → Custom Domain** → enter `shishirghimire.info.np` → Railway shows the CNAME record to set at your DNS registrar. SSL provisions automatically (~1 minute).
+2. On https://vercel.com/new → **Import Git Repository → `shishirghimir/portfolio`**.
+3. **Framework Preset: Other** · **Build Command: (leave empty)** · **Output Directory: `./`** · **Install Command: (leave empty)**.
+4. Click **Deploy**. Vercel reads `vercel.json` automatically.
+5. To use `shishirghimire.info.np`: **Project Settings → Domains → Add Domain** → enter `shishirghimire.info.np`. Vercel shows you the DNS record to set at your registrar (typically `CNAME` to `cname.vercel-dns.com`). SSL provisions automatically.
 
-Future updates: just `git push origin main` — Railway rebuilds and redeploys in ~60 s.
+Future updates: just `git push origin main` — Vercel auto-deploys in ~30 seconds.
 
-### How the deploy works
+### What `vercel.json` does
 
-- [`Dockerfile`](Dockerfile) — pulls `caddy:2-alpine`, copies the [`Caddyfile`](Caddyfile) and validates it at build time.
-- [`Caddyfile`](Caddyfile) — listens on `$PORT` (Railway-injected), serves `/srv` with gzip+zstd compression, sets aggressive 1-year cache on `/img`, `/css`, `/js`, no-cache on HTML, correct MIME types for `sw.js` / `manifest.webmanifest` / `sitemap.xml`, and security headers on every response.
-- [`railway.toml`](railway.toml) — tells Railway to use the Dockerfile builder, restart on failure, and healthcheck `/`.
+- `Service-Worker-Allowed: /` on `sw.js` so the SW can scope the whole site
+- `application/manifest+json` MIME on the PWA manifest
+- 1-year immutable cache on `/img`, `/css`, `/js`
+- `must-revalidate` no-cache on HTML so updates ship instantly
+- Security headers (`X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`)
+- Correct content-type for `sitemap.xml` and `robots.txt`
 
 After deploy, submit `https://shishirghimire.info.np/sitemap.xml` to Google Search Console + Bing Webmaster Tools.
 
 ### Run locally
 
 ```bash
-docker build -t portfolio .
-docker run --rm -p 8080:8080 -e PORT=8080 portfolio
-# open http://localhost:8080
-```
-
-Or without Docker:
-
-```bash
 python -m http.server 8000
 # or
 npx serve .
 ```
+
+Open http://localhost:8000.
 
 ## Image regeneration
 
