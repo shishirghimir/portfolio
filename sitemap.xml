@@ -1,32 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://shishirghimire.info.np/</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://shishirghimire.info.np/img/og.png</image:loc>
+      <image:title>Shishir Ghimire — NetaNix</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://shishirghimire.info.np/about.html</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://shishirghimire.info.np/img/shishir.jpg</image:loc>
+      <image:title>Shishir Ghimire — Cybersecurity Student</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://shishirghimire.info.np/projects.html</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://shishirghimire.info.np/writeups.html</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://shishirghimire.info.np/certs.html</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://shishirghimire.info.np/contact.html</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>

@@ -75,7 +75,10 @@
   }
   </script>
   <script type="speculationrules">
-  {"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}
+  {
+    "prefetch":[{"urls":["/","/about.html","/projects.html","/writeups.html","/certs.html","/contact.html"],"eagerness":"immediate"}],
+    "prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]
+  }
   </script>
   <link rel="stylesheet" href="css/style.css"/>
 </head>
@@ -124,12 +127,12 @@
           <p class="pname">Shishir Ghimire</p>
           <p class="phandle">// NetaNix &mdash; Kathmandu</p>
           <div class="plinks">
-            <a href="https://github.com/shishirghimir" target="_blank" rel="noopener"><span class="pl-ico" id="pl1"></span>GitHub</a>
-            <a href="https://medium.com/@netanix96" target="_blank" rel="noopener"><span class="pl-ico" id="pl2"></span>Medium</a>
-            <a href="https://tryhackme.com/p/N3TANIX" target="_blank" rel="noopener"><span class="pl-ico" id="pl3"></span>TryHackMe</a>
-            <a href="https://netanixctf.xyz" target="_blank" rel="noopener"><span class="pl-ico" id="pl4"></span>NetaNix CTF</a>
-            <a href="https://linkedin.com/in/shishir-ghimire-2b7934292" target="_blank" rel="noopener"><span class="pl-ico" id="pl5"></span>LinkedIn</a>
-            <a href="mailto:ssishir39@gmail.com"><span class="pl-ico" id="pl6"></span>Email</a>
+            <a href="https://github.com/shishirghimir" target="_blank" rel="me noopener"><span class="pl-ico" id="pl1"></span>GitHub</a>
+            <a href="https://medium.com/@netanix96" target="_blank" rel="me noopener"><span class="pl-ico" id="pl2"></span>Medium</a>
+            <a href="https://tryhackme.com/p/N3TANIX" target="_blank" rel="me noopener"><span class="pl-ico" id="pl3"></span>TryHackMe</a>
+            <a href="https://netanixctf.xyz" target="_blank" rel="me noopener"><span class="pl-ico" id="pl4"></span>NetaNix CTF</a>
+            <a href="https://linkedin.com/in/shishir-ghimire-2b7934292" target="_blank" rel="me noopener"><span class="pl-ico" id="pl5"></span>LinkedIn</a>
+            <a href="mailto:ssishir39@gmail.com" rel="me"><span class="pl-ico" id="pl6"></span>Email</a>
           </div>
         </div>
       </div>

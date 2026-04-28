@@ -299,6 +299,24 @@ async function loadMedium(opts){
     if(statusEl)statusEl.textContent='Live from Medium · '+items.length+' articles';
     /* re-init tilt for newly added cards */
     if(typeof initTilt==='function')initTilt();
+    /* inject Article schema for SEO so each writeup gets indexed properly */
+    try{
+      const old=document.getElementById('articles-jsonld');if(old)old.remove();
+      const ld=document.createElement('script');ld.type='application/ld+json';ld.id='articles-jsonld';
+      const list={
+        '@context':'https://schema.org','@type':'ItemList','itemListElement':items.map((it,idx)=>({
+          '@type':'ListItem','position':idx+1,
+          'item':{
+            '@type':'Article','headline':it.title,'url':it.link,
+            'datePublished':it.pubDate,'image':extractThumb(it),
+            'author':{'@type':'Person','name':'Shishir Ghimire','url':'https://shishirghimire.info.np/'},
+            'publisher':{'@type':'Organization','name':'Medium','url':'https://medium.com/'},
+            'articleSection':detectCat(it.title)
+          }
+        }))
+      };
+      ld.textContent=JSON.stringify(list);document.head.appendChild(ld);
+    }catch{}
   }catch(e){
     if(statusEl){statusEl.textContent='Live feed unavailable — showing cached posts';statusEl.classList.add('err')}
     /* fallback: skeletons remain unless fallbackKeep already populated */
@@ -394,6 +412,80 @@ function initCmdK(){
   }
 }
 
+/* ── Link prefetcher (Firefox/Safari fallback for Speculation Rules) ── */
+function initPrefetch(){
+  /* Skip if Speculation Rules are supported — they handle this better */
+  if(HTMLScriptElement.supports&&HTMLScriptElement.supports('speculationrules'))return;
+  if(navigator.connection&&(navigator.connection.saveData||/2g/.test(navigator.connection.effectiveType||'')))return;
+  const seen=new Set();
+  const prefetch=href=>{
+    if(seen.has(href))return;seen.add(href);
+    const l=document.createElement('link');l.rel='prefetch';l.href=href;l.as='document';
+    document.head.appendChild(l);
+  };
+  /* prefetch every internal page on idle */
+  const pages=['/','/about.html','/projects.html','/writeups.html','/certs.html','/contact.html'];
+  const go=()=>pages.forEach(p=>prefetch(p));
+  'requestIdleCallback' in window?requestIdleCallback(go,{timeout:2000}):setTimeout(go,1500);
+  /* additionally prefetch any link the user hovers */
+  document.addEventListener('mouseover',e=>{
+    const a=e.target.closest('a[href]');if(!a)return;
+    const url=a.href;if(!url||a.target==='_blank')return;
+    try{const u=new URL(url,location.href);if(u.origin===location.origin&&u.pathname!==location.pathname)prefetch(u.pathname)}catch{}
+  },{passive:true});
+}
+
+/* ── View Transitions on internal nav clicks (kills the tab loading flash) ── */
+function initViewTransitions(){
+  if(!document.startViewTransition)return; /* Chrome 111+ only — graceful no-op elsewhere */
+  document.addEventListener('click',e=>{
+    if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+    const a=e.target.closest('a[href]');if(!a)return;
+    if(a.target==='_blank'||a.hasAttribute('download'))return;
+    let url;try{url=new URL(a.href,location.href)}catch{return}
+    if(url.origin!==location.origin)return;
+    if(url.pathname===location.pathname&&url.hash){return} /* let anchors do their thing */
+    e.preventDefault();
+    document.startViewTransition(()=>{location.href=url.href});
+  });
+}
+
+/* ── Per-character title reveal on scroll-in (cheap CSS animation) ── */
+function initTitleReveal(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const titles=document.querySelectorAll('.stitle, .phero h1');
+  if(!titles.length)return;
+  titles.forEach(t=>{
+    if(t.dataset.split==='1')return;
+    /* split children that are pure text into per-char spans, but preserve inline elements */
+    const wrap=node=>{
+      const out=document.createDocumentFragment();
+      node.childNodes.forEach(c=>{
+        if(c.nodeType===3){ /* text node */
+          c.textContent.split('').forEach(ch=>{
+            const s=document.createElement('span');
+            s.className='ch';s.textContent=ch;
+            if(ch===' ')s.style.display='inline-block';
+            out.appendChild(s);
+          });
+        }else if(c.nodeType===1){
+          const clone=c.cloneNode(false);
+          clone.appendChild(wrap(c));
+          out.appendChild(clone);
+        }
+      });
+      return out;
+    };
+    const frag=wrap(t);
+    t.innerHTML='';t.appendChild(frag);
+    t.dataset.split='1';
+  });
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('rv');obs.unobserve(e.target)}
+  }),{threshold:.25,rootMargin:'0px 0px -10% 0px'});
+  titles.forEach(t=>obs.observe(t));
+}
+
 /* ── PWA service worker registration ── */
 function initPWA(){
   if(!('serviceWorker' in navigator))return;
@@ -439,4 +531,5 @@ document.addEventListener('DOMContentLoaded',()=>{
   initProgress();initToTop();initMarquee();
   initBrackets();initKonami();
   initCmdK();initPWA();
+  initPrefetch();initViewTransitions();initTitleReveal();
 });

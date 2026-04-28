@@ -1,0 +1,27 @@
+/* TEAM */
+
+Owner & Developer: Shishir Ghimire
+Alias: NetaNix
+Site: https://shishirghimire.info.np
+Email: ssishir39@gmail.com
+GitHub: @shishirghimir
+Medium: @netanix96
+TryHackMe: N3TANIX
+LinkedIn: /in/shishir-ghimire-2b7934292
+From: Kathmandu, Nepal
+
+
+/* THANKS */
+
+Coventry University · Softwarica College · NIST
+TryHackMe · HackTheBox · NetaNix CTF community
+
+
+/* SITE */
+
+Last update: 2026/04/28
+Language: English
+Doctype: HTML5
+Standards: HTML5, CSS3, ES2022, JSON-LD, OpenGraph, PWA
+Components: Vanilla JS, no framework
+Software: VS Code · Vercel · Sharp · Git
