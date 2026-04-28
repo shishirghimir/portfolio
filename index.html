@@ -197,6 +197,18 @@
 
 <!-- HERO -->
 <section class="hero" aria-labelledby="hname">
+  <svg class="circuit-svg" viewBox="0 0 160 160" aria-hidden="true">
+    <path class="stroke-anim" d="M 10 30 L 60 30 L 70 40 L 100 40 L 110 30 L 150 30"/>
+    <path class="stroke-anim" d="M 10 80 L 40 80 L 50 70 L 80 70 L 90 80 L 130 80 L 140 90 L 150 90"/>
+    <path class="stroke-anim" d="M 10 130 L 50 130 L 60 120 L 110 120 L 120 130 L 150 130"/>
+    <line class="stroke-anim" x1="70" y1="40" x2="70" y2="70"/>
+    <line class="stroke-anim" x1="110" y1="30" x2="110" y2="120"/>
+    <circle class="pulse-dot" cx="70" cy="40" r="2.5"/>
+    <circle class="pulse-dot" cx="110" cy="80" r="2.5"/>
+    <circle class="pulse-dot" cx="60" cy="120" r="2.5"/>
+    <circle class="pulse-dot" cx="150" cy="30" r="2"/>
+    <circle class="pulse-dot" cx="10" cy="80" r="2"/>
+  </svg>
   <div class="hero-l">
     <div class="h-status"><span class="sdot"></span>Available for opportunities</div>
     <a class="thm-pill" href="https://tryhackme.com/p/N3TANIX" target="_blank" rel="noopener" aria-label="Top 1% on TryHackMe — view profile">
@@ -218,6 +230,7 @@
       <a class="h-soc" href="https://github.com/shishirghimir" target="_blank" rel="me noopener" aria-label="Shishir Ghimire on GitHub" id="hs1"></a>
       <a class="h-soc" href="https://medium.com/@netanix96" target="_blank" rel="me noopener" aria-label="Shishir Ghimire on Medium" id="hs2"></a>
       <a class="h-soc" href="https://tryhackme.com/p/N3TANIX" target="_blank" rel="me noopener" aria-label="Shishir Ghimire on TryHackMe" id="hs3"></a>
+      <a class="h-soc h-soc-dc" href="https://discord.com/invite/XcFfwgEDjp" target="_blank" rel="noopener" aria-label="Join the NetaNix CTF Discord" id="hs6"></a>
       <a class="h-soc" href="https://linkedin.com/in/shishir-ghimire-2b7934292" target="_blank" rel="me noopener" aria-label="Shishir Ghimire on LinkedIn" id="hs4"></a>
       <a class="h-soc" href="mailto:ssishir39@gmail.com" rel="me" aria-label="Email Shishir Ghimire" id="hs5"></a>
     </div>
@@ -446,7 +459,7 @@
     <h2 class="stitle" data-f data-d="1" id="thm-h">TryHackMe &mdash; <span>Top 1%</span></h2>
     <p class="sintro" data-f data-d="2">Live profile badge showing my current rank, streak, and progress on TryHackMe.</p>
     <div data-f data-d="3" style="max-width:680px;margin:0 auto">
-      <div class="thm-card">
+      <div class="thm-card glow-border">
         <div class="thm-card-head">
           <h4>N3TANIX &mdash; TryHackMe</h4>
           <span class="thm-rank-tag">Top 1% Global</span>
@@ -460,6 +473,20 @@
         <div class="thm-card-foot">
           <span>Profile: tryhackme.com/p/N3TANIX</span>
           <a href="https://tryhackme.com/p/N3TANIX" target="_blank" rel="noopener">View Full Profile &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Discord CTA -->
+      <div data-f data-d="4" style="margin-top:1.4rem">
+        <div class="dc-cta glow-border glow-border-discord">
+          <div class="dc-cta-ico" id="dc-ico"></div>
+          <div class="dc-cta-body">
+            <h4>Join NetaNix CTF Discord</h4>
+            <p>Compete, learn, and hang with the community. <strong>CTF tournaments</strong>, writeups, and live challenge support.</p>
+          </div>
+          <a class="dc-cta-btn" href="https://discord.com/invite/XcFfwgEDjp" target="_blank" rel="noopener" aria-label="Join the NetaNix CTF Discord server">
+            <span id="dc-arrow"></span>Join Server
+          </a>
         </div>
       </div>
     </div>
@@ -526,7 +553,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   const map=[
     ['bi1',ICONS.code],['bi2',ICONS.fileText],
     ['chip-shield',ICONS.shield],['chip-flag',ICONS.flag],['chip-loc',ICONS.location],
-    ['hs1',ICONS.github],['hs2',ICONS.fileText],['hs3',ICONS.terminal],['hs4',ICONS.linkedin],['hs5',ICONS.mail],
+    ['hs1',ICONS.github],['hs2',ICONS.fileText],['hs3',ICONS.terminal],['hs4',ICONS.linkedin],['hs5',ICONS.mail],['hs6',ICONS.discord],
+    ['dc-ico',ICONS.discord],['dc-arrow',ICONS.arrowRight],
     ['si1',ICONS.award],['si2',ICONS.code],['si3',ICONS.terminal],['si4',ICONS.flag],
     ['ex-ico1',ICONS.briefcase],['ex-ico2',ICONS.trophy],['ex-ico3',ICONS.eye],
     ['ico-crackvault',ICONS.key],['ico-netanix',ICONS.trophy],['ico-clicknpick',ICONS.database],['ico-epal',ICONS.fileText],['ico-cve',ICONS.zap],['ico-fw',ICONS.server],

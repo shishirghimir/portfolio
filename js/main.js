@@ -358,6 +358,7 @@ function initCmdK(){
     {label:'TryHackMe N3TANIX',href:'https://tryhackme.com/p/N3TANIX',ico:'terminal',group:'Links',ext:true},
     {label:'LinkedIn',href:'https://linkedin.com/in/shishir-ghimire-2b7934292',ico:'linkedin',group:'Links',ext:true},
     {label:'NetaNix CTF',href:'https://netanixctf.xyz',ico:'flag',group:'Links',ext:true},
+    {label:'Join NetaNix CTF Discord',href:'https://discord.com/invite/XcFfwgEDjp',ico:'discord',group:'Links',ext:true},
     {label:'Email — ssishir39@gmail.com',href:'mailto:ssishir39@gmail.com',ico:'mail',group:'Actions'},
     {label:'Toggle CRT mode (Konami)',action:()=>document.body.classList.toggle('crt'),ico:'cpu',group:'Actions'},
     {label:'Scroll to top',action:()=>window.scrollTo({top:0,behavior:'smooth'}),ico:'arrowRight',group:'Actions'},
@@ -482,6 +483,39 @@ function initTitleReveal(){
   titles.forEach(t=>obs.observe(t));
 }
 
+/* ── Scroll-spy dots (right-side floating section navigator) ── */
+function initSpy(){
+  if(!matchMedia('(min-width:900px)').matches)return;
+  /* find labelable sections — those with aria-labelledby pointing to a heading */
+  const sections=[...document.querySelectorAll('section[aria-labelledby]')]
+    .map(s=>{
+      const h=document.getElementById(s.getAttribute('aria-labelledby'));
+      const t=h?h.textContent.trim().split(/[—:.·]/)[0].trim():'';
+      return t&&t.length<32?{el:s,label:t}:null;
+    }).filter(Boolean);
+  if(sections.length<3)return;
+  const spy=document.createElement('div');spy.className='spy';spy.setAttribute('aria-hidden','true');
+  sections.forEach((s,i)=>{
+    const d=document.createElement('button');d.type='button';d.className='spy-dot';
+    d.setAttribute('data-l',s.label);d.setAttribute('aria-label','Jump to '+s.label);
+    d.addEventListener('click',()=>s.el.scrollIntoView({behavior:'smooth',block:'start'}));
+    spy.appendChild(d);
+  });
+  document.body.appendChild(spy);
+  /* show after scroll past hero */
+  window.addEventListener('scroll',()=>spy.classList.toggle('show',window.scrollY>window.innerHeight*.4),{passive:true});
+  /* active section tracking via IO */
+  const dots=spy.querySelectorAll('.spy-dot');
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      const idx=sections.findIndex(s=>s.el===e.target);
+      if(idx<0)return;
+      if(e.isIntersecting){dots.forEach(d=>d.classList.remove('active'));dots[idx].classList.add('active')}
+    });
+  },{rootMargin:'-40% 0px -50% 0px'});
+  sections.forEach(s=>obs.observe(s.el));
+}
+
 /* ── Skip-to-content link (a11y) ── injected so HTML files stay clean */
 function initSkip(){
   const main=document.querySelector('main');if(!main)return;
@@ -535,5 +569,5 @@ document.addEventListener('DOMContentLoaded',()=>{
   initProgress();initToTop();initMarquee();
   initBrackets();initKonami();
   initCmdK();initPWA();
-  initPrefetch();initViewTransitions();initTitleReveal();initSkip();
+  initPrefetch();initViewTransitions();initTitleReveal();initSkip();initSpy();
 });
