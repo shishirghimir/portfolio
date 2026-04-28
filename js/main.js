@@ -98,13 +98,15 @@ function initGlitch(){
   },5500);
 }
 
-/* number counters */
+/* number counters with thousands-separator formatting + ease-out */
 function initCount(){
+  const fmt=n=>n.toLocaleString('en-US');
   document.querySelectorAll('[data-count]').forEach(el=>{
     const obs=new IntersectionObserver(([e])=>{
       if(!e.isIntersecting)return;
-      const end=+el.dataset.count,suf=el.dataset.suf||'',dur=1400,s=performance.now();
-      const go=now=>{const p=Math.min((now-s)/dur,1);el.textContent=Math.floor(p*end)+suf;if(p<1)requestAnimationFrame(go);else el.textContent=end+suf};
+      const end=+el.dataset.count,suf=el.dataset.suf||'',dur=1500,s=performance.now();
+      const ease=t=>1-Math.pow(1-t,3); /* ease-out cubic for natural feel */
+      const go=now=>{const p=Math.min((now-s)/dur,1);el.textContent=fmt(Math.floor(ease(p)*end))+suf;if(p<1)requestAnimationFrame(go);else el.textContent=fmt(end)+suf};
       requestAnimationFrame(go);obs.unobserve(el);
     },{threshold:.5});
     obs.observe(el);
@@ -412,27 +414,21 @@ function initCmdK(){
   }
 }
 
-/* ── Link prefetcher (Firefox/Safari fallback for Speculation Rules) ── */
+/* ── Hover-only link prefetcher (Firefox/Safari fallback) ── lightweight, no idle bulk fetch */
 function initPrefetch(){
-  /* Skip if Speculation Rules are supported — they handle this better */
   if(HTMLScriptElement.supports&&HTMLScriptElement.supports('speculationrules'))return;
   if(navigator.connection&&(navigator.connection.saveData||/2g/.test(navigator.connection.effectiveType||'')))return;
   const seen=new Set();
-  const prefetch=href=>{
-    if(seen.has(href))return;seen.add(href);
-    const l=document.createElement('link');l.rel='prefetch';l.href=href;l.as='document';
-    document.head.appendChild(l);
-  };
-  /* prefetch every internal page on idle */
-  const pages=['/','/about.html','/projects.html','/writeups.html','/certs.html','/contact.html'];
-  const go=()=>pages.forEach(p=>prefetch(p));
-  'requestIdleCallback' in window?requestIdleCallback(go,{timeout:2000}):setTimeout(go,1500);
-  /* additionally prefetch any link the user hovers */
   document.addEventListener('mouseover',e=>{
     const a=e.target.closest('a[href]');if(!a)return;
-    const url=a.href;if(!url||a.target==='_blank')return;
-    try{const u=new URL(url,location.href);if(u.origin===location.origin&&u.pathname!==location.pathname)prefetch(u.pathname)}catch{}
-  },{passive:true});
+    if(a.target==='_blank')return;
+    let url;try{url=new URL(a.href,location.href)}catch{return}
+    if(url.origin!==location.origin)return;
+    if(url.pathname===location.pathname)return;
+    if(seen.has(url.pathname))return;seen.add(url.pathname);
+    const l=document.createElement('link');l.rel='prefetch';l.href=url.pathname;l.as='document';
+    document.head.appendChild(l);
+  },{passive:true,capture:true});
 }
 
 /* ── View Transitions on internal nav clicks (kills the tab loading flash) ── */
@@ -486,6 +482,14 @@ function initTitleReveal(){
   titles.forEach(t=>obs.observe(t));
 }
 
+/* ── Skip-to-content link (a11y) ── injected so HTML files stay clean */
+function initSkip(){
+  const main=document.querySelector('main');if(!main)return;
+  if(!main.id)main.id='main';
+  const a=document.createElement('a');a.className='skip';a.href='#'+main.id;a.textContent='Skip to content';
+  document.body.insertBefore(a,document.body.firstChild);
+}
+
 /* ── PWA service worker registration ── */
 function initPWA(){
   if(!('serviceWorker' in navigator))return;
@@ -531,5 +535,5 @@ document.addEventListener('DOMContentLoaded',()=>{
   initProgress();initToTop();initMarquee();
   initBrackets();initKonami();
   initCmdK();initPWA();
-  initPrefetch();initViewTransitions();initTitleReveal();
+  initPrefetch();initViewTransitions();initTitleReveal();initSkip();
 });

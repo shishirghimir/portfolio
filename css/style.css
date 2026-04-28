@@ -931,6 +931,10 @@ h1,h2,h3,h4,
 .nav-logo{font-size:1.2rem;letter-spacing:.06em}
 .foot-logo{font-size:1.1rem;letter-spacing:.06em}
 
+/* ─────────── SKIP-TO-CONTENT (a11y) ─────────── */
+.skip{position:absolute;top:-40px;left:1rem;padding:.6rem 1rem;background:var(--red);color:#fff;font-family:var(--fm);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;border-radius:6px;z-index:10000;transition:top .25s var(--ease);text-decoration:none}
+.skip:focus{top:.6rem;outline:2px solid var(--gold);outline-offset:2px}
+
 /* ─────────── PER-LETTER TITLE REVEAL ─────────── */
 .stitle .ch,.phero h1 .ch{
   display:inline-block;opacity:0;transform:translateY(.6em);

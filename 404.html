@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="robots" content="noindex, follow"/>
+  <meta name="theme-color" content="#0c0e14"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230c0e14'/%3E%3Cpath d='M14 18 L32 10 L50 18 L50 36 C50 46 32 54 32 54 C32 54 14 46 14 36 Z' fill='none' stroke='%23ef4444' stroke-width='3' stroke-linejoin='round'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='monospace' font-size='20' font-weight='bold' fill='%23f59e0b'%3EN%3C/text%3E%3C/svg%3E"/>
+  <link rel="manifest" href="manifest.webmanifest"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"/></noscript>
+  <title>404 — Page not found · Shishir Ghimire</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .e404{min-height:80vh;display:flex;align-items:center;justify-content:center;padding:7rem 1.5rem 4rem;position:relative;z-index:2}
+    .e404-in{max-width:640px;text-align:center}
+    .e404-code{
+      font-family:var(--fd);font-size:clamp(7rem,18vw,12rem);font-weight:700;line-height:1;
+      background:linear-gradient(135deg,var(--red),var(--gold));
+      -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+      letter-spacing:-.02em;margin-bottom:.4rem;
+      animation:e404pulse 3s ease-in-out infinite;
+    }
+    @keyframes e404pulse{0%,100%{filter:drop-shadow(0 0 18px rgba(239,68,68,.25))}50%{filter:drop-shadow(0 0 28px rgba(245,158,11,.35))}}
+    .e404-h{font-family:var(--fd);font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:.04em;margin-bottom:.7rem;text-transform:uppercase;color:var(--txt)}
+    .e404-h span{color:var(--red)}
+    .e404-p{color:var(--txt2);font-size:1rem;line-height:1.7;margin-bottom:.5rem;max-width:480px;margin-left:auto;margin-right:auto}
+    .e404-cmd{font-family:var(--fm);font-size:.8rem;color:var(--gold);background:var(--sur);border:1px solid var(--brd);border-radius:6px;padding:.6rem 1rem;display:inline-block;margin:1.4rem auto 2rem;letter-spacing:.05em}
+    .e404-cmd::before{content:'$ ';color:var(--red)}
+    .e404-acts{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+
+<div class="aurora" aria-hidden="true"><i></i></div>
+<div class="bg-grid" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo">NETA<em>NIX</em><sup>labs</sup></a>
+  <ul class="nav-links" id="nl" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="writeups.html">Writeups</a></li>
+    <li><a href="certs.html">Certs</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-btn" id="nb" aria-label="Toggle menu" aria-expanded="false" aria-controls="nl">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main>
+  <section class="e404">
+    <div class="e404-in">
+      <div class="e404-code">404</div>
+      <h1 class="e404-h">Page <span>not found</span></h1>
+      <p class="e404-p">The page you tried to reach doesn&rsquo;t exist on this server. Maybe a typo, maybe a link gone stale, maybe security through obscurity.</p>
+      <p class="e404-cmd">cd /home/shishir &amp;&amp; ls -la</p>
+      <div class="e404-acts">
+        <a href="index.html" class="btn btn-red">Back to Home</a>
+        <a href="projects.html" class="btn btn-out">View Projects</a>
+        <a href="contact.html" class="btn btn-ghost">Report Broken Link</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <span class="foot-logo">NETA<em>NIX</em></span>
+    <nav class="foot-nav" aria-label="Footer navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="writeups.html">Writeups</a>
+      <a href="certs.html">Certs</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <p class="foot-copy">&copy; <span id="yr"></span> Shishir Ghimire</p>
+  </div>
+</footer>
+
+<script src="js/icons.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
