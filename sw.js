@@ -1,6 +1,6 @@
 /* Shishir Ghimire — NetaNix — Service Worker
    Strategy: stale-while-revalidate for the shell, network-first for the Medium feed. */
-const VERSION='v3';
+const VERSION='v5';
 const CORE='netanix-core-'+VERSION;
 const SHELL=[
   './',

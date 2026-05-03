@@ -968,48 +968,7 @@ h1,h2,h3,h4,
   .glow-border::before{animation:none}
 }
 
-/* ─────────── DISCORD CTA CARD ─────────── */
-.dc-cta{
-  background:linear-gradient(135deg,var(--sur),var(--sur2));
-  border-radius:var(--r2);padding:2rem 2.2rem;
-  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.5rem;
-  position:relative;overflow:hidden;
-  transition:transform .3s var(--ease);
-}
-.dc-cta:hover{transform:translateY(-3px)}
-.dc-cta::after{
-  content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;
-  background:radial-gradient(circle,rgba(88,101,242,.18),transparent 70%);
-  border-radius:50%;pointer-events:none;
-  animation:dc-orb 8s ease-in-out infinite alternate;
-}
-@keyframes dc-orb{to{transform:scale(1.15) translate(-20px,20px)}}
-.dc-cta-ico{
-  width:60px;height:60px;border-radius:14px;
-  background:linear-gradient(135deg,var(--discord),var(--discord-2));
-  display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;
-  box-shadow:0 12px 30px rgba(88,101,242,.35);
-  position:relative;z-index:1;
-}
-.dc-cta-ico svg{width:32px;height:32px}
-.dc-cta-body{position:relative;z-index:1}
-.dc-cta-body h4{font-family:var(--fd);font-size:1.35rem;font-weight:700;margin-bottom:.25rem;color:var(--txt);letter-spacing:.02em;text-transform:uppercase}
-.dc-cta-body p{color:var(--txt2);font-size:.92rem;line-height:1.5;margin:0}
-.dc-cta-body p strong{color:var(--discord);font-weight:600}
-.dc-cta-btn{
-  display:inline-flex;align-items:center;gap:.55rem;
-  padding:.85rem 1.4rem;border-radius:8px;
-  background:var(--discord);color:#fff;
-  font-family:var(--fm);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  transition:all .25s var(--ease);white-space:nowrap;flex-shrink:0;
-  position:relative;z-index:1;border:1px solid var(--discord);
-}
-.dc-cta-btn:hover{background:var(--discord-2);transform:translateY(-2px);box-shadow:0 10px 24px rgba(88,101,242,.4);color:#fff}
-.dc-cta-btn svg{width:14px;height:14px}
-@media(max-width:680px){
-  .dc-cta{grid-template-columns:auto 1fr;text-align:left}
-  .dc-cta-btn{grid-column:1/-1;justify-content:center}
-}
+/* (Discord card replaced with simple inline pill — see hero socials and homepage CTA) */
 
 /* ─────────── SCROLL-SPY DOTS (right-side floating) ─────────── */
 .spy{
@@ -1036,26 +995,7 @@ h1,h2,h3,h4,
 .spy-dot.active{background:var(--red);transform:scale(1.5);box-shadow:0 0 12px var(--red)}
 @media(max-width:900px){.spy{display:none}}
 
-/* ─────────── SVG CIRCUIT HERO ACCENT ─────────── */
-.circuit-svg{
-  position:absolute;top:5rem;right:1.5rem;width:160px;height:160px;
-  pointer-events:none;opacity:.55;z-index:1;
-}
-.circuit-svg path,.circuit-svg circle,.circuit-svg line{
-  stroke:var(--red);fill:none;stroke-width:1.2;
-}
-.circuit-svg .stroke-anim{
-  stroke-dasharray:300;stroke-dashoffset:300;
-  animation:draw 2.4s var(--ease) .8s forwards;
-}
-.circuit-svg .pulse-dot{
-  fill:var(--gold);stroke:none;opacity:0;
-  animation:pulse-in .4s var(--ease) 2.6s forwards,glow-pulse 2.4s ease-in-out 3s infinite;
-}
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes pulse-in{to{opacity:1}}
-@keyframes glow-pulse{0%,100%{filter:drop-shadow(0 0 2px var(--gold))}50%{filter:drop-shadow(0 0 8px var(--gold))}}
-@media(max-width:1100px){.circuit-svg{display:none}}
+/* (circuit SVG removed — was breaking hero grid) */
 
 /* ─────────── SKIP-TO-CONTENT (a11y) ─────────── */
 .skip{position:absolute;top:-40px;left:1rem;padding:.6rem 1rem;background:var(--red);color:#fff;font-family:var(--fm);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;border-radius:6px;z-index:10000;transition:top .25s var(--ease);text-decoration:none}
