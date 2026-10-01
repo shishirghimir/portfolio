@@ -1,5 +1,7 @@
 # Shishir Ghimire — NetaNix
 
+[![Deploy to Docker](https://github.com/shishirghimir/portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/shishirghimir/portfolio/actions/workflows/deploy.yml)
+
 Personal portfolio for **Shishir Ghimire** (NetaNix) — cybersecurity student at Softwarica College (affiliated with Coventry University), Top 1% on TryHackMe, founder of [NetaNix CTF](https://netanixctf.xyz).
 
 Live: **https://shishirghimire.info.np**
