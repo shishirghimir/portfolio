@@ -1,0 +1,45 @@
+name: Deploy to Docker
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Never run two deploys at the same time
+concurrency:
+  group: deploy-portfolio
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, Windows, portfolio]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Build and start container
+        run: docker compose up -d --build
+
+      - name: Wait until container is healthy
+        run: |
+          $status = ""
+          for ($i = 1; $i -le 45; $i++) {
+            $status = docker inspect --format "{{.State.Health.Status}}" portfolio
+            Write-Host "Check ${i}: $status"
+            if ($status -eq "healthy") { break }
+            Start-Sleep -Seconds 2
+          }
+          if ($status -ne "healthy") {
+            docker compose logs --tail 50
+            exit 1
+          }
+          $res = Invoke-WebRequest -Uri "http://localhost:8080/" -UseBasicParsing
+          Write-Host "Site is up: HTTP $($res.StatusCode) on http://localhost:8080"
+
+      - name: Clean unused images
+        run: docker image prune -f

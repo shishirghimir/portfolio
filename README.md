@@ -107,6 +107,36 @@ Open http://localhost:8080.
 
 After editing any HTML/CSS/JS, rebuild with `docker compose up -d --build` to see the changes.
 
+## CI/CD — GitHub Actions
+
+Every push to `main` automatically redeploys the Docker container through [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). It runs on a **self-hosted runner** (a Windows machine with Docker Desktop), so no SSH or public IP is needed. The runner connects out to GitHub and waits for jobs.
+
+```
+git push → GitHub Actions → self-hosted runner → checkout → docker compose up -d --build → health check → prune old images
+```
+
+| Step | What it does |
+|------|--------------|
+| Checkout code | Pulls the pushed commit onto the runner |
+| Build and start container | `docker compose up -d --build` |
+| Wait until container is healthy | Polls the Docker healthcheck, then requests `http://localhost:8080` |
+| Clean unused images | `docker image prune -f` |
+
+It can also be run by hand from **Actions → Deploy to Docker → Run workflow**.
+
+### Runner setup (one time)
+
+1. **Repo → Settings → Actions → Runners → New self-hosted runner → Windows x64**
+2. Download and extract the runner to `D:\actions-runner`, then register it with the label `portfolio`:
+   ```powershell
+   cd D:\actions-runner
+   .\config.cmd --url https://github.com/shishirghimir/portfolio --token <TOKEN> --labels portfolio --unattended
+   .\run.cmd
+   ```
+3. Status shows **Idle** (green) under Settings → Actions → Runners when it's ready.
+
+> Because this is a public repo, **Settings → Actions → General → Fork pull request workflows** is set to *Require approval for all outside collaborators*, so nobody can run code on the runner from a fork PR.
+
 ## Image regeneration
 
 If you replace `img/shishir.jpg`, regenerate the AVIF/WebP variants:
