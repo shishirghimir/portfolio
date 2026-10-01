@@ -1,0 +1,17 @@
+# Keep the image to just the website files
+.git
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.yml
+vercel.json
+README.md
+node_modules
+*.log
+.env
+.env.local
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+desktop.ini

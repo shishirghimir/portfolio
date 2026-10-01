@@ -76,6 +76,37 @@ npx serve .
 
 Open http://localhost:8000.
 
+## Run with Docker
+
+The site is also containerised with **nginx** (`nginx:stable-alpine`). [`nginx.conf`](nginx.conf) mirrors every header from `vercel.json` (cache rules, security headers, service-worker scope, MIME types, custom 404), so the container behaves the same as production.
+
+| File | Purpose |
+|------|---------|
+| `Dockerfile` | Builds the nginx image and copies the site into `/usr/share/nginx/html` |
+| `nginx.conf` | Server config — same headers/caching as `vercel.json` |
+| `docker-compose.yml` | One-command run, maps host port `8080` → container port `80` |
+| `.dockerignore` | Keeps `.git`, docs and config out of the image |
+
+**With Docker Compose (recommended):**
+
+```bash
+docker compose up -d --build   # build + start in background
+docker compose ps              # status (shows "healthy" once ready)
+docker compose logs -f         # follow nginx logs
+docker compose down            # stop + remove the container
+```
+
+**With plain Docker:**
+
+```bash
+docker build -t shishirghimir/portfolio .
+docker run -d --name portfolio -p 8080:80 shishirghimir/portfolio
+```
+
+Open http://localhost:8080.
+
+After editing any HTML/CSS/JS, rebuild with `docker compose up -d --build` to see the changes.
+
 ## Image regeneration
 
 If you replace `img/shishir.jpg`, regenerate the AVIF/WebP variants:
