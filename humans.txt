@@ -1,7 +1,8 @@
 /* TEAM */
 
-Owner & Developer: Shishir Ghimire
+Founder & CEO: Shishir Ghimire
 Alias: NetaNix
+Organization: NetaNix Labs
 Site: https://shishirghimire.info.np
 Email: ssishir39@gmail.com
 GitHub: @shishirghimir
@@ -14,14 +15,12 @@ From: Kathmandu, Nepal
 /* THANKS */
 
 Coventry University · Softwarica College · NIST
-TryHackMe · HackTheBox · NetaNix CTF community
+TryHackMe · HackAstra · Black Hat MEA · NetaNix CTF community
 
 
 /* SITE */
 
-Last update: 2026/04/28
+Last update: 2026/10/16
 Language: English
-Doctype: HTML5
 Standards: HTML5, CSS3, ES2022, JSON-LD, OpenGraph, PWA
 Components: Vanilla JS, no framework
-Software: VS Code · Vercel · Sharp · Git
