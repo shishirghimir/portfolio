@@ -19,7 +19,8 @@ type PageMeta = {
 };
 
 /** One place for titles, canonical URLs, Open Graph and Twitter cards. */
-export function pageMeta({ title, description, path, image = "/og/default.png", keywords = [], type = "website" }: PageMeta): Metadata {
+export function pageMeta({ title, description, path, image, keywords = [], type = "website" }: PageMeta): Metadata {
+  const img = absolute(image ?? ogFor(path));
   const full = title.includes(BRAND) ? title : `${title} | ${BRAND}`;
   const url = absolute(path);
   return {
@@ -34,10 +35,10 @@ export function pageMeta({ title, description, path, image = "/og/default.png", 
       description,
       siteName: BRAND,
       locale: "en_US",
-      images: [{ url: absolute(image), width: 1200, height: 630, alt: full }],
+      images: [{ url: img, secureUrl: img, type: "image/png", width: 1200, height: 630, alt: full }],
       ...(type === "profile" ? { firstName: "Shishir", lastName: "Ghimire", username: "netanix" } : {}),
     },
-    twitter: { card: "summary_large_image", title: full, description, images: [absolute(image)] },
+    twitter: { card: "summary_large_image", title: full, description, images: [{ url: img, alt: full }] },
   };
 }
 
@@ -101,12 +102,29 @@ export function profilePageSchema(path: string, title: string) {
     isPartOf: { "@id": WEBSITE_ID },
     mainEntity: { "@id": PERSON_ID },
     dateModified: new Date().toISOString().slice(0, 10),
-    primaryImageOfPage: { "@type": "ImageObject", url: absolute("/photos/dusk.webp") },
+    inLanguage: "en",
+    primaryImageOfPage: pageImage(path, title),
+    image: [absolute(ogFor(path)), absolute("/photos/dusk.webp")],
+    thumbnailUrl: absolute(ogFor(path)),
   };
 }
 
+/** The share card for a path, the same file pageMeta puts in og:image. */
+export function ogFor(path: string) {
+  const parts = path.split("/").filter(Boolean);
+  if (!parts.length) return "/og/default.png";
+  if (parts[0] === "work" && parts[1]) return `/og/work-${parts[1]}.png`;
+  return `/og/${parts[0]}.png`;
+}
+
+const pageImage = (path: string, name: string) => ({ "@type": "ImageObject", "@id": `${absolute(path)}#primaryimage`, url: absolute(ogFor(path)), contentUrl: absolute(ogFor(path)), width: 1200, height: 630, caption: name });
+
 export function webPageSchema(path: string, title: string, description: string, type = "WebPage") {
-  return { "@type": type, "@id": `${absolute(path)}#webpage`, url: absolute(path), name: title, description, isPartOf: { "@id": WEBSITE_ID }, about: { "@id": PERSON_ID } };
+  return {
+    "@type": type, "@id": `${absolute(path)}#webpage`, url: absolute(path), name: title, description, inLanguage: "en",
+    isPartOf: { "@id": WEBSITE_ID }, about: { "@id": PERSON_ID },
+    primaryImageOfPage: pageImage(path, title), image: { "@id": `${absolute(path)}#primaryimage` }, thumbnailUrl: absolute(ogFor(path)),
+  };
 }
 
 export function breadcrumbSchema(crumbs: { name: string; path: string }[]) {

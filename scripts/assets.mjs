@@ -42,11 +42,14 @@ async function tile(size, pad, radius, bg = "#07090c") {
   const svg = Buffer.from(`<svg width="${size}" height="${size}"><rect width="${size}" height="${size}" rx="${r}" fill="${bg}"/></svg>`);
   return sharp(svg).composite([{ input: m, gravity: "center" }]).png().toBuffer();
 }
-for (const s of [16, 32, 48]) await fs.writeFile(P(`icon-${s}.png`), await tile(s, 0.08, 0.2));
+// tab sizes use a bolder, simpler mark so the letters stay readable at 16 px
+const small = await fs.readFile(A("brand", "mark-small.svg"));
+const smallPng = (size) => sharp(small, { density: 1200 }).resize(size, size).png().toBuffer();
+for (const s of [16, 32, 48]) await fs.writeFile(P(`icon-${s}.png`), await smallPng(s));
 for (const s of [192, 512]) await fs.writeFile(P(`icon-${s}.png`), await tile(s, 0.14, 0.22));
 await fs.writeFile(P("apple-touch-icon.png"), await tile(180, 0.14, 0.22));
 await fs.writeFile(P("icon-maskable-512.png"), await tile(512, 0.22, 0));
-await fs.writeFile(P("favicon.svg"), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><image width="96" height="96" href="data:image/png;base64,${(await tile(96, 0.1, 0.2)).toString("base64")}"/></svg>`);
+await fs.writeFile(P("favicon.svg"), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><image width="96" height="96" href="data:image/png;base64,${(await smallPng(96)).toString("base64")}"/></svg>`);
 // favicon.ico with 16/32/48 PNG frames
 const frames = await Promise.all([16, 32, 48].map((s) => fs.readFile(P(`icon-${s}.png`))));
 const head = Buffer.alloc(6 + frames.length * 16);

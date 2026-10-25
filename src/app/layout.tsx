@@ -12,6 +12,7 @@ import { graph, orgSchema, personSchema, websiteSchema } from "@/lib/seo";
 const sans = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
 
+const ICON_V = "sg2";
 const TITLE = "Shishir Ghimire | Cybersecurity Student & CTF Player, Nepal";
 
 export const metadata: Metadata = {
@@ -24,14 +25,17 @@ export const metadata: Metadata = {
   publisher: person.name,
   category: "technology",
   alternates: { canonical: "/" },
+  // ?v= busts the favicon cache browsers kept from the previous version of the site
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/icon-48.png", type: "image/png", sizes: "48x48" },
-      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: `/favicon.ico?v=${ICON_V}`, sizes: "any" },
+      { url: `/favicon.svg?v=${ICON_V}`, type: "image/svg+xml" },
+      { url: `/icon-32.png?v=${ICON_V}`, type: "image/png", sizes: "32x32" },
+      { url: `/icon-48.png?v=${ICON_V}`, type: "image/png", sizes: "48x48" },
+      { url: `/icon-192.png?v=${ICON_V}`, type: "image/png", sizes: "192x192" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut: [`/favicon.ico?v=${ICON_V}`],
+    apple: [{ url: `/apple-touch-icon.png?v=${ICON_V}`, sizes: "180x180" }],
   },
   manifest: "/manifest.webmanifest",
   openGraph: { type: "profile", siteName: person.name, locale: "en_US", url: SITE_URL, title: TITLE, description: person.short, images: [{ url: "/og/default.png", width: 1200, height: 630, alt: TITLE }] },
