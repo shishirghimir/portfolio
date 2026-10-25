@@ -22,7 +22,7 @@ export function Brand({ compact }: { compact?: boolean }) {
       {!compact && (
         <span className="leading-none">
           <span className="block text-[15px] font-semibold tracking-tight text-fg">Shishir Ghimire</span>
-          <span className="mt-1 block font-mono text-[10.5px] uppercase tracking-[0.18em] text-subtle">aka NetaNix</span>
+          <span className="mt-1 block font-mono text-[10.5px] uppercase tracking-[0.18em] text-subtle">aka Neta</span>
         </span>
       )}
     </Link>

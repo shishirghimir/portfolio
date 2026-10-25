@@ -41,7 +41,7 @@ async function card({ out, kicker, title, sub, visual, accent = "#8be04e" }) {
     <rect width="100%" height="100%" fill="#050608"/><rect width="100%" height="100%" fill="url(#g)"/>
     <rect width="100%" height="100%" fill="url(#a)"/><rect width="100%" height="100%" fill="url(#b)"/>
     <text x="${70 + markW + 16}" y="96" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#eef2f6">Shishir Ghimire</text>
-    <text x="${70 + markW + 16}" y="122" font-family="Consolas, monospace" font-size="15" letter-spacing="3" fill="#6b7584">AKA NETANIX</text>
+    <text x="${70 + markW + 16}" y="122" font-family="Consolas, monospace" font-size="15" letter-spacing="3" fill="#6b7584">AKA NETA</text>
     <text x="70" y="200" font-family="Consolas, monospace" font-size="18" letter-spacing="3" fill="${accent}">&gt; ${esc(kicker.toUpperCase())}</text>
     ${lines.map((l, i) => `<text x="70" y="${tY + i * (size + 6) + size * 0.5}" font-family="Segoe UI, Arial, sans-serif" font-size="${size}" font-weight="800" fill="#eef2f6">${esc(l)}</text>`).join("")}
     <text x="70" y="${tY + lines.length * (size + 6) + 42}" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#9aa4b2">${esc(sub)}</text>

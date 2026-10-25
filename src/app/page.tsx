@@ -20,10 +20,10 @@ import { graph, itemListSchema, pageMeta, profilePageSchema } from "@/lib/seo";
 
 export const metadata = pageMeta({
   title: "Shishir Ghimire | Cybersecurity Student & CTF Player, Nepal",
-  description: "Shishir Ghimire (NetaNix): cybersecurity student and CTF player from Kathmandu, Black Hat MEA 2026 finalist, TryHackMe top 1% and founder of Netanix Lab.",
+  description: "Shishir Ghimire (Neta, NetaNix online): cybersecurity student and CTF player from Kathmandu, Black Hat MEA 2026 finalist, TryHackMe top 1%.",
   path: "/",
   type: "profile",
-  keywords: ["Shishir Ghimire", "NetaNix", "N3TANIX", "cybersecurity student Nepal", "ethical hacking student Nepal", "CTF player Nepal", "Black Hat MEA 2026 Nepal", "Netanix Lab founder"],
+  keywords: ["Shishir Ghimire", "Shishir Ghimire Neta", "NetaNix", "N3TANIX", "Shishir Ghimire Nepal", "Shishir Ghimire Softwarica", "cybersecurity student Nepal", "ethical hacking student Nepal", "CTF player Nepal", "Black Hat MEA 2026 Nepal", "Netanix Lab founder"],
 });
 
 const LOGOS: { name: string; src: string; w: number; h: number }[] = [
@@ -77,7 +77,7 @@ export default function Home() {
         <div>
           <SectionHead id="about-title" index="01" kicker="About me" title={<>A late start, and <span className="text-signal">no days off.</span></>} />
           <div className="prose-x mt-6 max-w-2xl">
-            <p>I&apos;m <strong>Shishir Ghimire</strong>, better known online as <strong>NetaNix</strong>. Honestly, I was never the kid who dreamed about computers. I found my way into tech almost by accident, opened my first CTF room out of curiosity, and something clicked. I&apos;ve been grinding ever since.</p>
+            <p>I&apos;m <strong>Shishir Ghimire</strong>, but most people just call me <strong>Neta</strong> (online I go by <strong>NetaNix</strong>). Honestly, I was never the kid who dreamed about computers. I found my way into tech almost by accident, opened my first CTF room out of curiosity, and something clicked. I&apos;ve been grinding ever since.</p>
             <p>The late nights add up. Today I rank in the global <strong>top 1% on TryHackMe</strong>, I write challenges for Nepal&apos;s CTF scene, and our team is heading to the <strong>Black Hat MEA 2026</strong> finals in Riyadh. I&apos;m still a student, studying Ethical Hacking and Cybersecurity at Softwarica College (Coventry University), and still learning something new every week. Along the way I built <strong>NetanixCTF</strong> so other students have a place to practise, and founded <strong>Netanix Lab</strong> to put what I learn into real software.</p>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -94,7 +94,7 @@ export default function Home() {
               </picture>
               <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-transparent to-transparent" />
               <dl className="absolute inset-x-0 bottom-0 grid grid-cols-2 gap-x-4 gap-y-3 p-5 font-mono text-[11px] uppercase tracking-[0.12em] sm:grid-cols-3 [&>div:nth-child(n+5)]:hidden sm:[&>div:nth-child(n+5)]:block">
-                {[["Alias", "NetaNix"], ["Focus", "Offensive security"], ["THM", "Top 1% · N3TANIX"], ["Study", "BSc Ethical Hacking"], ["Base", "Kathmandu"], ["Motto", "Break · Fix · Secure"]].map(([k, v]) => (
+                {[["Aka", "Neta"], ["Focus", "Offensive security"], ["THM", "Top 1% · N3TANIX"], ["Study", "BSc Ethical Hacking"], ["Base", "Kathmandu"], ["Motto", "Break · Fix · Secure"]].map(([k, v]) => (
                   <div key={k}><dt className="text-subtle">{k}</dt><dd className="mt-0.5 text-fg">{v}</dd></div>
                 ))}
               </dl>

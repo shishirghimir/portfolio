@@ -25,7 +25,7 @@ export function pageMeta({ title, description, path, image = "/og/default.png", 
   return {
     title: { absolute: full },
     description,
-    keywords: [...keywords, "Shishir Ghimire", "NetaNix", "Netanix Lab"],
+    keywords: [...keywords, "Shishir Ghimire", "Neta", "NetaNix", "Netanix Lab"],
     alternates: { canonical: url },
     openGraph: {
       type,
@@ -50,7 +50,7 @@ export function personSchema() {
     name: person.name,
     givenName: "Shishir",
     familyName: "Ghimire",
-    alternateName: [person.alias, person.handle, "Netanix"],
+    alternateName: [person.alias, person.online, person.handle, "Shishir Neta"],
     url: SITE_URL,
     image: [absolute("/photos/dusk.webp"), absolute("/photos/cyber.webp")],
     email: `mailto:${person.email}`,

@@ -12,7 +12,7 @@ export function GET() {
 
 > ${person.headline}. ${person.short}
 
-- Alias: ${person.alias} (TryHackMe: ${person.handle})
+- Also known as: ${person.alias} (short name); online ${person.online}; TryHackMe ${person.handle}
 - Role: ${person.role}; founder of NetanixCTF
 - Based in: ${person.location}
 - Study: ${person.study.degree}, ${person.study.school} (${person.study.uni}), ${person.study.years}

@@ -6,7 +6,8 @@ export const absolute = (path = "/") => `${SITE_URL}${path.startsWith("/") ? pat
 
 export const person = {
   name: "Shishir Ghimire",
-  alias: "NetaNix",
+  alias: "Neta",
+  online: "NetaNix",
   handle: "N3TANIX",
   role: "Cybersecurity student · Founder of Netanix Lab",
   headline: "Cybersecurity student, CTF player and founder of Netanix Lab",
