@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     page("/", 1, ["/og/default.png", "/photos/dusk.webp", "/photos/cyber.webp", "/brand/logo-square.png"]),
     page("/about/", 0.9, ["/og/about.png", "/photos/nagarkot.webp", "/photos/kurintar.webp"]),
+    page("/achievements/", 0.9, ["/og/achievements.png", "/logos/blackhat-white.webp", "/work/softwarica-group.webp"]),
     page("/work/", 0.9, ["/og/work.png"]),
     ...projects.map((p) => page(`/work/${p.slug}/`, p.featured ? 0.8 : 0.7, [`/og/work-${p.slug}.png`, ...(p.cover ? [p.cover.desktop] : []), ...(p.gallery ?? []).map((g) => g.src)])),
     page("/writeups/", 0.7, ["/og/writeups.png"]),

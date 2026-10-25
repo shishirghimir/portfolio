@@ -19,7 +19,7 @@ function wrap(text, max) {
   return lines;
 }
 
-const mark = await sharp(P("brand", "mark-light.png")).trim().resize({ height: 46 }).png().toBuffer();
+const mark = await sharp(P("brand", "sg-mark.png")).trim().resize({ height: 52 }).png().toBuffer();
 const markW = (await sharp(mark).metadata()).width;
 
 async function rounded(input, w, h, r, fit = "cover", position = "north") {
@@ -41,7 +41,7 @@ async function card({ out, kicker, title, sub, visual, accent = "#8be04e" }) {
     <rect width="100%" height="100%" fill="#050608"/><rect width="100%" height="100%" fill="url(#g)"/>
     <rect width="100%" height="100%" fill="url(#a)"/><rect width="100%" height="100%" fill="url(#b)"/>
     <text x="${70 + markW + 16}" y="96" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#eef2f6">Shishir Ghimire</text>
-    <text x="${70 + markW + 16}" y="122" font-family="Consolas, monospace" font-size="15" letter-spacing="3" fill="#6b7584">CEO · NETANIX LAB</text>
+    <text x="${70 + markW + 16}" y="122" font-family="Consolas, monospace" font-size="15" letter-spacing="3" fill="#6b7584">CYBERSECURITY ENGINEER</text>
     <text x="70" y="200" font-family="Consolas, monospace" font-size="18" letter-spacing="3" fill="${accent}">&gt; ${esc(kicker.toUpperCase())}</text>
     ${lines.map((l, i) => `<text x="70" y="${tY + i * (size + 6) + size * 0.5}" font-family="Segoe UI, Arial, sans-serif" font-size="${size}" font-weight="800" fill="#eef2f6">${esc(l)}</text>`).join("")}
     <text x="70" y="${tY + lines.length * (size + 6) + 42}" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#9aa4b2">${esc(sub)}</text>
@@ -72,9 +72,10 @@ async function card({ out, kicker, title, sub, visual, accent = "#8be04e" }) {
 
 const photo = { kind: "photo", src: P("photos", "dusk.webp") };
 const pages = [
-  ["default", "Founder & CEO", "Building and breaking secure software", "Netanix Lab · NetanixCTF · Kathmandu, Nepal", photo],
-  ["about", "About", "Building companies, breaking systems", "Founder, CEO and cybersecurity engineer", { kind: "photo", src: P("photos", "cyber.webp") }],
-  ["work", "Work", "Led, shipped and secured", "Products, client systems and security tools", photo],
+  ["default", "Shishir Ghimire", "Cybersecurity engineer and CTF creator", "Black Hat MEA 2026 finalist · Kathmandu, Nepal", photo],
+  ["achievements", "Achievements", "Black Hat MEA 2026 finalist", "HackAstra #5 · TryHackMe top 1% · NetanixCTF", photo],
+  ["about", "About me", "Curious first. Careful always.", "Security engineer · CTF creator · founder", { kind: "photo", src: P("photos", "cyber.webp") }],
+  ["work", "Projects", "Built, led and secured", "Platforms, client systems and security tools", photo],
   ["writeups", "Research", "Writeups from the lab", "HackTheBox and TryHackMe walkthroughs", photo],
   ["certifications", "Credentials", "13 security certifications", "TryHackMe · Red Team Leaders · ICM Security", photo],
   ["now", "Now", "What I am working on right now", "NLab Billing · Black Hat MEA finals · NetanixCTF", photo],

@@ -37,7 +37,8 @@
 
 html { background: var(--color-void); color-scheme: dark; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
 body {
-  background: var(--color-void);
+  /* transparent so the fixed ambient network behind the page shows through */
+  background: transparent;
   color: var(--color-fg);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -80,6 +81,36 @@ body {
 /* entrance animation in CSS so text paints from the HTML before any JS */
 [data-rise] { animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
 @keyframes rise-in { from { opacity: 0; transform: translate3d(0, 14px, 0); } to { opacity: 1; transform: none; } }
+
+/* slow drifting colour fields behind everything */
+.aurora { animation: aurora 26s ease-in-out infinite alternate; will-change: transform; }
+.aurora-2 { animation: aurora 32s ease-in-out infinite alternate-reverse; will-change: transform; }
+@keyframes aurora { 0% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(8%, 6%, 0) scale(1.12); } 100% { transform: translate3d(-6%, -4%, 0) scale(0.94); } }
+
+/* cursor spotlight on cards (Ambient sets --x / --y on the hovered .spot) */
+.spot { position: relative; isolation: isolate; }
+.spot::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1;
+  background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), rgb(139 224 78 / 0.10), transparent 45%);
+  opacity: 0; transition: opacity 0.35s;
+}
+.spot:hover::before { opacity: 1; }
+
+/* gentle settle between pages; never hides content, so the first paint still counts */
+.page-in { animation: page-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes page-in { from { transform: translate3d(0, 10px, 0); } to { transform: none; } }
+
+/* RGB-split glitch on hover, used on the hero name */
+.glitch { position: relative; width: fit-content; }
+.glitch::before, .glitch::after {
+  content: attr(data-text); position: absolute; inset: 0; opacity: 0; pointer-events: none;
+}
+.glitch::before { color: var(--color-data); }
+.glitch::after { color: var(--color-alert); }
+.glitch:hover::before { opacity: 0.8; animation: glitch-a 0.6s steps(2, end) infinite; }
+.glitch:hover::after { opacity: 0.6; animation: glitch-b 0.6s steps(2, end) infinite; }
+@keyframes glitch-a { 0% { clip-path: inset(10% 0 60% 0); transform: translate(-3px, -1px); } 50% { clip-path: inset(55% 0 20% 0); transform: translate(3px, 1px); } 100% { clip-path: inset(30% 0 40% 0); transform: translate(-2px, 0); } }
+@keyframes glitch-b { 0% { clip-path: inset(65% 0 5% 0); transform: translate(3px, 1px); } 50% { clip-path: inset(5% 0 70% 0); transform: translate(-3px, -1px); } 100% { clip-path: inset(40% 0 35% 0); transform: translate(2px, 0); } }
 
 /* glowing signal text */
 .glow { text-shadow: 0 0 24px color-mix(in oklab, var(--color-signal) 45%, transparent); }

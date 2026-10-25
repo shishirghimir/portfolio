@@ -8,10 +8,10 @@ export const person = {
   name: "Shishir Ghimire",
   alias: "NetaNix",
   handle: "N3TANIX",
-  role: "Founder & CEO, Netanix Lab",
-  headline: "Founder & CEO of Netanix Lab, cybersecurity engineer and CTF creator",
+  role: "Cybersecurity Engineer · Founder of Netanix Lab",
+  headline: "Cybersecurity engineer, CTF creator and founder of Netanix Lab",
   short:
-    "I lead Netanix Lab, the Kathmandu team that builds billing systems, workforce platforms and websites for Nepali businesses, and I founded NetanixCTF, Nepal's Capture The Flag platform. I break software so my team can ship it secure.",
+    "I'm a cybersecurity engineer from Kathmandu. I break systems for a living, design CTF challenges, compete internationally and build secure software, including the products of Netanix Lab, the company I founded.",
   location: "Kathmandu, Nepal",
   geo: { lat: 27.7172, lng: 85.324 },
   email: "ssishir39@gmail.com",
@@ -41,52 +41,106 @@ export const socials = [
 ] as const;
 
 export const stats = [
-  { value: 10, suffix: "+", label: "Production systems shipped" },
-  { value: 500, suffix: "+", label: "Players on NetanixCTF" },
-  { value: 1, prefix: "Top ", suffix: "%", label: "TryHackMe, worldwide" },
+  { value: 1, prefix: "Top ", suffix: "%", label: "TryHackMe worldwide" },
+  { value: 236, suffix: "", label: "TryHackMe rooms completed" },
+  { value: 500, suffix: "+", label: "Players on the CTF platform I built" },
   { value: 13, suffix: "", label: "Security certifications" },
 ];
 
-export const roles = ["Founder & CEO, Netanix Lab", "Offensive security engineer", "CTF creator", "Full-stack architect"];
+export const roles = ["Cybersecurity engineer", "CTF creator & competitor", "Black Hat MEA 2026 finalist", "Founder & CEO, Netanix Lab", "Full-stack builder"];
 
-export const wins = [
+export type AchievementLogo = { src: string; wide?: boolean } | { icon: "tryhackme" };
+
+export interface Achievement {
+  slug: string;
+  title: string;
+  result: string;
+  kind: "Competition" | "Ranking" | "Founder" | "Organiser" | "Credentials";
+  when: string;
+  where: string;
+  logo: AchievementLogo;
+  summary: string;
+  facts: [string, string][];
+  featured?: boolean;
+  href?: string;
+}
+
+export const achievements: Achievement[] = [
   {
     slug: "blackhat-mea-2026",
     title: "Black Hat MEA CTF 2026",
-    result: "Qualified for the finals",
-    note: "The only team made up entirely of players from Nepal to qualify for the in-person finals in Riyadh.",
-    when: "Finals · December 2026 · Riyadh",
-    logo: "/logos/blackhat-mea.webp",
-    dark: true,
+    result: "Finalist",
+    kind: "Competition",
+    when: "Finals in December 2026",
+    where: "Riyadh, Saudi Arabia",
+    logo: { src: "/logos/blackhat-white.webp", wide: true },
+    summary:
+      "Our team fought through the online qualifiers of one of the world's biggest security competitions and earned a place at the in-person finals in Riyadh. We are the only team made up entirely of players from Nepal to qualify, and I am proud to represent the country on that stage.",
+    facts: [["Stage", "In-person finals"], ["Team", "All players from Nepal"], ["Status", "Training for the finals"]],
+    featured: true,
+    href: "https://blackhatmea.com",
   },
   {
     slug: "hackastra-2026",
     title: "HackAstra 2026",
     result: "5th place nationally",
-    note: "Top five at one of Nepal's flagship two-phase CTFs, across web, forensics, crypto and OSINT.",
-    when: "May 2026 · Kathmandu",
-    logo: "/logos/hackastra.webp",
-    dark: true,
+    kind: "Competition",
+    when: "May 2026",
+    where: "Kathmandu",
+    logo: { src: "/logos/hackastra.webp" },
+    summary: "A top five finish at one of Nepal's flagship two-phase CTFs, run by the EthicalHCK community, across web exploitation, forensics, cryptography and OSINT.",
+    facts: [["Placing", "#5 in Nepal"], ["Format", "Two-phase CTF"], ["Categories", "Web, forensics, crypto, OSINT"]],
   },
   {
     slug: "tryhackme",
     title: "TryHackMe",
     result: "Top 1% worldwide",
-    note: "Ranked in the global top 1% as N3TANIX, with 230+ rooms of hands-on offensive security practice.",
-    when: "Ongoing · N3TANIX",
-    logo: "tryhackme",
-    dark: true,
+    kind: "Ranking",
+    when: "Ongoing",
+    where: "As N3TANIX",
+    logo: { icon: "tryhackme" },
+    summary: "Ranked in the global top 1% of millions of learners, built one room at a time: 236 rooms, 32 badges and a global rank of #6,756 at the last update.",
+    facts: [["Global rank", "#6,756"], ["Rooms", "236"], ["Badges", "32"]],
+    href: "https://tryhackme.com/p/N3TANIX",
   },
   {
     slug: "netanixctf",
     title: "NetanixCTF",
-    result: "Founded a national platform",
-    note: "Built Nepal's own CTF platform: 500+ registered players, 100+ certificates issued and events with colleges.",
-    when: "Since 2024 · netanixctf.com",
-    logo: "/logos/netanixctf-logo.webp",
-    dark: false,
+    result: "Built Nepal's own CTF platform",
+    kind: "Founder",
+    when: "Since 2024",
+    where: "netanixctf.com",
+    logo: { src: "/logos/netanixctf-logo.webp" },
+    summary: "I started NetanixCTF so students in Nepal could practise real security skills at home. I designed the platform and many of its 40+ challenges, and it has grown into a community with 500+ registered players.",
+    facts: [["Players", "500+"], ["Certificates", "100+"], ["Challenges", "40+"]],
+    href: "https://netanixctf.com",
+  },
+  {
+    slug: "softwarica-24hr-ctf",
+    title: "Softwarica 24 Hour CTF",
+    result: "Organised and hosted",
+    kind: "Organiser",
+    when: "2024",
+    where: "Softwarica College, Kathmandu",
+    logo: { src: "/logos/softwarica-white.webp", wide: true },
+    summary: "A full day and night Capture The Flag we ran with Softwarica College on the NetanixCTF platform: 17 teams, live scoring and prizes for the top three.",
+    facts: [["Teams", "17"], ["Length", "24 hours"], ["Prizes", "Top three teams"]],
+  },
+  {
+    slug: "certifications",
+    title: "13 certifications",
+    result: "Offensive and red team paths",
+    kind: "Credentials",
+    when: "2025",
+    where: "TryHackMe, Red Team Leaders, ICM Security",
+    logo: { icon: "tryhackme" },
+    summary: "Jr Penetration Tester, the CompTIA Pentest+ path, CCEP, CRTDM, log analysis and more, earned alongside study and running a company.",
+    facts: [["TryHackMe", "6"], ["Red Team Leaders", "4"], ["ICM Security", "3"]],
   },
 ];
+
+/** Short list used by structured data, the terminal and llms.txt. */
+export const wins = achievements.filter((a) => a.kind !== "Credentials");
 
 export const experience = [
   {
@@ -94,6 +148,7 @@ export const experience = [
     title: "Founder & Chief Executive Officer",
     org: "Netanix Lab",
     where: "Kathmandu",
+    logo: "/brand/mark-light.webp",
     body: "Started Netanix Lab and grew it into a registered software company with an eight person team. I set direction, win and lead client work, architect every system we ship and head offensive security. Products include NLab Billing and NetanixCTF; clients include OMH Nepal, IOS Nepal and Base Camp Adventure.",
     tags: ["Leadership", "Architecture", "Client delivery"],
   },
@@ -109,6 +164,7 @@ export const experience = [
     when: "2024 to now",
     title: "CTF Creator & Security Researcher",
     org: "NetanixCTF · Medium",
+    logo: "/logos/netanixctf-logo.webp",
     where: "Online & on campus",
     body: "Design challenges across web, forensics, OSINT and crypto, run tournaments with colleges such as Softwarica, and publish walkthroughs as @netanix96.",
     tags: ["CTF design", "Research", "Community"],
@@ -117,6 +173,7 @@ export const experience = [
     when: "2024 to 2027",
     title: "BSc (Hons) Ethical Hacking & Cybersecurity",
     org: "Softwarica College · Coventry University",
+    logo: "/logos/softwarica-white.webp",
     where: "Kathmandu",
     body: "Offensive security, network defence, digital forensics and operating systems, alongside the lab. Coursework such as the process management benchmarks is on GitHub.",
     tags: ["Degree"],
@@ -138,14 +195,52 @@ export const skills = [
   { group: "Leadership", items: ["Product strategy", "System architecture", "Team leadership", "Client delivery", "CTF & event operations"] },
 ];
 
+/** Tools with their real logos: `svg` files live in /public/tech, `si` names are Simple Icons. */
+export type Tool = { name: string; svg?: string; si?: string; invert?: boolean };
+export const toolbox: { group: string; blurb: string; tools: Tool[] }[] = [
+  {
+    group: "Offensive security",
+    blurb: "Recon, web exploitation and network attacks, the way real adversaries work.",
+    tools: [
+      { name: "Kali Linux", svg: "kalilinux" }, { name: "Burp Suite", svg: "burpsuite" }, { name: "Metasploit", si: "SiMetasploit" },
+      { name: "Wireshark", svg: "wireshark" }, { name: "OWASP Top 10", si: "SiOwasp" }, { name: "Hack The Box", si: "SiHackthebox" }, { name: "TryHackMe", si: "SiTryhackme" },
+    ],
+  },
+  {
+    group: "Defence & forensics",
+    blurb: "Memory forensics, packet analysis and hardening what we ship.",
+    tools: [
+      { name: "Linux", svg: "linux" }, { name: "Bash", si: "SiGnubash" }, { name: "Docker", svg: "docker" }, { name: "Nginx", si: "SiNginx" },
+      { name: "Cloudflare", svg: "cloudflare" }, { name: "OpenCV", si: "SiOpencv" }, { name: "Git", svg: "git" },
+    ],
+  },
+  {
+    group: "Languages",
+    blurb: "From packet filters in C to full products in TypeScript.",
+    tools: [
+      { name: "Python", svg: "python" }, { name: "C", si: "SiC" }, { name: "TypeScript", svg: "typescript" }, { name: "JavaScript", svg: "javascript" },
+      { name: "SQL", svg: "postgresql" }, { name: "HTML5", svg: "html5" }, { name: "CSS", svg: "css3" },
+    ],
+  },
+  {
+    group: "Frameworks & platforms",
+    blurb: "The stack behind NLab Billing, OMH Nepal and NetanixCTF.",
+    tools: [
+      { name: "React", svg: "react" }, { name: "Next.js", svg: "nextjs", invert: true }, { name: "Node.js", svg: "nodejs" }, { name: "Express", si: "SiExpress" },
+      { name: "FastAPI", svg: "fastapi" }, { name: "PostgreSQL", svg: "postgresql" }, { name: "MySQL", si: "SiMysql" }, { name: "Prisma", svg: "prisma", invert: true },
+      { name: "Tailwind CSS", svg: "tailwindcss" }, { name: "Vercel", svg: "vercel", invert: true }, { name: "Railway", si: "SiRailway" },
+    ],
+  },
+];
+
 export const certs = [
   {
     issuer: "TryHackMe",
-    logo: "tryhackme",
+    logo: "/logos/tryhackme.webp",
     items: ["Jr Penetration Tester", "CompTIA Pentest+ Path", "Cyber Security 101", "Web Fundamentals", "Pre Security", "Advent of Cyber 2025"],
   },
-  { issuer: "Red Team Leaders", logo: "rtl", items: ["Physical Pentest Fundamentals", "Foundations of Log Analysis", "CCEP", "CRTDM"] },
-  { issuer: "ICM Security", logo: "icm", items: ["AI 101 Fundamentals", "Practical Security Fundamentals", "Programming 100 Fundamentals"] },
+  { issuer: "Red Team Leaders", logo: "/logos/redteamleaders.svg", items: ["Physical Pentest Fundamentals", "Foundations of Log Analysis", "CCEP", "CRTDM"] },
+  { issuer: "ICM Security", logo: "", items: ["AI 101 Fundamentals", "Practical Security Fundamentals", "Programming 100 Fundamentals"] },
 ];
 
 export const now = [

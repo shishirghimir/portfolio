@@ -1,31 +1,34 @@
-import { PageHead, CrewStrip, SkillsMatrix, Timeline } from "@/components/sections/Blocks";
+import { PageHead, CrewStrip, Timeline, Toolbox } from "@/components/sections/Blocks";
+import { AchievementGrid, FeaturedAchievement } from "@/components/sections/Achievements";
 import { ContactBand } from "@/components/sections/ContactBand";
+import { Faq, faqSchema } from "@/components/sections/Faq";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Reveal } from "@/components/motion/Reveal";
 import { JsonLd } from "@/components/JsonLd";
 import { person } from "@/content/profile";
+import { faqs } from "@/content/faq";
 import { breadcrumbSchema, graph, pageMeta, profilePageSchema } from "@/lib/seo";
 
 export const metadata = pageMeta({
-  title: "About Shishir Ghimire, Founder & CEO of Netanix Lab",
-  description: "Shishir Ghimire (NetaNix): founder and CEO of Netanix Lab, founder of NetanixCTF, Black Hat MEA 2026 finalist and ethical hacking student in Kathmandu.",
+  title: "About Shishir Ghimire, cybersecurity engineer from Nepal",
+  description: "Who Shishir Ghimire (NetaNix) is: cybersecurity engineer and CTF creator, Black Hat MEA 2026 finalist, NetanixCTF and Netanix Lab founder, Softwarica student.",
   path: "/about/",
   image: "/og/about.png",
   type: "profile",
-  keywords: ["about Shishir Ghimire", "NetaNix", "Netanix Lab founder", "Softwarica ethical hacking"],
+  keywords: ["about Shishir Ghimire", "who is Shishir Ghimire", "NetaNix", "Softwarica ethical hacking", "Coventry University cybersecurity Nepal"],
 });
 
 const PHOTOS = [
-  { src: "/photos/nagarkot", alt: "Shishir Ghimire above the Kathmandu valley", w: 900, h: 1200 },
-  { src: "/photos/dusk", alt: "Shishir Ghimire at dusk in Kathmandu", w: 960, h: 1280 },
-  { src: "/photos/kurintar", alt: "Shishir Ghimire on the road in Nepal", w: 960, h: 1280 },
+  { src: "/photos/nagarkot", alt: "Shishir Ghimire above the Kathmandu valley" },
+  { src: "/photos/dusk", alt: "Shishir Ghimire at dusk in Kathmandu" },
+  { src: "/photos/kurintar", alt: "Shishir Ghimire on the road in Nepal" },
 ];
 
 const FACTS = [
   ["Name", person.name],
-  ["Alias", "NetaNix · N3TANIX"],
-  ["Role", "Founder & CEO, Netanix Lab"],
-  ["Also", "Founder, NetanixCTF"],
+  ["Known as", "NetaNix · N3TANIX"],
+  ["Do", "Offensive security, CTFs, secure software"],
+  ["Founded", "NetanixCTF, Netanix Lab"],
   ["Degree", person.study.degree],
   ["College", `${person.study.school}, ${person.study.uni}`],
   ["Based", person.location],
@@ -35,18 +38,19 @@ const FACTS = [
 export default function AboutPage() {
   return (
     <>
-      <JsonLd data={graph(profilePageSchema("/about/", "About Shishir Ghimire"), breadcrumbSchema([{ name: "About", path: "/about/" }]))} />
-      <PageHead kicker="About" title={<>Building companies, <span className="text-signal">breaking systems.</span></>} lead="Founder and CEO of Netanix Lab, founder of NetanixCTF, and a security engineer who would rather prove a system is safe than assume it." crumbs={[{ name: "About", path: "/about/" }]} />
+      <JsonLd data={graph(profilePageSchema("/about/", "About Shishir Ghimire"), breadcrumbSchema([{ name: "About", path: "/about/" }]), faqSchema(faqs))} />
+      <PageHead kicker="About me" title={<>Curious first. <span className="text-signal">Careful always.</span></>} lead="A cybersecurity engineer who learned to build by breaking, and still checks the locks on everything he ships." crumbs={[{ name: "About", path: "/about/" }]} />
 
       <section className="container-x grid gap-14 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="prose-x max-w-2xl text-[17px]">
-          <p>I&apos;m <strong>Shishir Ghimire</strong>, known online as <strong>NetaNix</strong>. I grew up in Kathmandu taking software apart to see how it worked, and I never really stopped. Security came first: CTF rooms, boxes and writeups, until I wanted a place where students in Nepal could compete and learn together. So in 2024 I built one, <strong>NetanixCTF</strong>, which now has 500+ registered players.</p>
-          <p>Running that platform taught me how to ship software that has to survive real users and real attackers. Local businesses started asking us to build for them, and that became <strong>Netanix Lab</strong>, the registered software company I lead as founder and CEO. Our team of eight builds billing and POS systems for retail shops, a workforce platform for an interior design company, websites that rank, and our own cloud product, <strong>NLab Billing</strong>.</p>
-          <p>My job is to set the direction, win and lead the client work, and architect what we ship. I still write a lot of the code, and I still try to break all of it before it goes live. That habit is why security is built into everything Netanix Lab delivers, not added at the end.</p>
-          <p>I compete when I can: our team qualified for the <strong>Black Hat MEA 2026</strong> CTF finals in Riyadh, the only all-Nepali team to do so, and we placed 5th at HackAstra 2026. I&apos;m in the global top 1% on TryHackMe as <strong>N3TANIX</strong>, and I&apos;m studying for a BSc (Hons) in Ethical Hacking and Cybersecurity at Softwarica College, awarded by Coventry University.</p>
+          <p>I&apos;m <strong>Shishir Ghimire</strong>. Most of the security world knows me as <strong>NetaNix</strong>. I grew up in Kathmandu pulling software apart to see how it worked, and security turned that habit into a craft: CTF rooms, vulnerable boxes, late nights and a lot of writeups.</p>
+          <p>That practice adds up. I rank in the global <strong>top 1% on TryHackMe</strong> with 236 rooms behind me, I placed <strong>5th in Nepal at HackAstra 2026</strong>, and our team qualified for the <strong>Black Hat MEA CTF 2026 finals</strong> in Riyadh, the only team made up entirely of players from Nepal to get there.</p>
+          <p>I also wanted students here to have somewhere to practise, so in 2024 I built <strong>NetanixCTF</strong>. Today it has 500+ registered players, original challenges I write with the team, and live events like the 24 hour CTF we ran at Softwarica College.</p>
+          <p>Breaking things made me better at building them. I founded <strong>Netanix Lab</strong>, where I design and lead the software real businesses depend on, from billing systems in phone shops to the platform that runs an interior design company&apos;s crew. Every one of them gets attacked by us before it goes live.</p>
+          <p>Right now I&apos;m studying for a <strong>BSc (Hons) in Ethical Hacking and Cybersecurity</strong> at Softwarica College, awarded by Coventry University, preparing for the Black Hat finals, and working towards CRTP and OSCP.</p>
         </div>
         <Reveal>
-          <dl className="divide-y divide-white/[0.06] rounded-2xl border border-white/[0.08] bg-ink-900/60 font-mono text-sm">
+          <dl className="spot divide-y divide-white/[0.06] rounded-2xl border border-white/[0.08] bg-ink-900/60 font-mono text-sm">
             <div className="flex items-center gap-2 px-5 py-3 text-xs uppercase tracking-[0.16em] text-signal"><span className="size-2 rounded-full bg-signal" />whoami</div>
             {FACTS.map(([k, v]) => (
               <div key={k} className="grid grid-cols-[6.5rem_1fr] gap-3 px-5 py-3.5">
@@ -73,21 +77,32 @@ export default function AboutPage() {
         </ul>
       </section>
 
+      <section className="container-x mt-32">
+        <SectionHead index="01" kicker="Achievements" title="The results so far." />
+        <div className="mt-12"><FeaturedAchievement /></div>
+        <div className="mt-4"><AchievementGrid limit={3} /></div>
+      </section>
+
       <section className="container-x mt-32 grid gap-14 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <SectionHead index="01" kicker="Experience & education" title="The timeline." />
+          <SectionHead index="02" kicker="Experience & education" title="The timeline." />
         </div>
         <Timeline />
       </section>
 
       <section className="container-x mt-32">
-        <SectionHead index="02" kicker="Capabilities" title="What I bring to a team." />
-        <div className="mt-12"><SkillsMatrix /></div>
+        <SectionHead index="03" kicker="Skills" title="What I bring to a team." />
+        <div className="mt-12"><Toolbox /></div>
       </section>
 
       <section className="container-x mt-32">
-        <SectionHead index="03" kicker="The crew" title="The people I build with." lead="Netanix Lab is a team effort. These are the people behind the work on this site." />
+        <SectionHead index="04" kicker="People I build with" title="Credit where it's due." lead="The team behind the products and client work on this site." />
         <div className="mt-12"><CrewStrip /></div>
+      </section>
+
+      <section className="container-x mt-32 grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+        <SectionHead index="05" kicker="FAQ" title="Questions people ask about me." />
+        <Faq items={faqs} />
       </section>
       <ContactBand />
     </>

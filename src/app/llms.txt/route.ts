@@ -1,4 +1,5 @@
-import { absolute, certs, experience, links, person, skills, wins } from "@/content/profile";
+import { absolute, achievements, certs, experience, links, person, skills } from "@/content/profile";
+import { faqs } from "@/content/faq";
 import { kindLabel, projects } from "@/content/projects";
 import { team } from "@/content/team";
 import { writeups } from "@/content/writeups";
@@ -27,15 +28,20 @@ export function GET() {
 
 - [Home](${absolute("/")})
 - [About](${absolute("/about/")})
+- [Achievements](${absolute("/achievements/")})
 - [Work](${absolute("/work/")})
 - [Writeups](${absolute("/writeups/")})
 - [Certifications](${absolute("/certifications/")})
 - [Now](${absolute("/now/")})
 - [Contact](${absolute("/contact/")})
 
-## Recognition
+## Achievements
 
-${wins.map((w) => `- ${w.title}: ${w.result}. ${w.note} (${w.when})`).join("\n")}
+${achievements.map((a) => `- ${a.title}: ${a.result} (${a.when}, ${a.where}). ${a.summary}`).join("\n")}
+
+## FAQ
+
+${faqs.map((f) => `- Q: ${f.q}\n  A: ${f.a}`).join("\n")}
 
 ## Experience
 

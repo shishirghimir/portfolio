@@ -1,5 +1,5 @@
 import { BadgeCheck } from "lucide-react";
-import { SiTryhackme } from "react-icons/si";
+import Image from "next/image";
 import { PageHead } from "@/components/sections/Blocks";
 import { ContactBand } from "@/components/sections/ContactBand";
 import { Reveal } from "@/components/motion/Reveal";
@@ -14,12 +14,6 @@ const DESC = `${TOTAL} security certifications held by Shishir Ghimire, includin
 
 export const metadata = pageMeta({ title: TITLE, description: DESC, path: "/certifications/", image: "/og/certifications.png", keywords: ["Shishir Ghimire certifications", "Jr Penetration Tester", "CCEP", "CRTDM"] });
 
-const MARK: Record<string, React.ReactNode> = {
-  tryhackme: <SiTryhackme className="size-6 text-[#c11111]" aria-hidden />,
-  rtl: <span className="font-mono text-sm font-bold text-alert">RTL</span>,
-  icm: <span className="font-mono text-sm font-bold text-data">ICM</span>,
-};
-
 export default function CertsPage() {
   return (
     <>
@@ -29,7 +23,7 @@ export default function CertsPage() {
         {certs.map((c, i) => (
           <Reveal key={c.issuer} delay={i * 0.06} className="rounded-[1.6rem] border border-white/[0.08] bg-ink-900/60 p-7">
             <div className="flex items-center gap-4">
-              <span className="grid size-14 place-items-center rounded-2xl border border-white/10 bg-black">{MARK[c.logo]}</span>
+              <span className="grid size-14 place-items-center overflow-hidden rounded-2xl border border-white/10 bg-black p-2">{c.logo ? <Image src={c.logo} alt={`${c.issuer} logo`} width={48} height={48} className="h-full w-full object-contain" /> : <span className="font-mono text-sm font-bold text-data">ICM</span>}</span>
               <div>
                 <h2 className="text-xl font-semibold text-fg">{c.issuer}</h2>
                 <p className="font-mono text-xs text-subtle">{c.items.length} credentials</p>

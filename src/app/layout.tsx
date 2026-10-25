@@ -5,13 +5,14 @@ import { Providers } from "@/components/Providers";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/JsonLd";
+import { Ambient } from "@/components/visuals/Ambient";
 import { SITE_URL, person } from "@/content/profile";
 import { graph, orgSchema, personSchema, websiteSchema } from "@/lib/seo";
 
 const sans = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
 
-const TITLE = "Shishir Ghimire | Founder & CEO of Netanix Lab, Cybersecurity Engineer";
+const TITLE = "Shishir Ghimire | Cybersecurity Engineer & CTF Creator, Nepal";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[120] focus:rounded-full focus:bg-signal focus:px-4 focus:py-2 focus:text-on-signal">Skip to content</a>
         <JsonLd data={graph(personSchema(), orgSchema(), websiteSchema())} />
+        <Ambient />
         <Providers>
           <Navbar />
           <main id="main">{children}</main>

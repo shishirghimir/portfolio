@@ -26,8 +26,8 @@ export default function ContactPage() {
           </a>
           {socials.map((s, i) => (
             <Reveal key={s.key} delay={i * 0.04}>
-              <a href={s.href} target="_blank" rel="noopener noreferrer me" className="group flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-ink-900/60 p-5 transition-colors hover:border-white/20">
-                <span className="grid size-12 place-items-center rounded-xl border border-white/10 bg-white/[0.03] text-fg"><BrandIcon name={s.key} className="size-5" /></span>
+              <a href={s.href} target="_blank" rel="noopener noreferrer me" className="spot group flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-ink-900/60 p-5 transition-colors hover:border-white/20">
+                <span className="grid size-12 place-items-center rounded-xl border border-white/10 bg-white/[0.04] transition-transform duration-300 group-hover:scale-110"><BrandIcon name={s.key} colored className="size-6" /></span>
                 <span className="min-w-0 flex-1"><span className="block font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">{s.label}</span><span className="mt-0.5 block truncate text-fg">{s.handle}</span></span>
                 <ArrowUpRight className="size-4 text-subtle transition-colors group-hover:text-signal" aria-hidden />
               </a>

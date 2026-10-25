@@ -1,4 +1,3 @@
-import { Scramble } from "@/components/motion/Scramble";
 import { NetGlobe } from "@/components/visuals/NetGlobe";
 import { Button } from "@/components/ui/Button";
 import { BrandIcon } from "@/components/ui/BrandIcon";
@@ -23,9 +22,10 @@ export function Hero() {
             Online · Kathmandu 27.71°N 85.32°E
           </p>
 
-          <h1 className="mt-7 text-[3.4rem] font-semibold leading-[0.92] tracking-[-0.05em] text-fg sm:text-7xl lg:text-[6.4rem]" data-rise style={{ animationDelay: "0.08s" }}>
-            <Scramble text="Shishir" className="block" delay={150} />
-            <Scramble text="Ghimire" className="glow block text-signal" delay={420} />
+          {/* painted once, straight from the HTML (it is the largest element on the page); the glitch runs on hover */}
+          <h1 className="mt-7 text-[3.4rem] font-semibold leading-[0.92] tracking-[-0.05em] text-fg sm:text-7xl lg:text-[6.4rem]">
+            <span className="glitch block" data-text="Shishir">Shishir</span>
+            <span className="glitch glow block text-signal" data-text="Ghimire">Ghimire</span>
           </h1>
 
           <p className="mt-6 text-lg sm:text-xl" data-rise style={{ animationDelay: "0.18s" }}>
@@ -34,19 +34,19 @@ export function Hero() {
           </p>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg" data-rise style={{ animationDelay: "0.26s" }}>
-            I lead <a href="https://netanixlab.com" target="_blank" rel="noopener" className="text-fg underline decoration-signal/50 underline-offset-4 hover:decoration-signal">Netanix Lab</a>, the Kathmandu team behind the billing systems, workforce platforms and websites that Nepali businesses run on every day. I founded NetanixCTF to grow the country&apos;s security talent, and I break software so my team can ship it secure.
+            I&apos;m a cybersecurity engineer from Kathmandu. I find the holes attackers would use, write Capture The Flag challenges for Nepal&apos;s security community and compete on the world stage, most recently as a <span className="text-fg">Black Hat MEA 2026 finalist</span>. I also founded <a href="https://netanixlab.com" target="_blank" rel="noopener" className="text-fg underline decoration-signal/50 underline-offset-4 hover:decoration-signal">Netanix Lab</a>, where I build secure software for businesses across Nepal.
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row" data-rise style={{ animationDelay: "0.34s" }}>
             <Button href="/work/">Explore my work</Button>
-            <Button href="/contact/" variant="ghost">Work with me</Button>
+            <Button href="/achievements/" variant="ghost">See my achievements</Button>
           </div>
 
           <ul className="mt-10 flex flex-wrap items-center gap-2" data-rise style={{ animationDelay: "0.42s" }} aria-label="Profiles">
             {socials.map((s) => (
               <li key={s.key}>
                 <a href={s.href} target="_blank" rel="noopener noreferrer me" className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] py-2 pl-2.5 pr-3.5 text-xs text-muted transition-colors hover:border-signal/40 hover:text-fg">
-                  <BrandIcon name={s.key} className="size-3.5 text-fg/80 transition-colors group-hover:text-signal" />
+                  <BrandIcon name={s.key} colored className="size-3.5" />
                   {s.label}
                 </a>
               </li>

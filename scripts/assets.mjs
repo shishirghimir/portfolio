@@ -31,8 +31,10 @@ for (const [src, name] of [["auto_analyze_tab.png", "memvault-analyze"], ["dump_
   await sharp(A("memvault", src)).resize({ width: 1600, withoutEnlargement: true }).webp({ quality: 82 }).toFile(P("work", `${name}.webp`));
 }
 
-// ---- icons: the white Netanix mark on a dark rounded tile -------------------
-const mark = await sharp(P("brand", "mark-light.png")).trim().png().toBuffer();
+// ---- icons: Shishir's SG mark on a dark rounded tile -------------------------
+const markSvg = await fs.readFile(A("brand", "mark.svg"));
+const mark = await sharp(markSvg, { density: 600 }).resize(512, 512).png().toBuffer();
+await fs.writeFile(P("brand", "sg-mark.png"), mark);
 async function tile(size, pad, radius, bg = "#07090c") {
   const inner = Math.round(size * (1 - pad * 2));
   const m = await sharp(mark).resize({ width: inner, height: inner, fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
@@ -59,5 +61,26 @@ frames.forEach((buf, i) => {
 await fs.writeFile(P("favicon.ico"), Buffer.concat([head, ...frames]));
 // a square logo for search engines (Person / Organization image)
 await fs.writeFile(P("brand", "logo-square.png"), await tile(600, 0.16, 0.12));
+
+// ---- partner and event logos -------------------------------------------------
+// white silhouettes for logos that are black or dark blue, so they read on the dark theme
+async function whiteLogo(src, out) {
+  const { data, info } = await sharp(A("logos-src", src)).ensureAlpha().resize({ width: 720, withoutEnlargement: true }).raw().toBuffer({ resolveWithObject: true });
+  for (let i = 0; i < data.length; i += 4) {
+    // keep the shape (alpha and darkness), paint it white
+    const lum = (data[i] + data[i + 1] + data[i + 2]) / 3;
+    const a = data[i + 3] * (lum > 235 ? 0 : 1);
+    data[i] = data[i + 1] = data[i + 2] = 255; data[i + 3] = a;
+  }
+  await sharp(data, { raw: info }).trim().webp({ quality: 90 }).toFile(P("logos", out));
+}
+await whiteLogo("blackhat.png", "blackhat-white.webp");
+await whiteLogo("coventry.png", "coventry-white.webp");
+// Softwarica: the official logo carries a Coventry co-brand on the right, keep only Softwarica
+await sharp(A("logos-src", "softwarica.png")).extract({ left: 0, top: 50, width: 535, height: 142 }).trim().png().toFile(A("logos-src", "softwarica-only.png"));
+await whiteLogo("softwarica-only.png", "softwarica-white.webp");
+for (const [src, out] of [["tryhackme.com.png", "tryhackme.webp"], ["ctftime.org.png", "ctftime.webp"]]) {
+  await sharp(A("logos-src", src)).webp({ quality: 90 }).toFile(P("logos", out));
+}
 
 console.log("assets written to public/");

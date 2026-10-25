@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE_URL, absolute, certs, links, person, skills, wins } from "@/content/profile";
+import { SITE_URL, absolute, achievements, certs, links, person, skills } from "@/content/profile";
 import { team } from "@/content/team";
 import type { Project } from "@/content/projects";
 
@@ -54,7 +54,11 @@ export function personSchema() {
     url: SITE_URL,
     image: [absolute("/photos/dusk.webp"), absolute("/photos/cyber.webp")],
     email: `mailto:${person.email}`,
-    jobTitle: "Founder & Chief Executive Officer",
+    jobTitle: "Cybersecurity Engineer",
+    hasOccupation: [
+      { "@type": "Occupation", name: "Cybersecurity Engineer", occupationLocation: { "@type": "City", name: "Kathmandu" }, skills: "Penetration testing, CTF design, digital forensics, secure software" },
+      { "@type": "Occupation", name: "Founder & CEO", description: "Founder and CEO of Netanix Lab" },
+    ],
     description: person.short,
     worksFor: { "@id": ORG_ID },
     founder: { "@id": ORG_ID },
@@ -66,7 +70,7 @@ export function personSchema() {
       { "@type": "CollegeOrUniversity", name: "Coventry University", sameAs: "https://www.coventry.ac.uk" },
     ],
     knowsAbout: skills.flatMap((s) => s.items),
-    award: wins.map((w) => `${w.title}: ${w.result}`),
+    award: achievements.map((a) => `${a.title}: ${a.result} (${a.when})`),
     hasCredential: certs.flatMap((c) => c.items.map((name) => ({ "@type": "EducationalOccupationalCredential", name, recognizedBy: { "@type": "Organization", name: c.issuer } }))),
     sameAs: [links.linkedin, links.github, links.tryhackme, links.medium, "https://netanixlab.com/team/shishir-ghimire/"],
   };

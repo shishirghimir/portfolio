@@ -1,31 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { SiTryhackme } from "react-icons/si";
+import * as Si from "react-icons/si";
 import { Reveal } from "@/components/motion/Reveal";
-import { experience, skills, wins } from "@/content/profile";
+import { experience, toolbox, type Tool } from "@/content/profile";
 import { crew } from "@/content/team";
 import { cn } from "@/lib/cn";
-
-/** Competition results and milestones, each with its real logo. */
-export function WinsGrid() {
-  return (
-    <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {wins.map((w, i) => (
-        <Reveal as="li" key={w.slug} delay={i * 0.06} className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-ink-900/70 p-6 transition-colors hover:border-signal/30">
-            <div aria-hidden className="absolute -right-10 -top-10 size-32 rounded-full bg-signal/[0.06] blur-2xl transition-opacity group-hover:opacity-100" />
-            <span className={cn("grid size-14 place-items-center overflow-hidden rounded-xl border border-white/10", w.dark ? "bg-black" : "bg-white p-1.5")}>
-              {w.logo === "tryhackme" ? <SiTryhackme className="size-8 text-[#c11111]" aria-hidden /> : <Image src={w.logo} alt={`${w.title} logo`} width={56} height={56} className="h-full w-full object-contain" />}
-            </span>
-            <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">{w.title}</p>
-            <p className="mt-2 text-xl font-semibold tracking-tight text-fg">{w.result}</p>
-            <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{w.note}</p>
-            <p className="mt-5 border-t border-white/[0.06] pt-4 font-mono text-[11px] text-signal-300">{w.when}</p>
-        </Reveal>
-      ))}
-    </ul>
-  );
-}
 
 /** Career timeline with a glowing rail. */
 export function Timeline() {
@@ -34,7 +14,10 @@ export function Timeline() {
       {experience.map((e, i) => (
         <Reveal as="li" key={e.title} delay={i * 0.05} className="relative pb-12 pl-8 last:pb-0 sm:pl-12">
             <span aria-hidden className={cn("absolute -left-[7px] top-1.5 size-3.5 rounded-full border-2 border-void", i === 0 ? "bg-signal shadow-[0_0_0_4px_rgb(139_224_78/0.2)]" : "bg-ink-800 ring-1 ring-white/20")} />
-            <p className="font-mono text-xs uppercase tracking-[0.16em] text-signal">{e.when}</p>
+            <div className="flex items-center justify-between gap-4">
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-signal">{e.when}</p>
+              {e.logo && <Image src={e.logo} alt="" width={120} height={32} className="h-6 w-auto max-w-[120px] object-contain opacity-80" />}
+            </div>
             <h3 className="mt-2 text-xl font-semibold tracking-tight text-fg">{e.title}</h3>
             <p className="mt-1 text-sm text-fg/70">{e.org} · {e.where}</p>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-[15px]">{e.body}</p>
@@ -45,16 +28,32 @@ export function Timeline() {
   );
 }
 
-/** Skills by discipline. */
-export function SkillsMatrix() {
+/** A tool tile: the real logo (local Devicon SVG or Simple Icons) and its name. */
+function ToolIcon({ t }: { t: Tool }) {
+  if (t.svg) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={`/tech/${t.svg}.svg`} alt="" width={28} height={28} loading="lazy" decoding="async" className={cn("size-7 object-contain", t.invert && "invert")} />;
+  }
+  const I = t.si ? (Si as Record<string, React.ComponentType<{ className?: string }>>)[t.si] : undefined;
+  return I ? <I className="size-7 text-fg" /> : <span className="font-mono text-xs text-signal">{t.name.slice(0, 2)}</span>;
+}
+
+/** Skills grouped by discipline, every tool shown with its real logo. */
+export function Toolbox() {
   return (
-    <div className="grid gap-4 md:grid-cols-2">
-      {skills.map((s, i) => (
-        <Reveal key={s.group} delay={i * 0.05} className="h-full">
-          <div className="h-full rounded-2xl border border-white/[0.08] bg-ink-900/60 p-6">
-            <p className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.16em] text-signal"><span>{s.group}</span><span className="text-subtle">0{i + 1}</span></p>
-            <ul className="mt-5 flex flex-wrap gap-2">{s.items.map((x) => <li key={x} className="rounded-lg border border-white/[0.08] bg-white/[0.02] px-3 py-1.5 text-sm text-fg/85">{x}</li>)}</ul>
-          </div>
+    <div className="grid gap-4 lg:grid-cols-2">
+      {toolbox.map((g, i) => (
+        <Reveal key={g.group} delay={(i % 2) * 0.06} className="spot h-full rounded-2xl border border-white/[0.08] bg-ink-900/60 p-6 sm:p-7">
+          <p className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.16em] text-signal"><span>{g.group}</span><span className="text-subtle">0{i + 1}</span></p>
+          <p className="mt-2 text-sm text-muted">{g.blurb}</p>
+          <ul className="mt-6 grid grid-cols-3 gap-2.5 sm:grid-cols-4">
+            {g.tools.map((t) => (
+              <li key={t.name} className="group flex flex-col items-center gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.02] px-2 py-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-signal/30 hover:bg-white/[0.04]">
+                <span className="transition-transform duration-300 group-hover:scale-110"><ToolIcon t={t} /></span>
+                <span className="text-[11.5px] leading-tight text-fg/80">{t.name}</span>
+              </li>
+            ))}
+          </ul>
         </Reveal>
       ))}
     </div>
