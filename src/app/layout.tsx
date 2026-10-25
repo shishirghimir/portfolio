@@ -47,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <head>
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable profile" />
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="Full LLM-readable profile" />
         <link rel="me" href="https://github.com/shishirghimir" />
         <link rel="me" href="https://www.linkedin.com/in/shishir-ghimire-2b7934292/" />
       </head>
