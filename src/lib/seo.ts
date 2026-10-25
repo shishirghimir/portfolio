@@ -54,9 +54,8 @@ export function personSchema() {
     url: SITE_URL,
     image: [absolute("/photos/dusk.webp"), absolute("/photos/cyber.webp")],
     email: `mailto:${person.email}`,
-    jobTitle: "Cybersecurity Engineer",
+    jobTitle: "Founder & CEO, Netanix Lab",
     hasOccupation: [
-      { "@type": "Occupation", name: "Cybersecurity Engineer", occupationLocation: { "@type": "City", name: "Kathmandu" }, skills: "Penetration testing, CTF design, digital forensics, secure software" },
       { "@type": "Occupation", name: "Founder & CEO", description: "Founder and CEO of Netanix Lab" },
     ],
     description: person.short,

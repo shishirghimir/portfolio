@@ -8,10 +8,10 @@ export const person = {
   name: "Shishir Ghimire",
   alias: "NetaNix",
   handle: "N3TANIX",
-  role: "Cybersecurity Engineer · Founder of Netanix Lab",
-  headline: "Cybersecurity engineer, CTF creator and founder of Netanix Lab",
+  role: "Cybersecurity student · Founder of Netanix Lab",
+  headline: "Cybersecurity student, CTF player and founder of Netanix Lab",
   short:
-    "I'm a cybersecurity engineer from Kathmandu. I break systems for a living, design CTF challenges, compete internationally and build secure software, including the products of Netanix Lab, the company I founded.",
+    "I'm a cybersecurity student from Kathmandu who found his way into tech later than most, got hooked on breaking things and has been grinding ever since: CTFs, boxes, writeups, international finals and Netanix Lab, the company I founded.",
   location: "Kathmandu, Nepal",
   geo: { lat: 27.7172, lng: 85.324 },
   email: "ssishir39@gmail.com",
@@ -47,7 +47,7 @@ export const stats = [
   { value: 13, suffix: "", label: "Security certifications" },
 ];
 
-export const roles = ["Cybersecurity engineer", "CTF creator & competitor", "Black Hat MEA 2026 finalist", "Founder & CEO, Netanix Lab", "Full-stack builder"];
+export const roles = ["Cybersecurity student", "CTF player & creator", "Black Hat MEA 2026 finalist", "Founder, Netanix Lab", "Still learning, every day"];
 
 export type AchievementLogo = { src: string; wide?: boolean } | { icon: "tryhackme" };
 

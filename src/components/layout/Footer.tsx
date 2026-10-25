@@ -48,7 +48,7 @@ export function Footer() {
       </div>
       <div className="border-t border-white/[0.06]">
         <div className="container-x flex flex-col gap-2 py-6 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} {person.name} · Cybersecurity engineer · Kathmandu</p>
+          <p>© {new Date().getFullYear()} {person.name} · Still learning · Kathmandu</p>
           <p>{person.motto}</p>
         </div>
       </div>

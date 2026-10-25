@@ -34,7 +34,7 @@ export function Hero() {
           </p>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg" data-rise style={{ animationDelay: "0.26s" }}>
-            I&apos;m a cybersecurity engineer from Kathmandu. I find the holes attackers would use, write Capture The Flag challenges for Nepal&apos;s security community and compete on the world stage, most recently as a <span className="text-fg">Black Hat MEA 2026 finalist</span>. I also founded <a href="https://netanixlab.com" target="_blank" rel="noopener" className="text-fg underline decoration-signal/50 underline-offset-4 hover:decoration-signal">Netanix Lab</a>, where I build secure software for businesses across Nepal.
+            I&apos;m a cybersecurity student from Kathmandu. I wasn&apos;t into tech until one CTF room pulled me in, and I&apos;ve been grinding ever since: breaking boxes, writing challenges for Nepal&apos;s CTF community and competing on the world stage, most recently as a <span className="text-fg">Black Hat MEA 2026 finalist</span>. Along the way I founded <a href="https://netanixlab.com" target="_blank" rel="noopener" className="text-fg underline decoration-signal/50 underline-offset-4 hover:decoration-signal">Netanix Lab</a>.
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row" data-rise style={{ animationDelay: "0.34s" }}>

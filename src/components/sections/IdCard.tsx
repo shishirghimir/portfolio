@@ -35,7 +35,7 @@ export function IdCard() {
                 src="/photos/dusk.webp"
                 srcSet="/photos/dusk-sm.webp 640w, /photos/dusk.webp 960w"
                 sizes="(min-width: 1024px) 420px, 80vw"
-                alt={`${person.name}, cybersecurity engineer, in Kathmandu`}
+                alt={`${person.name}, cybersecurity student and CTF player, in Kathmandu`}
                 width={960}
                 height={1280}
                 fetchPriority="high"
@@ -59,7 +59,7 @@ export function IdCard() {
             </div>
             <div className="absolute inset-x-0 bottom-0 p-5">
               <p className="text-xl font-semibold text-fg">{person.name}</p>
-              <p className="mt-0.5 text-sm text-signal-300">Cybersecurity Engineer · CTF Creator</p>
+              <p className="mt-0.5 text-sm text-signal-300">Cybersecurity student · CTF player</p>
               <dl className="mt-4 grid grid-cols-3 gap-2 border-t border-white/10 pt-3 font-mono text-[10px] uppercase tracking-[0.12em]">
                 <div><dt className="text-subtle">Alias</dt><dd className="mt-0.5 text-fg">{person.alias}</dd></div>
                 <div><dt className="text-subtle">THM</dt><dd className="mt-0.5 text-fg">Top 1%</dd></div>

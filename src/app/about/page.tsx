@@ -10,8 +10,8 @@ import { faqs } from "@/content/faq";
 import { breadcrumbSchema, graph, pageMeta, profilePageSchema } from "@/lib/seo";
 
 export const metadata = pageMeta({
-  title: "About Shishir Ghimire, cybersecurity engineer from Nepal",
-  description: "Who Shishir Ghimire (NetaNix) is: cybersecurity engineer and CTF creator, Black Hat MEA 2026 finalist, NetanixCTF and Netanix Lab founder, Softwarica student.",
+  title: "About Shishir Ghimire, cybersecurity student from Nepal",
+  description: "Who Shishir Ghimire (NetaNix) is: a cybersecurity student and CTF player from Kathmandu, Black Hat MEA 2026 finalist and founder of NetanixCTF and Netanix Lab.",
   path: "/about/",
   image: "/og/about.png",
   type: "profile",
@@ -27,7 +27,7 @@ const PHOTOS = [
 const FACTS = [
   ["Name", person.name],
   ["Known as", "NetaNix · N3TANIX"],
-  ["Do", "Offensive security, CTFs, secure software"],
+  ["Now", "Student, CTF player, founder"],
   ["Founded", "NetanixCTF, Netanix Lab"],
   ["Degree", person.study.degree],
   ["College", `${person.study.school}, ${person.study.uni}`],
@@ -39,12 +39,12 @@ export default function AboutPage() {
   return (
     <>
       <JsonLd data={graph(profilePageSchema("/about/", "About Shishir Ghimire"), breadcrumbSchema([{ name: "About", path: "/about/" }]), faqSchema(faqs))} />
-      <PageHead kicker="About me" title={<>Curious first. <span className="text-signal">Careful always.</span></>} lead="A cybersecurity engineer who learned to build by breaking, and still checks the locks on everything he ships." crumbs={[{ name: "About", path: "/about/" }]} />
+      <PageHead kicker="About me" title={<>Late start. <span className="text-signal">No days off.</span></>} lead="A student who found his way into tech later than most, got hooked on breaking things, and has not stopped grinding since." crumbs={[{ name: "About", path: "/about/" }]} />
 
       <section className="container-x grid gap-14 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="prose-x max-w-2xl text-[17px]">
-          <p>I&apos;m <strong>Shishir Ghimire</strong>. Most of the security world knows me as <strong>NetaNix</strong>. I grew up in Kathmandu pulling software apart to see how it worked, and security turned that habit into a craft: CTF rooms, vulnerable boxes, late nights and a lot of writeups.</p>
-          <p>That practice adds up. I rank in the global <strong>top 1% on TryHackMe</strong> with 236 rooms behind me, I placed <strong>5th in Nepal at HackAstra 2026</strong>, and our team qualified for the <strong>Black Hat MEA CTF 2026 finals</strong> in Riyadh, the only team made up entirely of players from Nepal to get there.</p>
+          <p>I&apos;m <strong>Shishir Ghimire</strong>. Online, most people know me as <strong>NetaNix</strong>. I didn&apos;t grow up obsessed with computers, and tech was never the plan. Then I opened my first Capture The Flag room. I couldn&apos;t solve it, I couldn&apos;t stop thinking about it, and that was the start of everything.</p>
+          <p>Since then it has been one room, one box and one writeup at a time, mostly late at night. That grind adds up. I rank in the global <strong>top 1% on TryHackMe</strong> with 236 rooms behind me, I placed <strong>5th in Nepal at HackAstra 2026</strong>, and our team qualified for the <strong>Black Hat MEA CTF 2026 finals</strong> in Riyadh, the only team made up entirely of players from Nepal to get there.</p>
           <p>I also wanted students here to have somewhere to practise, so in 2024 I built <strong>NetanixCTF</strong>. Today it has 500+ registered players, original challenges I write with the team, and live events like the 24 hour CTF we ran at Softwarica College.</p>
           <p>Breaking things made me better at building them. I founded <strong>Netanix Lab</strong>, where I design and lead the software real businesses depend on, from billing systems in phone shops to the platform that runs an interior design company&apos;s crew. Every one of them gets attacked by us before it goes live.</p>
           <p>Right now I&apos;m studying for a <strong>BSc (Hons) in Ethical Hacking and Cybersecurity</strong> at Softwarica College, awarded by Coventry University, preparing for the Black Hat finals, and working towards CRTP and OSCP.</p>

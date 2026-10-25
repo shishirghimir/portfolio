@@ -2,7 +2,7 @@
 export const faqs = [
   {
     q: "Who is Shishir Ghimire?",
-    a: "Shishir Ghimire, known online as NetaNix, is a cybersecurity engineer and CTF creator from Kathmandu, Nepal. He is a Black Hat MEA CTF 2026 finalist, ranks in the global top 1% on TryHackMe, founded the NetanixCTF platform and is the founder and CEO of Netanix Lab.",
+    a: "Shishir Ghimire, known online as NetaNix, is a cybersecurity student and CTF player from Kathmandu, Nepal. He is a Black Hat MEA CTF 2026 finalist, ranks in the global top 1% on TryHackMe, founded the NetanixCTF platform and is the founder and CEO of Netanix Lab.",
   },
   {
     q: "What does NetaNix mean?",

@@ -12,7 +12,7 @@ import { graph, orgSchema, personSchema, websiteSchema } from "@/lib/seo";
 const sans = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
 
-const TITLE = "Shishir Ghimire | Cybersecurity Engineer & CTF Creator, Nepal";
+const TITLE = "Shishir Ghimire | Cybersecurity Student & CTF Player, Nepal";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

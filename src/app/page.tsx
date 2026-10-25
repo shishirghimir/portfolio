@@ -19,11 +19,11 @@ import { writeups } from "@/content/writeups";
 import { graph, itemListSchema, pageMeta, profilePageSchema } from "@/lib/seo";
 
 export const metadata = pageMeta({
-  title: "Shishir Ghimire | Cybersecurity Engineer & CTF Creator, Nepal",
-  description: "Shishir Ghimire (NetaNix): cybersecurity engineer and CTF creator from Kathmandu, Black Hat MEA 2026 finalist, TryHackMe top 1% and founder of Netanix Lab.",
+  title: "Shishir Ghimire | Cybersecurity Student & CTF Player, Nepal",
+  description: "Shishir Ghimire (NetaNix): cybersecurity student and CTF player from Kathmandu, Black Hat MEA 2026 finalist, TryHackMe top 1% and founder of Netanix Lab.",
   path: "/",
   type: "profile",
-  keywords: ["Shishir Ghimire", "NetaNix", "N3TANIX", "cybersecurity engineer Nepal", "ethical hacker Nepal", "CTF player Nepal", "Black Hat MEA 2026 Nepal", "Netanix Lab founder"],
+  keywords: ["Shishir Ghimire", "NetaNix", "N3TANIX", "cybersecurity student Nepal", "ethical hacking student Nepal", "CTF player Nepal", "Black Hat MEA 2026 Nepal", "Netanix Lab founder"],
 });
 
 const LOGOS: { name: string; src: string; w: number; h: number }[] = [
@@ -75,10 +75,10 @@ export default function Home() {
       {/* ---- 01 about ---- */}
       <section className="container-x mt-28 grid items-center gap-14 lg:grid-cols-[1fr_0.9fr]" aria-labelledby="about-title">
         <div>
-          <SectionHead id="about-title" index="01" kicker="About me" title={<>I break things to learn how to build them <span className="text-signal">properly.</span></>} />
+          <SectionHead id="about-title" index="01" kicker="About me" title={<>A late start, and <span className="text-signal">no days off.</span></>} />
           <div className="prose-x mt-6 max-w-2xl">
-            <p>I&apos;m <strong>Shishir Ghimire</strong>, better known online as <strong>NetaNix</strong>. I got into security the way most of us do: one CTF room at a time, late at night, until I could not stop. Today I rank in the global <strong>top 1% on TryHackMe</strong>, I design challenges for Nepal&apos;s CTF scene, and our team is heading to the <strong>Black Hat MEA 2026</strong> finals in Riyadh.</p>
-            <p>Breaking systems taught me how to build them. In 2024 I created <strong>NetanixCTF</strong> for Nepal&apos;s security community, and I founded <strong>Netanix Lab</strong>, where I design and lead the software real businesses rely on, with security reviewed at every step. I&apos;m also studying Ethical Hacking and Cybersecurity at Softwarica College, awarded by Coventry University.</p>
+            <p>I&apos;m <strong>Shishir Ghimire</strong>, better known online as <strong>NetaNix</strong>. Honestly, I was never the kid who dreamed about computers. I found my way into tech almost by accident, opened my first CTF room out of curiosity, and something clicked. I&apos;ve been grinding ever since.</p>
+            <p>The late nights add up. Today I rank in the global <strong>top 1% on TryHackMe</strong>, I write challenges for Nepal&apos;s CTF scene, and our team is heading to the <strong>Black Hat MEA 2026</strong> finals in Riyadh. I&apos;m still a student, studying Ethical Hacking and Cybersecurity at Softwarica College (Coventry University), and still learning something new every week. Along the way I built <strong>NetanixCTF</strong> so other students have a place to practise, and founded <strong>Netanix Lab</strong> to put what I learn into real software.</p>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href="/about/" variant="ghost">My full story</Button>
@@ -90,7 +90,7 @@ export default function Home() {
             <div className="relative aspect-[4/5] overflow-hidden rounded-[1.2rem] scanlines">
               <picture>
                 <source type="image/avif" srcSet="/photos/cyber-sm.avif 640w, /photos/cyber.avif 675w" sizes="(min-width: 1024px) 40vw, 90vw" />
-                <img src="/photos/cyber.webp" alt="Shishir Ghimire, cybersecurity engineer" width={675} height={900} loading="lazy" className="h-full w-full object-cover" />
+                <img src="/photos/cyber.webp" alt="Shishir Ghimire, cybersecurity student" width={675} height={900} loading="lazy" className="h-full w-full object-cover" />
               </picture>
               <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-transparent to-transparent" />
               <dl className="absolute inset-x-0 bottom-0 grid grid-cols-2 gap-x-4 gap-y-3 p-5 font-mono text-[11px] uppercase tracking-[0.12em] sm:grid-cols-3 [&>div:nth-child(n+5)]:hidden sm:[&>div:nth-child(n+5)]:block">
