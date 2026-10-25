@@ -1,13 +1,15 @@
-# Static portfolio served by nginx — no build step needed.
-FROM nginx:stable-alpine
+# Build the static site with Node, then serve it with nginx.
+FROM node:22-alpine AS build
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --no-audit --no-fund
+COPY . .
+RUN npm run build
 
-# Replace the default nginx site with ours
+FROM nginx:stable-alpine
 RUN rm -rf /usr/share/nginx/html/* /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Site files (see .dockerignore for what is left out)
-COPY . /usr/share/nginx/html
-RUN rm -f /usr/share/nginx/html/nginx.conf
+COPY --from=build /app/out /usr/share/nginx/html
 
 EXPOSE 80
 

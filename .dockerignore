@@ -1,12 +1,13 @@
-# Keep the image to just the website files
+# Only what the build needs goes into the image
 .git
-.gitignore
-.dockerignore
+.github
+node_modules
+.next
+out
+assets
+README.md
 Dockerfile
 docker-compose.yml
-vercel.json
-README.md
-node_modules
 *.log
 .env
 .env.local
