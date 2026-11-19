@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 import { person } from "@/content/profile";
 
-/** Closing call to action used at the bottom of most pages. */
 export function ContactBand() {
   return (
     <section className="container-x mt-32" aria-labelledby="cta-title">

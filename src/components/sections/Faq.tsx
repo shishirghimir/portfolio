@@ -1,6 +1,5 @@
 import { Plus } from "lucide-react";
 
-/** Accessible accordion built on <details>, so the answers are always in the HTML. */
 export function Faq({ items }: { items: { q: string; a: string }[] }) {
   return (
     <div className="divide-y divide-white/[0.07] overflow-hidden rounded-2xl border border-white/[0.08] bg-ink-900/60">

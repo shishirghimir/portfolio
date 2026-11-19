@@ -2,7 +2,6 @@ import Image from "next/image";
 import { team } from "@/content/team";
 import type { Project } from "@/content/projects";
 
-/** Stacked teammate faces with names in the tooltip/alt text. */
 export function CreditFaces({ p, max = 4 }: { p: Project; max?: number }) {
   if (!p.credits.length) return null;
   const mates = p.credits.slice(0, max).map((c) => team[c.mate]);

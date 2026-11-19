@@ -43,7 +43,6 @@ export default function Home() {
       <JsonLd data={graph(profilePageSchema("/", "Shishir Ghimire"), itemListSchema("Achievements", achievements.map((a) => ({ name: `${a.title}: ${a.result}`, path: "/achievements/" }))), itemListSchema("Selected projects", featured.map((p) => ({ name: p.name, path: `/work/${p.slug}/` }))))} />
       <Hero />
 
-      {/* ---- logo wall ---- */}
       <section aria-label="Competed, studied and built with" className="border-y border-white/[0.06] bg-ink-950/50 backdrop-blur-sm">
         <div className="container-x flex flex-col items-center gap-7 py-9 lg:flex-row lg:justify-between">
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-subtle">Competed, studied and built with</p>
@@ -60,7 +59,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---- numbers ---- */}
       <section className="container-x mt-20" aria-label="At a glance">
         <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.06] lg:grid-cols-4">
           {stats.map((s) => (
@@ -72,7 +70,6 @@ export default function Home() {
         </dl>
       </section>
 
-      {/* ---- 01 about ---- */}
       <section className="container-x mt-28 grid items-center gap-14 lg:grid-cols-[1fr_0.9fr]" aria-labelledby="about-title">
         <div>
           <SectionHead id="about-title" index="01" kicker="About me" title={<>A late start, and <span className="text-signal">no days off.</span></>} />
@@ -103,7 +100,6 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* ---- 02 achievements ---- */}
       <section className="container-x mt-28" aria-labelledby="ach-title">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHead id="ach-title" index="02" kicker="Achievements" title="On the scoreboard, and building the scoreboard." lead="International finals, national podiums, a top 1% ranking and a CTF platform of my own." />
@@ -113,7 +109,6 @@ export default function Home() {
         <div className="mt-4"><AchievementGrid limit={3} /></div>
       </section>
 
-      {/* ---- 03 projects ---- */}
       <section className="container-x mt-28" aria-labelledby="work-title">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHead id="work-title" index="03" kicker="Projects" title="Things I've built, led and secured." lead="Platforms I run, systems businesses use every day and the security tools I make for my own work. Every project credits the people who built it with me." />
@@ -126,7 +121,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---- 04 skills ---- */}
       <section className="mt-28" aria-labelledby="skills-title">
         <div className="container-x">
           <SectionHead id="skills-title" index="04" kicker="Skills" title="Offence, defence and the engineering to ship it." />
@@ -135,7 +129,6 @@ export default function Home() {
         <div className="mt-10"><TechMarquee /></div>
       </section>
 
-      {/* ---- 05 experience ---- */}
       <section className="container-x mt-28 grid gap-14 lg:grid-cols-[0.8fr_1.2fr]" aria-labelledby="road-title">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHead id="road-title" index="05" kicker="Experience" title="The road so far." lead="From +2 computer science to international finals and a company of my own." />
@@ -143,7 +136,6 @@ export default function Home() {
         <Timeline />
       </section>
 
-      {/* ---- 06 what I founded ---- */}
       <section className="container-x mt-28" aria-labelledby="ventures-title">
         <SectionHead id="ventures-title" index="06" kicker="What I founded" title="Two things I started, and still lead." />
         <div className="mt-12 grid gap-5 lg:grid-cols-[1.2fr_1fr]">
@@ -175,13 +167,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---- 07 crew ---- */}
       <section className="container-x mt-28" aria-labelledby="crew-title">
         <SectionHead id="crew-title" index="07" kicker="People I build with" title="Nothing here was built alone." lead="The team behind the products and client work on this site. Each project page credits who owned which part." />
         <div className="mt-12"><CrewStrip /></div>
       </section>
 
-      {/* ---- 08 writing + credentials ---- */}
       <section className="container-x mt-28 grid gap-5 lg:grid-cols-2" aria-label="Writing and credentials">
         <Reveal className="spot rounded-[1.6rem] border border-white/[0.08] bg-ink-900/60 p-7 sm:p-9">
           <p className="font-mono text-xs uppercase tracking-[0.16em] text-signal">08 · Writeups</p>

@@ -15,7 +15,6 @@ const BANNER: Line[] = [
   { kind: "out", text: "Type 'help' to see what you can run. Esc closes." },
 ];
 
-/** A small interactive shell for exploring the portfolio from the keyboard. */
 export function Terminal() {
   const router = useRouter();
   const { closeAll } = useUI();

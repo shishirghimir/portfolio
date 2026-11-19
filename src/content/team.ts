@@ -1,5 +1,3 @@
-// The Netanix Lab crew. Projects credit them by key; profiles live on netanixlab.com.
-
 export interface Mate {
   key: string;
   name: string;

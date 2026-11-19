@@ -1,16 +1,18 @@
-# Only what the build needs goes into the image
 .git
 .github
 node_modules
 .next
 out
 assets
+docs
 README.md
 Dockerfile
 docker-compose.yml
 *.log
 .env
-.env.local
+.env.*
+*.pem
+*.key
 .vscode
 .idea
 .DS_Store

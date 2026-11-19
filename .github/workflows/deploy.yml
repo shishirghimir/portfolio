@@ -9,7 +9,6 @@ on:
 permissions:
   contents: read
 
-# Never run two deploys at the same time
 concurrency:
   group: deploy-portfolio
   cancel-in-progress: false
@@ -40,6 +39,11 @@ jobs:
           }
           $res = Invoke-WebRequest -Uri "http://localhost:8080/" -UseBasicParsing
           Write-Host "Site is up: HTTP $($res.StatusCode) on http://localhost:8080"
+
+      - name: Verify resource limits and hardening
+        run: |
+          docker inspect --format "user={{.Config.User}} readonly={{.HostConfig.ReadonlyRootfs}} memory={{.HostConfig.Memory}} swap={{.HostConfig.MemorySwap}} reservation={{.HostConfig.MemoryReservation}} nanocpus={{.HostConfig.NanoCpus}} pids={{.HostConfig.PidsLimit}} capdrop={{.HostConfig.CapDrop}} secopt={{.HostConfig.SecurityOpt}}" portfolio
+          docker stats --no-stream portfolio
 
       - name: Clean unused images
         run: docker image prune -f

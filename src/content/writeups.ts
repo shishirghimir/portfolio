@@ -1,6 +1,3 @@
-// Security writeups. Medium is the home for the full posts; this list keeps the
-// site's own pages indexable even when Medium is slow or unreachable.
-
 export interface Writeup {
   title: string;
   platform: "HackTheBox" | "TryHackMe" | "Research";

@@ -3,7 +3,6 @@ import { SITE_URL } from "@/content/profile";
 
 export const dynamic = "force-static";
 
-// Everyone may crawl, including AI search engines, so the profile shows up in their answers.
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [

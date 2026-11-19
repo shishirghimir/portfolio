@@ -1,7 +1,6 @@
 import { cn } from "@/lib/cn";
 import { Scramble } from "@/components/motion/Scramble";
 
-/** Numbered section label, a console-style kicker and a heading. */
 export function SectionHead({ index, kicker, title, lead, className, id }: { index: string; kicker: string; title: React.ReactNode; lead?: React.ReactNode; className?: string; id?: string }) {
   return (
     <div className={cn("max-w-3xl", className)}>

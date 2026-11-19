@@ -7,7 +7,6 @@ import { person } from "@/content/profile";
 const TOPICS = ["Software project with Netanix Lab", "Security assessment", "CTF or event collaboration", "Job or role", "Speaking or media", "Something else"];
 const field = "w-full rounded-xl border border-white/10 bg-ink-950 px-4 py-3.5 text-sm text-fg placeholder:text-subtle outline-none transition-all focus:border-signal/60 focus:ring-4 focus:ring-signal/10";
 
-/** Opens the visitor's mail app with everything pre-filled. No data is stored or sent anywhere else. */
 export function ContactForm() {
   const [sent, setSent] = useState(false);
   return (

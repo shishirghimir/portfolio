@@ -1,4 +1,3 @@
-// Questions people search for. Shown on the About page and marked up as FAQPage.
 export const faqs = [
   {
     q: "Who is Shishir Ghimire?",

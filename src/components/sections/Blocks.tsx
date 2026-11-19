@@ -7,7 +7,6 @@ import { experience, toolbox, type Tool } from "@/content/profile";
 import { crew } from "@/content/team";
 import { cn } from "@/lib/cn";
 
-/** Career timeline with a glowing rail. */
 export function Timeline() {
   return (
     <ol className="relative ml-2 border-l border-white/[0.08] sm:ml-4">
@@ -28,7 +27,6 @@ export function Timeline() {
   );
 }
 
-/** A tool tile: the real logo (local Devicon SVG or Simple Icons) and its name. */
 function ToolIcon({ t }: { t: Tool }) {
   if (t.svg) {
     // eslint-disable-next-line @next/next/no-img-element
@@ -38,7 +36,6 @@ function ToolIcon({ t }: { t: Tool }) {
   return I ? <I className="size-7 text-fg" /> : <span className="font-mono text-xs text-signal">{t.name.slice(0, 2)}</span>;
 }
 
-/** Skills grouped by discipline, every tool shown with its real logo. */
 export function Toolbox() {
   return (
     <div className="grid gap-4 lg:grid-cols-2">
@@ -63,7 +60,6 @@ export function Toolbox() {
 const TECH = ["python", "typescript", "javascript", "react", "nextjs", "nodejs", "postgresql", "prisma", "sqlite", "docker", "linux", "kalilinux", "bash", "git", "github", "burpsuite", "wireshark", "fastapi", "tailwindcss", "nginx", "railway", "vercel", "cloudflare", "figma"];
 const INVERT = new Set(["nextjs", "prisma", "bash", "github", "vercel", "railway"]);
 
-/** Official tool logos sliding past, pauses on hover. */
 export function TechMarquee() {
   const row = [...TECH, ...TECH];
   return (
@@ -81,7 +77,6 @@ export function TechMarquee() {
   );
 }
 
-/** The Netanix Lab crew, credited by name with links to their profiles. */
 export function CrewStrip() {
   return (
     <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
@@ -102,7 +97,6 @@ export function CrewStrip() {
   );
 }
 
-/** Simple page heading for inner pages, with breadcrumbs. */
 export function PageHead({ kicker, title, lead, crumbs }: { kicker: string; title: React.ReactNode; lead?: React.ReactNode; crumbs: { name: string; path: string }[] }) {
   return (
     <section className="relative isolate overflow-hidden pb-14 pt-32 sm:pt-36">

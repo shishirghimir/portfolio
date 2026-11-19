@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-/** Types each role, pauses, deletes it and moves to the next. First role is in the HTML. */
 export function RoleTyper({ roles }: { roles: string[] }) {
   const [i, setI] = useState(0);
   const [n, setN] = useState(roles[0].length);

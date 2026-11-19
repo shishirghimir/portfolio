@@ -1,5 +1,3 @@
-// Everything about Shishir in one place. Pages, structured data, llms.txt and
-// the OG images all read from here, so facts never drift between them.
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://shishirghimire.info.np").replace(/\/$/, "");
 export const absolute = (path = "/") => `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
@@ -140,7 +138,6 @@ export const achievements: Achievement[] = [
   },
 ];
 
-/** Short list used by structured data, the terminal and llms.txt. */
 export const wins = achievements.filter((a) => a.kind !== "Credentials");
 
 export const experience = [
@@ -196,7 +193,6 @@ export const skills = [
   { group: "Leadership", items: ["Product strategy", "System architecture", "Team leadership", "Client delivery", "CTF & event operations"] },
 ];
 
-/** Tools with their real logos: `svg` files live in /public/tech, `si` names are Simple Icons. */
 export type Tool = { name: string; svg?: string; si?: string; invert?: boolean };
 export const toolbox: { group: string; blurb: string; tools: Tool[] }[] = [
   {

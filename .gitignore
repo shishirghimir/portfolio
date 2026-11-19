@@ -1,14 +1,11 @@
-# OS
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# Editors
 .vscode/
 .idea/
 *.swp
 
-# Node / Next
 node_modules/
 .next/
 out/
@@ -16,7 +13,6 @@ next-env.d.ts
 *.tsbuildinfo
 npm-debug.log*
 
-# Misc
 *.log
 .env
 .env.local

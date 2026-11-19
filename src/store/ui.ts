@@ -1,6 +1,5 @@
 import { create } from "zustand";
 
-/** Site-wide UI state: the command palette, the terminal and the mobile menu. */
 type UI = {
   palette: boolean;
   terminal: boolean;

@@ -25,7 +25,6 @@ export const metadata: Metadata = {
   publisher: person.name,
   category: "technology",
   alternates: { canonical: "/" },
-  // ?v= busts the favicon cache browsers kept from the previous version of the site
   icons: {
     icon: [
       { url: `/favicon.ico?v=${ICON_V}`, sizes: "any" },

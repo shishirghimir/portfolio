@@ -5,13 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 import type { Mesh } from "three";
 
-/**
- * The Netanix mark as a real 3D object (three.js): the traced logo is extruded
- * with a bevel and lit by a studio environment. Green parts are glossy brand
- * green, dark parts brushed silver. It floats, leans toward the cursor and
- * flips a full 360 top over bottom on hover or click. three.js loads after
- * the page, and a flat logo shows until it is ready.
- */
 export function Logo3D({ className }: { className?: string }) {
   const wrap = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
@@ -44,12 +37,10 @@ export function Logo3D({ className }: { className?: string }) {
       const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
       camera.position.set(0, 0, 9.5);
 
-      // lights: key, cool fill and a green rim from behind
       const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(3, 4, 6); scene.add(key);
       const fill = new THREE.DirectionalLight(0xbfd4ff, 0.6); fill.position.set(-5, -1, 3); scene.add(fill);
       const rim = new THREE.PointLight(0x7cc242, 40, 20); rim.position.set(-2.5, 2, -3); scene.add(rim);
 
-      // geometry from the traced paths
       const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${data.width} ${data.height}"><path id="g" d="${data.green}"/><path id="d" d="${data.dark}"/></svg>`;
       const parsed = new SVGLoader().parse(svg);
       const greenMat = new THREE.MeshPhysicalMaterial({ color: 0x7cc242, metalness: 0.25, roughness: 0.28, clearcoat: 1, clearcoatRoughness: 0.12 });
@@ -64,7 +55,6 @@ export function Logo3D({ className }: { className?: string }) {
           logo.add(new THREE.Mesh(geo, mat));
         }
       });
-      // centre, flip SVG's y-down space and scale to ~3.4 world units wide
       const box = new THREE.Box3().setFromObject(logo);
       const size = box.getSize(new THREE.Vector3());
       const center = box.getCenter(new THREE.Vector3());
@@ -83,9 +73,8 @@ export function Logo3D({ className }: { className?: string }) {
       };
       resize();
 
-      // interaction
       const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
-      let flip = 0; // radians still to turn around X
+      let flip = 0;
       const onMove = (e: PointerEvent) => {
         mouse.tx = (e.clientX / window.innerWidth - 0.5) * 2;
         mouse.ty = (e.clientY / window.innerHeight - 0.5) * 2;
@@ -132,8 +121,6 @@ export function Logo3D({ className }: { className?: string }) {
       };
     };
 
-    // three.js is heavy, so it only loads once the page has finished loading,
-    // the browser is idle and the logo is on screen. The flat logo shows until then.
     let started = false;
     const idle = (fn: () => void) => (typeof window.requestIdleCallback === "function" ? window.requestIdleCallback(fn, { timeout: 2500 }) : setTimeout(fn, 800));
     const kick = () => {
@@ -151,7 +138,6 @@ export function Logo3D({ className }: { className?: string }) {
 
   return (
     <div ref={wrap} className={cn("relative cursor-pointer", className)} aria-hidden>
-      {/* flat logo until the 3D scene is ready */}
       <Image src="/brand/mark-light.webp" alt="" fill sizes="(min-width: 1024px) 30vw, 60vw" className={cn("object-contain p-[18%] transition-opacity duration-700", ready ? "opacity-0" : "opacity-100")} />
     </div>
   );

@@ -1,5 +1,3 @@
-// Open Graph cards (1200×630) for every page and project, so shared links on
-// LinkedIn, WhatsApp, Facebook and X show a proper preview.
 import sharp from "sharp";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -83,7 +81,6 @@ const pages = [
 ];
 for (const [slug, kicker, title, sub, visual] of pages) await card({ out: P("og", `${slug}.png`), kicker, title, sub, visual });
 
-// projects: read the fields we need straight from the content file
 const src = await fs.readFile(path.join(root, "src/content/projects.ts"), "utf8");
 const blocks = src.replace(/\r\n/g, "\n").split(/\n  \{\n/).slice(1).map((b) => `\n${b}`);
 let n = 0;

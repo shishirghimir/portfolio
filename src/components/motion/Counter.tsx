@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-/** Counts up to `to` the first time it scrolls into view. The final value is in the HTML. */
 export function Counter({ to, prefix = "", suffix = "" }: { to: number; prefix?: string; suffix?: string }) {
   const [v, setV] = useState(to);
   const ref = useRef<HTMLSpanElement>(null);

@@ -13,7 +13,6 @@ const FILTERS: { key: "all" | Kind; label: string }[] = [
   { key: "research", label: "Research" },
 ];
 
-/** Filterable project grid. Cards are rendered on the server and passed in as children. */
 export function WorkGrid({ projects, cards }: { projects: Pick<Project, "slug" | "kind">[]; cards: Record<string, React.ReactNode> }) {
   const [f, setF] = useState<(typeof FILTERS)[number]["key"]>("all");
   const shown = useMemo(() => (f === "all" ? projects : projects.filter((p) => p.kind === f)), [f, projects]);

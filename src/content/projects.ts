@@ -1,5 +1,3 @@
-// Projects. Shishir's role comes first on every project; teammates are credited
-// for the part they owned. Images are real screenshots or real client logos.
 
 export type Kind = "product" | "client" | "security" | "research";
 
@@ -8,7 +6,6 @@ export interface Project {
   name: string;
   kind: Kind;
   tagline: string;
-  /** Shishir's role on the project. */
   role: string;
   credits: { mate: string; for: string }[];
   year: string;
@@ -24,7 +21,6 @@ export interface Project {
   cover?: { desktop: string; mobile?: string; url?: string };
   logo?: string;
   gallery?: { src: string; caption: string }[];
-  /** For tools without screenshots: a few terminal lines shown as the visual. */
   terminal?: string[];
   links: { label: string; href: string }[];
   featured?: boolean;

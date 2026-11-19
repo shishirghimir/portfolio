@@ -4,10 +4,6 @@ import { useEffect, useRef, useState } from "react";
 
 const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/\[]{}#$%&*+=";
 
-/**
- * Decrypts text into place, like a terminal resolving a value. The real text
- * is rendered on the server, so crawlers and screen readers always get it.
- */
 export function Scramble({ text, className, delay = 0, speed = 28 }: { text: string; className?: string; delay?: number; speed?: number }) {
   const [out, setOut] = useState(text);
   const ref = useRef<HTMLSpanElement>(null);
@@ -20,7 +16,6 @@ export function Scramble({ text, className, delay = 0, speed = 28 }: { text: str
       const total = text.length + lag;
       const tick = () => {
         frame++;
-        // characters lock in left to right; the rest keep cycling
         setOut(text.split("").map((ch, i) => (ch === " " || i < frame - lag ? ch : GLYPHS[(Math.random() * GLYPHS.length) | 0])).join(""));
         if (frame < total) timer = window.setTimeout(tick, speed);
         else setOut(text);

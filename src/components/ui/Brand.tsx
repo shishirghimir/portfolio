@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-/** Shishir's personal SG mark: a shield hexagon with the initials. */
 export function BrandMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" fill="none" aria-hidden className={className}>
@@ -14,7 +13,6 @@ export function BrandMark({ className }: { className?: string }) {
   );
 }
 
-/** The SG mark with Shishir's name, used in the navbar and footer. */
 export function Brand({ compact }: { compact?: boolean }) {
   return (
     <Link href="/" className="group flex items-center gap-3" aria-label="Shishir Ghimire, home">

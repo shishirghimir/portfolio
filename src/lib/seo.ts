@@ -18,7 +18,6 @@ type PageMeta = {
   type?: "website" | "profile" | "article";
 };
 
-/** One place for titles, canonical URLs, Open Graph and Twitter cards. */
 export function pageMeta({ title, description, path, image, keywords = [], type = "website" }: PageMeta): Metadata {
   const img = absolute(image ?? ogFor(path));
   const full = title.includes(BRAND) ? title : `${title} | ${BRAND}`;
@@ -109,7 +108,6 @@ export function profilePageSchema(path: string, title: string) {
   };
 }
 
-/** The share card for a path, the same file pageMeta puts in og:image. */
 export function ogFor(path: string) {
   const parts = path.split("/").filter(Boolean);
   if (!parts.length) return "/og/default.png";

@@ -6,7 +6,6 @@ import { writeups } from "@/content/writeups";
 
 export const dynamic = "force-static";
 
-// A plain-text profile for AI assistants and search engines (llmstxt.org).
 export function GET() {
   const body = `# ${person.name}
 

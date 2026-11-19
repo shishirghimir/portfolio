@@ -1,8 +1,3 @@
-// Next.js 16 static export writes route-segment prefetch payloads as nested
-// folders (out/x/__next.services/$d$slug/__PAGE__.txt) while the client router
-// requests them dot-joined (out/x/__next.services.$d$slug.__PAGE__.txt).
-// Static hosts can't map one to the other, so every prefetch 404s and client
-// navigation falls back to full page loads. Write the flat copies too.
 import fs from "node:fs/promises";
 import path from "node:path";
 

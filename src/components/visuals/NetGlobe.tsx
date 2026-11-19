@@ -2,12 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-/**
- * A rotating globe of points with signal arcs leaving Kathmandu, drawn on a
- * 2D canvas with a hand-rolled 3D projection (no WebGL library to download).
- * Drag to spin it, it pauses off screen, and it draws one still frame for
- * people who prefer reduced motion.
- */
 const HUBS: [string, number, number][] = [
   ["Kathmandu", 27.7172, 85.324],
   ["Riyadh", 24.7136, 46.6753],
@@ -41,7 +35,6 @@ export function NetGlobe({ className }: { className?: string }) {
     const signal = css.getPropertyValue("--color-signal").trim() || "#8be04e";
     const data = css.getPropertyValue("--color-data").trim() || "#38d6ff";
 
-    // evenly spread points (Fibonacci sphere)
     const N = coarse ? 420 : 760;
     const pts: V[] = [];
     const g = Math.PI * (3 - Math.sqrt(5));
@@ -51,7 +44,6 @@ export function NetGlobe({ className }: { className?: string }) {
     }
     const hubs = HUBS.map(([, lat, lng]) => toVec(lat, lng));
     const home = hubs[0];
-    // arcs from Kathmandu to every hub, each with its own pulse phase
     const arcs = hubs.slice(1).map((to, i) => {
       const path: V[] = [];
       const dot = Math.max(-1, Math.min(1, home[0] * to[0] + home[1] * to[1] + home[2] * to[2]));
@@ -88,14 +80,12 @@ export function NetGlobe({ className }: { className?: string }) {
       ctx.clearRect(0, 0, w, h);
       const R = Math.min(w, h) * 0.42;
 
-      // atmosphere
       const glow = ctx.createRadialGradient(w / 2, h / 2, R * 0.7, w / 2, h / 2, R * 1.35);
       glow.addColorStop(0, "rgba(56,214,255,0.08)");
       glow.addColorStop(1, "rgba(56,214,255,0)");
       ctx.fillStyle = glow;
       ctx.fillRect(0, 0, w, h);
 
-      // points, brighter in front
       for (const p of pts) {
         const q = project(p);
         const a = q.z > 0 ? 0.25 + q.z * 0.6 : 0.05 + (1 + q.z) * 0.08;
@@ -104,7 +94,6 @@ export function NetGlobe({ className }: { className?: string }) {
         ctx.fillRect(q.x - s / 2, q.y - s / 2, s, s);
       }
 
-      // arcs and travelling packets
       ctx.lineWidth = 1.2;
       for (const arc of arcs) {
         const proj = arc.path.map(project);
@@ -123,7 +112,6 @@ export function NetGlobe({ className }: { className?: string }) {
         }
       }
 
-      // hubs, Kathmandu pulses
       hubs.forEach((hb, i) => {
         const q = project(hb);
         if (q.z < -0.15) return;
@@ -137,7 +125,6 @@ export function NetGlobe({ className }: { className?: string }) {
         }
       });
 
-      // equator ring for depth
       ctx.strokeStyle = "rgba(56,214,255,0.10)";
       ctx.lineWidth = 1;
       ctx.beginPath();

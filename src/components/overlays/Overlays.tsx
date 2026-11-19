@@ -5,11 +5,9 @@ import { useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useUI } from "@/store/ui";
 
-// Only downloaded when someone opens them.
 const CommandPalette = dynamic(() => import("./CommandPalette").then((m) => m.CommandPalette), { ssr: false });
 const Terminal = dynamic(() => import("./Terminal").then((m) => m.Terminal), { ssr: false });
 
-/** Keyboard shortcuts and the two global dialogs: Ctrl/⌘+K search and the ` terminal. */
 export function Overlays() {
   const { palette, terminal, openPalette, openTerminal, closeAll } = useUI();
 

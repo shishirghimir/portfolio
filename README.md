@@ -51,6 +51,8 @@ npm run assets       # regenerate photos, icons and OG images after changing sou
 
 **Docker**: `docker compose up -d --build` builds the site in a Node stage and serves it with nginx on port 8080 (`nginx.conf` mirrors the Vercel headers and redirects). The GitHub Actions workflow in `.github/workflows/deploy.yml` does this automatically on the self-hosted runner for every push to `main`.
 
+The container is hardened against the OWASP Docker Top 10: non-root, read-only, no capabilities, and hard CPU/memory/PID limits. See [docs/docker-security.md](docs/docker-security.md).
+
 After a deploy, submit `https://shishirghimire.info.np/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
 
 ---

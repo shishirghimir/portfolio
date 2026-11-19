@@ -2,7 +2,6 @@ import Image from "next/image";
 import type { Project } from "@/content/projects";
 import { cn } from "@/lib/cn";
 
-/** The picture for a project: a browser frame with a real screenshot, a client logo, or a terminal readout for tools. */
 export function Visual({ p, priority, className }: { p: Project; priority?: boolean; className?: string }) {
   if (p.cover) {
     return (

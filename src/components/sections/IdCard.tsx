@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { m, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import { person } from "@/content/profile";
 
-/** Shishir's portrait framed as an operator ID, tilting gently toward the cursor. */
 export function IdCard() {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
@@ -43,9 +42,7 @@ export function IdCard() {
               />
             </picture>
             <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/10 to-transparent" />
-            {/* scanning beam */}
             <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-16 animate-scan bg-gradient-to-b from-transparent via-signal/25 to-transparent" />
-            {/* face lock */}
             <div aria-hidden className="absolute left-[30%] top-[16%] h-[30%] w-[40%]">
               <span className="absolute left-0 top-0 h-4 w-4 border-l-2 border-t-2 border-signal" />
               <span className="absolute right-0 top-0 h-4 w-4 border-r-2 border-t-2 border-signal" />

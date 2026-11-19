@@ -8,7 +8,6 @@ import { RoleTyper } from "./RoleTyper";
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden pb-16 pt-28 sm:pt-32 lg:min-h-[100svh] lg:pb-20 lg:pt-36">
-      {/* backdrop: grid, glows and the globe */}
       <div aria-hidden className="absolute inset-0 -z-10">
         <div className="grid-bg fade-mask absolute inset-0 opacity-60" />
         <div className="absolute -left-40 top-20 size-[520px] rounded-full bg-signal/[0.07] blur-[120px]" />
@@ -22,7 +21,6 @@ export function Hero() {
             Online · Kathmandu 27.71°N 85.32°E
           </p>
 
-          {/* painted once, straight from the HTML (it is the largest element on the page); the glitch runs on hover */}
           <h1 className="mt-7 text-[3.4rem] font-semibold leading-[0.92] tracking-[-0.05em] text-fg sm:text-7xl lg:text-[6.4rem]">
             <span className="glitch block" data-text="Shishir">Shishir</span>
             <span className="glitch glow block text-signal" data-text="Ghimire">Ghimire</span>

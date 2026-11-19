@@ -10,7 +10,6 @@ export function AchievementLogo({ a, className }: { a: Achievement; className?: 
   return <Image src={a.logo.src} alt={`${a.title} logo`} width={a.logo.wide ? 200 : 64} height={64} className={cn("h-full w-auto object-contain", className)} />;
 }
 
-/** The Black Hat MEA finals: the headline achievement, shown big. */
 export function FeaturedAchievement() {
   const a = achievements.find((x) => x.featured)!;
   return (
@@ -39,7 +38,6 @@ export function FeaturedAchievement() {
   );
 }
 
-/** Every other achievement as a card with its real logo and the key numbers. */
 export function AchievementGrid({ limit }: { limit?: number }) {
   const list = achievements.filter((x) => !x.featured).slice(0, limit);
   return (
@@ -70,7 +68,6 @@ export function AchievementGrid({ limit }: { limit?: number }) {
   );
 }
 
-/** Live TryHackMe badge, always current. */
 export function TryHackMeBadge() {
   return (
     <a href={links.tryhackme} target="_blank" rel="noopener" className="spot group block overflow-hidden rounded-2xl border border-white/[0.08] bg-ink-900/70 p-6 transition-colors hover:border-[#e0262b]/40">

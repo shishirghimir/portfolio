@@ -2,12 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-/**
- * The site-wide background: a slow network of nodes that link up when they
- * drift close, glow around the cursor, and now and then pass a data packet
- * along a link. Runs at 30 fps on phones, pauses in hidden tabs and draws a
- * single still frame for people who prefer reduced motion.
- */
 type Node = { x: number; y: number; vx: number; vy: number; r: number };
 type Packet = { a: number; b: number; t: number; speed: number };
 
@@ -50,11 +44,9 @@ export function Ambient() {
         n.x += n.vx * step; n.y += n.vy * step;
         if (n.x < -20) n.x = w + 20; else if (n.x > w + 20) n.x = -20;
         if (n.y < -20) n.y = h + 20; else if (n.y > h + 20) n.y = -20;
-        // gentle pull toward the cursor
         const dx = mouse.x - n.x, dy = mouse.y - n.y, d = Math.hypot(dx, dy);
         if (d < 180 && d > 1) { n.x += (dx / d) * 0.12 * step; n.y += (dy / d) * 0.12 * step; }
       }
-      // links
       ctx.lineWidth = 1;
       for (let i = 0; i < nodes.length; i++) {
         const a = nodes[i];
@@ -69,13 +61,11 @@ export function Ambient() {
           if (!reduce && packets.length < 14 && Math.random() < 0.0012) packets.push({ a: i, b: j, t: 0, speed: 0.5 + Math.random() * 0.6 });
         }
       }
-      // nodes
       for (const n of nodes) {
         const near = Math.max(0, 1 - Math.hypot(n.x - mouse.x, n.y - mouse.y) / 200);
         ctx.fillStyle = near > 0.05 ? `rgba(178,239,134,${0.45 + near * 0.55})` : "rgba(170,195,220,0.5)";
         ctx.beginPath(); ctx.arc(n.x, n.y, n.r + near * 1.2, 0, Math.PI * 2); ctx.fill();
       }
-      // packets travelling along links
       for (let k = packets.length - 1; k >= 0; k--) {
         const p = packets[k];
         p.t += p.speed * dt;
@@ -97,7 +87,6 @@ export function Ambient() {
     };
     const onMove = (e: PointerEvent) => {
       mouse.x = e.clientX; mouse.y = e.clientY;
-      // feed the card spotlight effect
       const card = (e.target as HTMLElement | null)?.closest?.(".spot") as HTMLElement | null;
       if (card) { const r = card.getBoundingClientRect(); card.style.setProperty("--x", `${e.clientX - r.left}px`); card.style.setProperty("--y", `${e.clientY - r.top}px`); }
     };
@@ -107,7 +96,6 @@ export function Ambient() {
     window.addEventListener("resize", resize);
     if (reduce) draw(0);
     else {
-      // start after the page has loaded so it never competes with the first paint
       const start = () => {
         const go = () => { raf = requestAnimationFrame(loop); };
         if (typeof window.requestIdleCallback === "function") window.requestIdleCallback(go, { timeout: 3000 }); else setTimeout(go, 1200);
@@ -125,7 +113,6 @@ export function Ambient() {
 
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-20">
-      {/* drifting colour fields under the network */}
       <div className="aurora absolute -left-[10%] top-[-10%] size-[55vw] rounded-full bg-signal/[0.08] blur-[120px]" />
       <div className="aurora-2 absolute -right-[10%] top-[30%] size-[50vw] rounded-full bg-data/[0.07] blur-[140px]" />
       <div className="aurora absolute bottom-[-20%] left-[30%] size-[45vw] rounded-full bg-signal/[0.05] blur-[140px]" />

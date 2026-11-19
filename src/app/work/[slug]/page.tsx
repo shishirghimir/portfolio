@@ -17,7 +17,6 @@ type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 export const generateStaticParams = () => projects.map((p) => ({ slug: p.slug }));
 
-/** Trim to a word boundary for titles and descriptions. */
 const clip = (t: string, n: number) => (t.length <= n ? t : `${t.slice(0, n).replace(/\s+\S*$/, "")}...`);
 
 export async function generateMetadata({ params }: Props) {
